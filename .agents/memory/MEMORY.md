@@ -1,0 +1,1 @@
+- [Esdras Mobile App](esdras-app.md) — gamified SDA 28 beliefs quiz app; frontend-only AsyncStorage, dark manuscript theme, 4-tab Expo app.

@@ -1,0 +1,116 @@
+Você é um desenvolvedor sênior full-stack e engenheiro de software especialista em gamificação. Sua tarefa é criar um Web App completo chamado "Esdras", focado em ensinar as 28 Crenças Fundamentais da Igreja Adventista do Sétimo Dia com base no livro "Nisto Cremos". 
+
+Crie o aplicativo utilizando uma interface moderna, limpa, responsiva (mobile-first) e atraente, utilizando HTML, CSS (Tailwind) e JavaScript (pode usar React ou JS Vanilla, o que for mais eficiente no Replit).
+
+Siga rigorosamente as especificações técnicas, visuais e lógicas abaixo:
+
+---
+
+### 1. REGRAS ABSOLUTAS DE HORÁRIO E FLUXO DIÁRIO (FUNIL DE RETENÇÃO)
+O aplicativo opera em ciclos estritos de 1 Doutrina por dia. O avanço é bloqueado ou liberado com base em horários e desempenho do usuário:
+
+*   [05:00] - LIBERAÇÃO DA LEITURA: O app libera o texto de leitura da Doutrina do Dia (Leitura estimada de 3 minutos). Nenhum teste/exercício fica disponível ou clicável neste momento.
+*   [10:00] - 1º BLOCO DE EXERCÍCIOS: Libera 5 perguntas.
+    *   Composição: 2 de "Clique na Certa", 2 de "Verdadeiro ou Falso", 1 de "Modo Apologética".
+    *   Exigência: Mínimo de 80% de acertos (4/5) para passar deste bloco.
+    *   Mensagem de Sucesso: "Ótimo começo! Você absorveu os pontos principais. Continue revisando mentalmente porque o provão das 19h não aceita erros. Prepare-se!"
+*   [15:00] - 2º BLOCO DE EXERCÍCIOS: Libera mais 5 perguntas.
+    *   Composição: 3 de "Clique na Certa", 2 de "Clique na Incorreta".
+    *   Exigência: Mínimo de 80% de acertos (4/5) para passar deste bloco.
+    *   Mensagem de Sucesso: "Falta pouco! Os conceitos da crença de hoje estão fixados. Agora a contagem regressiva começou: às 19h o Esdras vai testar você ao limite no Grande Provão. Não baixe a guarda!"
+*   [19:00] - O GRANDE PROVÃO ACUMULATIVO: Libera 10 perguntas.
+    *   Composição: Sorteio dinâmico de qualquer categoria (Certa, Incorreta, V/F, Apologética).
+    *   Escopo Teológico: Perguntas sobre a doutrina do dia + perguntas sorteadas aleatoriamente das doutrinas passadas que o usuário já aprovou (revisão cumulativa).
+    *   Exigência: 100% de acertos (10/10). Zero margem de erro.
+
+---
+
+### 2. REGRAS DE REPROVAÇÃO E REPETIÇÃO
+Se o usuário falhar em alcançar a nota mínima em QUALQUER um dos blocos (menos de 80% às 10h/15h ou menos de 100% às 19h):
+1. O avanço para a próxima doutrina no dia seguinte é BLOQUEADO.
+2. No dia seguinte, o usuário REPETE a mesma doutrina atual.
+3. Como é uma SEGUNDA TENTATIVA da mesma doutrina, a regra de horários é mitigada: TODOS os blocos de exercícios (10h, 15h e Provão) ficam IMEDIATAMENTE liberados para ele refazer a partir das 05h00 da manhã. Se ele passar com 100% no Provão nesta segunda tentativa, avança normalmente no dia seguinte.
+4. As perguntas que ele errou no Provão de 19h devem ser salvas em uma aba chamada "Pergaminho de Erros" para consulta.
+
+---
+
+### 3. GAMIFICAÇÃO: OS 8 NÍVEIS DE ESDRAS
+O progresso do usuário é dividido em blocos de 4 doutrinas. Ao concluir com sucesso cada bloco, o cargo do usuário é atualizado na interface:
+*   Doutrinas 1 a 4: Aluno do Templo
+*   Doutrinas 5 a 8: Leitor de Pergaminhos
+*   Doutrinas 9 a 12: Copiador de Manuscritos
+*   Doutrinas 13 a 16: Zelador dos Textos
+*   Doutrinas 17 a 20: Pesquisador da Lei
+*   Doutrinas 21 a 24: Intérprete Doutrinário
+*   Doutrinas 25 a 28: Escriba Versado
+*   Pós-Conclusão: Mestre de Esdras (Libera um modo de simulado infinito com perguntas aleatórias).
+
+---
+
+### 4. TELAS DA INTERFACE (UI)
+Crie um layout moderno, preferencialmente escuro ou com tons que remetam a pergaminhos antigos e escrita (tons de azul escuro, dourado, off-white), contendo:
+1.  **Dashboard Principal:** Mostra o Cargo Atual do usuário proeminente, uma barra de progresso (ex: 1/28 Doutrinas) e uma Timeline do dia (05h, 10h, 15h, 19h) indicando o status de cada bloco (Bloqueado, Disponível, Concluído, Reprovado).
+2.  **Tela de Leitura:** Exibe o texto da crença do dia de forma legível e agradável.
+3.  **Tela de Quiz:** Interface interativa para responder as perguntas, mostrando feedback visual imediato após responder (verde para certo, vermelho para errado) e as mensagens motivacionais ao final.
+4.  **Aba "Pergaminho de Erros":** Onde o usuário pode ver o histórico de questões que errou no provão e a justificativa teórica correta.
+5.  **Modo de Teste/Debug (Crucial para o Replit):** Crie um painel escondido ou no rodapé que permita "avançar o tempo" ou "simular horários" (ex: botões para simular que agora são 10h, 15h ou 19h) e um botão para "resetar progresso". Isso facilitará os testes de fluxo.
+
+---
+
+### 5. ARQUIVO DE PERGUNTAS (ESTRUTURA DE DADOS)
+Crie um arquivo 'perguntas.json' ou uma estrutura interna para armazenar as questões. Abaixo está o modelo exato de como as perguntas serão estruturadas. Monte o app usando este modelo para a Doutrina 1 para testarmos o fluxo completo. Deixe o espaço estruturado para receber as outras 27 doutrinas posteriormente.
+
+[
+  {
+    "doutrina_id": 1,
+    "doutrina_nome": "As Escrituras Sagradas",
+    "perguntas": [
+      {
+        "id": 1,
+        "categoria": "certa",
+        "enunciado": "De acordo com o livro 'Nisto Cremos', de onde emana a autoridade e a singularidade da Bíblia?",
+        "opcoes": [
+          "a) De suas incomparáveis influências políticas e sociais no mundo ocidental.",
+          "b) De sua origem divina e do assunto central de que trata: Jesus Cristo.",
+          "c) Do fato de ter sido escrita inteiramente pela própria mão de Deus no Sinai.",
+          "d) Da sofisticação literária e retórica dos profetas que a redigiram."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 11,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o processo de Inspiração das Escrituras e a atuação dos profetas, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) A palavra grega 'theopneustos' significa literalmente 'proveniente do fôlego de Deus'.",
+          "b) Genuína inspiração oblitera por completo a razão humana, a integridade personalística e a individualidade do profeta, transformando-o em uma mera pena passiva.",
+          "c) Os homens — e não as palavras — foram os instrumentos inspirados sob a influência do Espírito Santo.",
+          "d) A variedade de estilos e termos nos livros da Bíblia é um reflexo direto da educação e da cultura dos diferentes autores humanos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 16,
+        "categoria": "vf",
+        "enunciado": "A Bíblia ensina que existe inspiração parcial ou graus de inspiração entre os seus livros, o que permite ao leitor escolher quais partes possuem autoridade divina.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso",
+        "justificativa": "O livro afirma taxativamente que a Bíblia não ensina inspiração parcial ou graus de inspiração; isso é especulação humana."
+      },
+      {
+        "id": 21,
+        "categoria": "apologetica",
+        "enunciado": "Um colega de faculdade afirma: 'A Bíblia foi escrita por homens e reflete apenas os limites intelectuais da época deles. Deus não pode estar associado a um livro tão humano.' Com base no livro, como você defende a autoridade bíblica?",
+        "opcoes": [
+          "a) Argumentando que os escritores foram totalmente passivos, como fantoches.",
+          "b) Explicando que a mente e a vontade divinas foram combinadas com a mente e a vontade humanas; as declarações são do homem, mas, sob a influência do Espírito, são a autêntica Palavra de Deus.",
+          "c) Afirmando que a Bíblia não é humana, pois todas as suas páginas caíram prontas diretamente do céu.",
+          "d) Cedendo ao argumento, dizendo que apenas os Dez Mandamentos possuem autoridade real."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  }
+]
+
+Inicie a construção do projeto focando primeiro na interface do usuário, no sistema de rotinas de horários e na mecânica do jogo.
