@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobile",
+    "scheme": "esdras",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
@@ -14,9 +14,19 @@
       "backgroundColor": "#0D1B2A"
     },
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.esdras.quiz",
+      "buildNumber": "1"
     },
-    "android": {},
+    "android": {
+      "package": "com.esdras.quiz",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#0D1B2A"
+      },
+      "permissions": []
+    },
     "web": {
       "favicon": "./assets/images/icon.png"
     },
