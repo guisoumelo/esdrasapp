@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
   Modal,
   ScrollView,
@@ -31,6 +32,7 @@ export default function AjustesScreen() {
 
   const [showForm, setShowForm] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [showThemes, setShowThemes] = useState(false);
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
@@ -68,9 +70,9 @@ export default function AjustesScreen() {
                   <Text style={styles.profileEmoji}>{profileAvatar(p)}</Text>
                   <View style={styles.profileInfo}>
                     <Text style={[styles.profileName, { color: colors.foreground }]}>{p.nome}</Text>
-                    <Text style={[styles.profileMeta, { color: colors.mutedForeground }]}>
-                      {p.idade} anos {isActive ? '· Ativo' : ''}
-                    </Text>
+                    {isActive && (
+                      <Text style={[styles.profileMeta, { color: colors.mutedForeground }]}>Ativo</Text>
+                    )}
                   </View>
                   {isActive && <Text style={[styles.activeCheck, { color: colors.primary }]}>✓</Text>}
                 </TouchableOpacity>
@@ -120,14 +122,20 @@ export default function AjustesScreen() {
           </View>
         </View>
 
-        {/* ── Aparência (Tema) ── */}
+        {/* ── Aparência (Tema) — colapsível ── */}
         <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Aparência</Text>
-          <Text style={[styles.sectionSub, { color: colors.mutedForeground }]}>
-            Escolha o tema de cores deste perfil.
-          </Text>
+          <TouchableOpacity
+            style={styles.sectionToggleRow}
+            activeOpacity={0.75}
+            onPress={() => setShowThemes((v) => !v)}
+          >
+            <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Aparência</Text>
+            <Text style={[styles.rowChevron, { color: colors.mutedForeground }]}>
+              {showThemes ? '⌄' : '›'}
+            </Text>
+          </TouchableOpacity>
 
-          {THEMES.map((t) => {
+          {showThemes && THEMES.map((t) => {
             const selected = themeId === t.id;
             return (
               <TouchableOpacity
@@ -183,8 +191,8 @@ export default function AjustesScreen() {
             </View>
             <ProfileForm
               submitLabel="Criar Perfil"
-              onSubmit={(nome, idade, gender, avatar) => {
-                createProfile(nome, idade, gender, avatar);
+              onSubmit={(nome, gender, avatar) => {
+                createProfile(nome, gender, avatar);
                 setShowForm(false);
               }}
             />
@@ -231,6 +239,7 @@ const styles = StyleSheet.create({
   section: { borderRadius: 14, borderWidth: 1, padding: 16, gap: 12 },
   sectionTitle: { fontSize: 16, fontWeight: '700' },
   sectionSub: { fontSize: 13, lineHeight: 18, marginTop: -6 },
+  sectionToggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   profileRow: {
     borderRadius: 12,
     borderWidth: 1,

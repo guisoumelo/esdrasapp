@@ -229,7 +229,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
 
   const [scrolledToBottom, setScrolledToBottom] = useState(false);
   const [showCheck, setShowCheck] = useState(false);
-  const checkScale = useRef(new Animated.Value(0)).current;
+  const checkAnim = useRef(new Animated.Value(0)).current; // 0→1 on confirm
   const checkOpacity = useRef(new Animated.Value(0)).current;
 
   const unlocked = doctrineId <= MAX_UNLOCKED_DOCTRINE;
@@ -255,7 +255,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
   function markRead() {
     setShowCheck(true);
     Animated.parallel([
-      Animated.spring(checkScale, { toValue: 1, useNativeDriver: true, friction: 5 }),
+      Animated.spring(checkAnim, { toValue: 1, useNativeDriver: true, friction: 5 }),
       Animated.timing(checkOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
     ]).start();
 
@@ -268,17 +268,41 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
     }, 1100);
   }
 
-  // Extra bottom padding so the footer (which sits in normal flow) clears the
-  // absolute-positioned tab bar. Button area ≈ 56px + 16px top pad = 72px; we
-  // give it tabBarHeight + 16px of breathing room below the button.
-  const footerPaddingBottom = tabBarHeight + 16;
-
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
       <View style={[styles.detailHeader, { borderBottomColor: colors.border }]}>
-        <TouchableOpacity onPress={onBack} style={styles.backBtn}>
-          <Text style={[styles.backText, { color: colors.primary }]}>‹ Voltar</Text>
-        </TouchableOpacity>
+        {/* Top row: back ← on left, confirm ✓ on right */}
+        <View style={styles.detailHeaderRow}>
+          <TouchableOpacity onPress={onBack} style={styles.backBtn}>
+            <Text style={[styles.backText, { color: colors.primary }]}>‹ Voltar</Text>
+          </TouchableOpacity>
+
+          {canMark && (
+            <TouchableOpacity
+              onPress={scrolledToBottom ? markRead : undefined}
+              activeOpacity={scrolledToBottom ? 0.75 : 1}
+              style={[
+                styles.confirmTopBtn,
+                {
+                  backgroundColor: scrolledToBottom ? colors.primary : 'transparent',
+                  borderColor: scrolledToBottom ? colors.primary : colors.border,
+                  opacity: scrolledToBottom ? 1 : 0.3,
+                },
+              ]}
+            >
+              <Text style={[styles.confirmTopText, { color: scrolledToBottom ? colors.primaryForeground : colors.foreground }]}>
+                ✓
+              </Text>
+            </TouchableOpacity>
+          )}
+
+          {alreadyRead && (
+            <View style={[styles.confirmTopBtn, { backgroundColor: colors.success, borderColor: colors.success }]}>
+              <Text style={[styles.confirmTopText, { color: colors.successForeground }]}>✓</Text>
+            </View>
+          )}
+        </View>
+
         <Text style={[styles.detailLabel, { color: colors.mutedForeground }]}>
           Doutrina {doctrineId}
         </Text>
@@ -289,7 +313,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
 
       <ScrollView
         style={styles.scroll}
-        contentContainerStyle={[styles.detailContent, { paddingBottom: 24 }]}
+        contentContainerStyle={[styles.detailContent, { paddingBottom: tabBarHeight + 24 }]}
         showsVerticalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={100}
@@ -303,68 +327,13 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
         </View>
       </ScrollView>
 
-      {/* Footer: normal-flow (NOT absolute) so it is always above the tab bar.
-          paddingBottom = tabBarHeight + gap pushes the button into the safe zone. */}
-      {canMark && (
-        <View
-          style={[
-            styles.footer,
-            {
-              paddingBottom: footerPaddingBottom,
-              backgroundColor: colors.background,
-              borderTopColor: colors.border,
-            },
-          ]}
-        >
-          <TouchableOpacity
-            style={[
-              styles.readBtn,
-              {
-                backgroundColor: scrolledToBottom ? colors.primary : colors.muted,
-                opacity: scrolledToBottom ? 1 : 0.6,
-              },
-            ]}
-            onPress={scrolledToBottom ? markRead : undefined}
-            activeOpacity={scrolledToBottom ? 0.85 : 1}
-          >
-            <Text
-              style={[
-                styles.readBtnText,
-                { color: scrolledToBottom ? colors.primaryForeground : colors.mutedForeground },
-              ]}
-            >
-              {scrolledToBottom ? '✓ Confirmar leitura' : 'Role até o fim para confirmar'}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )}
-
-      {alreadyRead && (
-        <View
-          style={[
-            styles.footer,
-            {
-              paddingBottom: footerPaddingBottom,
-              backgroundColor: colors.background,
-              borderTopColor: colors.border,
-            },
-          ]}
-        >
-          <View style={[styles.doneCard, { backgroundColor: colors.success }]}>
-            <Text style={[styles.doneText, { color: colors.successForeground }]}>
-              ✓ Leitura confirmada — vá para o Quiz
-            </Text>
-          </View>
-        </View>
-      )}
-
       {/* Success animation overlay */}
       {showCheck && (
         <Animated.View style={[styles.overlay, { backgroundColor: colors.scrim, opacity: checkOpacity }]}>
           <Animated.View
             style={[
               styles.checkCircle,
-              { backgroundColor: colors.success, transform: [{ scale: checkScale }] },
+              { backgroundColor: colors.success, transform: [{ scale: checkAnim }] },
             ]}
           >
             <Text style={[styles.checkMark, { color: colors.successForeground }]}>✓</Text>
@@ -444,26 +413,30 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 14,
     borderBottomWidth: 1,
-    gap: 4,
+    gap: 6,
   },
-  backBtn: { paddingVertical: 6, alignSelf: 'flex-start' },
+  detailHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  backBtn: { paddingVertical: 6 },
   backText: { fontSize: 15, fontWeight: '600' },
+  confirmTopBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  confirmTopText: { fontSize: 16, fontWeight: '800' },
   detailLabel: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
   detailTitle: { fontSize: 19, fontWeight: '700', lineHeight: 26 },
   detailContent: { padding: 20, gap: 16 },
   ornamentRow: { alignItems: 'center', marginVertical: 4 },
   ornament: { fontSize: 14, letterSpacing: 2 },
   bodyText: { fontSize: 16, lineHeight: 28, letterSpacing: 0.2 },
-  footer: {
-    // NOT absolute — sits in normal flow so the tab bar cannot cover it.
-    // paddingBottom is set dynamically to tabBarHeight + gap.
-    padding: 16,
-    borderTopWidth: 1,
-  },
-  readBtn: { borderRadius: 12, paddingVertical: 16, alignItems: 'center' },
-  readBtnText: { fontSize: 15, fontWeight: '700' },
-  doneCard: { borderRadius: 12, paddingVertical: 16, alignItems: 'center' },
-  doneText: { fontSize: 15, fontWeight: '700' },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     alignItems: 'center',

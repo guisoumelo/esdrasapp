@@ -137,7 +137,7 @@ interface AppContextType {
   masterMode: boolean;
 
   // Profile actions
-  createProfile: (nome: string, idade: number, gender: Gender, avatar?: string) => Promise<void>;
+  createProfile: (nome: string, gender: Gender, avatar?: string) => Promise<void>;
   switchProfile: (id: string) => Promise<void>;
   deleteProfile: (id: string) => Promise<void>;
 
@@ -248,11 +248,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, [loaded, activeProfileId, timeLockEnabled, tick]);
 
   // ── Profile actions ──────────────────────────────────────────────────────────
-  const createProfile = async (nome: string, idade: number, gender: Gender, avatar?: string) => {
+  const createProfile = async (nome: string, gender: Gender, avatar?: string) => {
     const profile: Profile = {
       id: makeId(),
       nome: nome.trim(),
-      idade,
       gender,
       avatar,
       themeId: DEFAULT_THEME_ID,

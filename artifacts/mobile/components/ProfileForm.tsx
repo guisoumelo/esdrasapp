@@ -11,24 +11,16 @@ import { Gender, getAvatarsForGender } from '@/types';
 
 interface ProfileFormProps {
   submitLabel?: string;
-  onSubmit: (nome: string, idade: number, gender: Gender, avatar: string) => void;
+  onSubmit: (nome: string, gender: Gender, avatar: string) => void;
 }
 
 export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormProps) {
   const colors = useColors();
   const [nome, setNome] = useState('');
-  const [idade, setIdade] = useState('');
   const [gender, setGender] = useState<Gender | null>(null);
   const [avatar, setAvatar] = useState<string | null>(null);
 
-  const idadeNum = parseInt(idade, 10);
-  const valid =
-    nome.trim().length >= 2 &&
-    !isNaN(idadeNum) &&
-    idadeNum > 0 &&
-    idadeNum < 120 &&
-    gender !== null &&
-    avatar !== null;
+  const valid = nome.trim().length >= 2 && gender !== null && avatar !== null;
 
   function selectGender(g: Gender) {
     if (g !== gender) {
@@ -52,23 +44,6 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
             { backgroundColor: colors.input, color: colors.foreground, borderColor: colors.border },
           ]}
           maxLength={30}
-        />
-      </View>
-
-      {/* Idade */}
-      <View style={styles.field}>
-        <Text style={[styles.label, { color: colors.mutedForeground }]}>Idade</Text>
-        <TextInput
-          value={idade}
-          onChangeText={(t) => setIdade(t.replace(/[^0-9]/g, ''))}
-          placeholder="Sua idade"
-          placeholderTextColor={colors.mutedForeground}
-          keyboardType="number-pad"
-          style={[
-            styles.input,
-            { backgroundColor: colors.input, color: colors.foreground, borderColor: colors.border },
-          ]}
-          maxLength={3}
         />
       </View>
 
@@ -143,7 +118,7 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
           styles.submit,
           { backgroundColor: valid ? colors.primary : colors.muted, opacity: valid ? 1 : 0.5 },
         ]}
-        onPress={valid ? () => onSubmit(nome, idadeNum, gender as Gender, avatar as string) : undefined}
+        onPress={valid ? () => onSubmit(nome, gender as Gender, avatar as string) : undefined}
         activeOpacity={valid ? 0.85 : 1}
       >
         <Text

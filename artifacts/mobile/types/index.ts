@@ -38,7 +38,7 @@ export const DEFAULT_THEME_ID: ThemeId = 'darkNight';
 export interface Profile {
   id: string;
   nome: string;
-  idade: number;
+  idade?: number; // legacy field — no longer collected; kept optional for backward compat
   gender: Gender;
   avatar?: string; // emoji avatar chosen at creation; falls back to gender emoji
   themeId?: ThemeId;
