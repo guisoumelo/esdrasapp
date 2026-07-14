@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import {
   Dimensions,
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
@@ -10,7 +11,6 @@ import {
   NativeSyntheticEvent,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { KeyboardAwareScrollViewCompat } from '@/components/KeyboardAwareScrollViewCompat';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
@@ -40,8 +40,9 @@ export default function OnboardingScreen() {
   const { createProfile } = useApp();
   const scrollRef = useRef<ScrollView>(null);
   const [page, setPage] = useState(0);
+  const [showForm, setShowForm] = useState(false);
 
-  const totalPages = SLIDES.length + 1; // + profile form
+  const isLastSlide = page === SLIDES.length - 1;
 
   function onScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
     const p = Math.round(e.nativeEvent.contentOffset.x / width);
@@ -61,10 +62,8 @@ export default function OnboardingScreen() {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={onScroll}
-        scrollEnabled={page < SLIDES.length}
-        keyboardShouldPersistTaps="handled"
+        scrollEnabled={true}
       >
-        {/* Intro slides */}
         {SLIDES.map((s, i) => (
           <View key={i} style={[styles.slide, { width }]}>
             <Text style={[styles.slideIcon, { color: colors.primary }]}>{s.icon}</Text>
@@ -74,55 +73,47 @@ export default function OnboardingScreen() {
             ) : null}
           </View>
         ))}
-
-        {/* Profile form slide */}
-        <View style={[styles.formSlide, { width }]}>
-          <KeyboardAwareScrollViewCompat
-            contentContainerStyle={styles.formContent}
-            showsVerticalScrollIndicator={false}
-          >
-            <Text style={[styles.formIcon, { color: colors.primary }]}>✦</Text>
-            <Text style={[styles.formTitle, { color: colors.foreground }]}>Crie seu perfil</Text>
-            <Text style={[styles.formSub, { color: colors.mutedForeground }]}>
-              Preencha seus dados para começar a jornada.
-            </Text>
-            <View style={{ height: 20 }} />
-            <ProfileForm
-              submitLabel="Começar Jornada"
-              onSubmit={(nome, gender, avatar) => createProfile(nome, gender, avatar)}
-            />
-          </KeyboardAwareScrollViewCompat>
-        </View>
       </ScrollView>
 
-      {/* Footer: dots + next button (hidden on form slide) */}
-      {page < SLIDES.length && (
-        <View style={styles.footer}>
-          <View style={styles.dots}>
-            {Array.from({ length: totalPages }).map((_, i) => (
-              <View
-                key={i}
-                style={[
-                  styles.dot,
-                  {
-                    backgroundColor: i === page ? colors.primary : colors.border,
-                    width: i === page ? 22 : 8,
-                  },
-                ]}
-              />
-            ))}
-          </View>
-          <TouchableOpacity
-            style={[styles.nextBtn, { backgroundColor: colors.primary }]}
-            onPress={() => goTo(page + 1)}
-            activeOpacity={0.85}
-          >
-            <Text style={[styles.nextText, { color: colors.primaryForeground }]}>
-              {page === SLIDES.length - 1 ? 'Criar Perfil →' : 'Avançar →'}
-            </Text>
-          </TouchableOpacity>
+      {/* Footer: dots + action button */}
+      <View style={styles.footer}>
+        <View style={styles.dots}>
+          {SLIDES.map((_, i) => (
+            <View
+              key={i}
+              style={[
+                styles.dot,
+                {
+                  backgroundColor: i === page ? colors.primary : colors.border,
+                  width: i === page ? 22 : 8,
+                },
+              ]}
+            />
+          ))}
         </View>
-      )}
+        <TouchableOpacity
+          style={[styles.nextBtn, { backgroundColor: colors.primary }]}
+          onPress={isLastSlide ? () => setShowForm(true) : () => goTo(page + 1)}
+          activeOpacity={0.85}
+        >
+          <Text style={[styles.nextText, { color: colors.primaryForeground }]}>
+            {isLastSlide ? 'Criar Perfil →' : 'Avançar →'}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Full-screen profile creation wizard */}
+      <Modal
+        visible={showForm}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => setShowForm(false)}
+      >
+        <ProfileForm
+          onCancel={() => setShowForm(false)}
+          onSubmit={(nome, gender, avatar) => createProfile(nome, gender, avatar)}
+        />
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -139,11 +130,6 @@ const styles = StyleSheet.create({
   slideIcon: { fontSize: 64 },
   slideTitle: { fontSize: 26, fontWeight: '800', textAlign: 'center', lineHeight: 36 },
   slideBody: { fontSize: 17, textAlign: 'center', lineHeight: 26 },
-  formSlide: { flex: 1 },
-  formContent: { padding: 28, paddingTop: 60, flexGrow: 1 },
-  formIcon: { fontSize: 44, textAlign: 'center' },
-  formTitle: { fontSize: 24, fontWeight: '800', textAlign: 'center', marginTop: 8 },
-  formSub: { fontSize: 14, textAlign: 'center', marginTop: 6, lineHeight: 20 },
   footer: { paddingHorizontal: 28, paddingBottom: 24, gap: 20 },
   dots: { flexDirection: 'row', justifyContent: 'center', gap: 6 },
   dot: { height: 8, borderRadius: 4 },

@@ -179,25 +179,20 @@ export default function AjustesScreen() {
         </Text>
       </ScrollView>
 
-      {/* Add profile modal */}
-      <Modal visible={showForm} transparent animationType="slide" onRequestClose={() => setShowForm(false)}>
-        <View style={styles.modalOverlay}>
-          <View style={[styles.modalCard, { backgroundColor: colors.background }]}>
-            <View style={styles.modalHeader}>
-              <Text style={[styles.modalTitle, { color: colors.primary }]}>Novo Perfil</Text>
-              <TouchableOpacity onPress={() => setShowForm(false)}>
-                <Text style={[styles.modalClose, { color: colors.mutedForeground }]}>✕</Text>
-              </TouchableOpacity>
-            </View>
-            <ProfileForm
-              submitLabel="Criar Perfil"
-              onSubmit={(nome, gender, avatar) => {
-                createProfile(nome, gender, avatar);
-                setShowForm(false);
-              }}
-            />
-          </View>
-        </View>
+      {/* Add profile modal — full screen wizard */}
+      <Modal
+        visible={showForm}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => setShowForm(false)}
+      >
+        <ProfileForm
+          onCancel={() => setShowForm(false)}
+          onSubmit={(nome, gender, avatar) => {
+            createProfile(nome, gender, avatar);
+            setShowForm(false);
+          }}
+        />
       </Modal>
 
       {/* Confirm delete modal */}
