@@ -6,12 +6,13 @@ description: Gamified SDA 28 Fundamental Beliefs quiz app (Expo/React Native). A
 ## Architecture
 - Frontend-only: AsyncStorage for all persistence via `context/AppContext.tsx`
 - Artifact: `artifacts/mobile`, workflow: `artifacts/mobile: expo`
-- 5 tabs: index (Painel/Dashboard), leitura, quiz, erros, ajustes (settings)
+- 4 tabs: index (Painel/Dashboard), leitura, quiz, ajustes. **"Erros" tab was deliberately removed** (route file deleted); `errorScroll` data logic stays in context on purpose — don't re-add the tab without being asked.
+- App subtitle on the dashboard is "O Escriba Versado" (user-chosen identity), not "28 Crenças Fundamentais".
 - First-launch onboarding at `app/onboarding.tsx`, gated by a redirect in `app/_layout.tsx` (`RootLayoutNav` uses `useSegments`/`router.replace` — sends to /onboarding when no active profile).
 
 ## Multi-profile model (important)
 - Multiple local profiles: `@esdras_profiles` (list), `@esdras_active_profile` (id). Per-profile progress blob under `@esdras_data_<id>` = ProfileData {currentDoctrineId, completedDoctrines, dayProgress, errorScroll}.
-- **Progress is independent per profile.** Profile = {id, nome, idade, gender:'male'|'female'}; gender shown as 👨/👩 emoji.
+- **Progress is independent per profile.** Profile = {id, nome, idade, gender:'male'|'female', avatar?, themeId?}. Avatar = one of 5 skin-tone emoji per gender (required at creation; `profileAvatar()` falls back to plain 👨/👩 for old profiles).
 - **Why the atomic-swap pattern in switchProfile/deleteProfile:** load target ProfileData FIRST, then set `activeProfileId` + `data` together. Setting the id before data loads creates a mixed-state window where `commit` persists the wrong profile's data under the new key.
 
 ## Time-lock vs Free mode (global toggle `@esdras_time_lock`, default true)
@@ -43,5 +44,6 @@ description: Gamified SDA 28 Fundamental Beliefs quiz app (Expo/React Native). A
 - **`useColors` reads the active theme from AppContext** via `useContext(AppContext)` (AppContext is exported) with a null-safe fallback to `DEFAULT_THEME_ID` — so it works outside the provider (e.g. error boundary). Each palette carries `isDark` + `scrim` tokens so light themes don't get dark-hardcoded overlays/tab-bar tint.
 - **Why palettes carry `isDark`/`scrim`:** any full-screen scrim (leitura success overlay) and the tab-bar blur tint must follow the *selected* theme, not device `useColorScheme()` — otherwise a light theme shows a dark scrim / wrong blur.
 - Tab layout uses `isLiquidGlassAvailable()` (expo-glass-effect) to switch NativeTabs (iOS 26) vs ClassicTabLayout; ClassicTabLayout derives dark/light from `colors.isDark`.
+- **Tab bar is absolute-positioned** → every scroll screen needs paddingBottom ≥100, and absolute footers (leitura detail) must offset `bottom` by `BottomTabBarHeightContext` (`?? 0` for the NativeTabs path). `@react-navigation/bottom-tabs` is a direct dep pinned to expo-router's transitive version.
 - `components/ProfileForm.tsx` is shared by onboarding + ajustes (add-profile modal).
 - No debug/test panel: the dashboard (`index.tsx`) no longer has the advance-hour/reset panel. `setDebugHour`/`resetProgress` still exist in context but are unused by UI.

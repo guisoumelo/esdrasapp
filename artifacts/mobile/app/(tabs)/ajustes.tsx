@@ -12,12 +12,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
-import { Profile } from '@/types';
+import { profileAvatar } from '@/types';
 import { THEMES } from '@/constants/colors';
-
-function genderEmoji(p: Profile): string {
-  return p.gender === 'female' ? '👩' : '👨';
-}
 
 export default function AjustesScreen() {
   const colors = useColors();
@@ -69,7 +65,7 @@ export default function AjustesScreen() {
                   onPress={() => switchProfile(p.id)}
                   activeOpacity={0.8}
                 >
-                  <Text style={styles.profileEmoji}>{genderEmoji(p)}</Text>
+                  <Text style={styles.profileEmoji}>{profileAvatar(p)}</Text>
                   <View style={styles.profileInfo}>
                     <Text style={[styles.profileName, { color: colors.foreground }]}>{p.nome}</Text>
                     <Text style={[styles.profileMeta, { color: colors.mutedForeground }]}>
@@ -162,6 +158,9 @@ export default function AjustesScreen() {
                   <Text style={[styles.themeDesc, { color: colors.mutedForeground }]}>{t.description}</Text>
                 </View>
                 {selected && <Text style={[styles.activeCheck, { color: colors.primary }]}>✓</Text>}
+                <Text style={[styles.rowChevron, { color: selected ? colors.primary : colors.mutedForeground }]}>
+                  ›
+                </Text>
               </TouchableOpacity>
             );
           })}
@@ -184,8 +183,8 @@ export default function AjustesScreen() {
             </View>
             <ProfileForm
               submitLabel="Criar Perfil"
-              onSubmit={(nome, idade, gender) => {
-                createProfile(nome, idade, gender);
+              onSubmit={(nome, idade, gender, avatar) => {
+                createProfile(nome, idade, gender, avatar);
                 setShowForm(false);
               }}
             />
@@ -264,6 +263,7 @@ const styles = StyleSheet.create({
   themeInfo: { flex: 1, gap: 2 },
   themeName: { fontSize: 15, fontWeight: '700' },
   themeDesc: { fontSize: 12, lineHeight: 16 },
+  rowChevron: { fontSize: 22, fontWeight: '700', marginLeft: 2 },
   toggleRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   toggleTextWrap: { flex: 1, gap: 4 },
   toggleTitle: { fontSize: 15, fontWeight: '600' },

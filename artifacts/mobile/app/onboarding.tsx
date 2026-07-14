@@ -89,7 +89,7 @@ export default function OnboardingScreen() {
             <View style={{ height: 20 }} />
             <ProfileForm
               submitLabel="Começar Jornada"
-              onSubmit={(nome, idade, gender) => createProfile(nome, idade, gender)}
+              onSubmit={(nome, idade, gender, avatar) => createProfile(nome, idade, gender, avatar)}
             />
           </KeyboardAwareScrollViewCompat>
         </View>

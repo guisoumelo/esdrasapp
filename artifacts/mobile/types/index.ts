@@ -18,6 +18,18 @@ export interface Doctrine {
 
 export type Gender = 'male' | 'female';
 
+// Avatar variations (5 ethnic/skin-tone styles per gender) shown at profile creation.
+export const MALE_AVATARS = ['👨🏻', '👨🏼', '👨🏽', '👨🏾', '👨🏿'] as const;
+export const FEMALE_AVATARS = ['👩🏻', '👩🏼', '👩🏽', '👩🏾', '👩🏿'] as const;
+
+export function getAvatarsForGender(gender: Gender): readonly string[] {
+  return gender === 'female' ? FEMALE_AVATARS : MALE_AVATARS;
+}
+
+export function profileAvatar(p: { avatar?: string; gender: Gender }): string {
+  return p.avatar ?? (p.gender === 'female' ? '👩' : '👨');
+}
+
 // Available color themes. Persisted per-profile.
 export type ThemeId = 'darkNight' | 'sinai' | 'pergaminho' | 'templo';
 
@@ -28,6 +40,7 @@ export interface Profile {
   nome: string;
   idade: number;
   gender: Gender;
+  avatar?: string; // emoji avatar chosen at creation; falls back to gender emoji
   themeId?: ThemeId;
 }
 

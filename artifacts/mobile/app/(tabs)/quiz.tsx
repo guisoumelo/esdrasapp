@@ -372,7 +372,7 @@ export default function QuizScreen() {
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
-      <ScrollView contentContainerStyle={[styles.content, { gap: 14, paddingBottom: 40 }]} showsVerticalScrollIndicator={false}>
+      <ScrollView contentContainerStyle={[styles.content, { gap: 14 }]} showsVerticalScrollIndicator={false}>
         {/* Progress */}
         <View style={styles.progressRow}>
           <Text style={[styles.progressText, { color: colors.mutedForeground }]}>
@@ -482,7 +482,7 @@ export default function QuizScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1 },
-  content: { padding: 16 },
+  content: { padding: 16, paddingBottom: 110 },
   header: { alignItems: 'center', paddingVertical: 12, gap: 6 },
   headerTitle: { fontSize: 22, fontWeight: '800', letterSpacing: 1 },
   headerSub: { fontSize: 14, textAlign: 'center' },

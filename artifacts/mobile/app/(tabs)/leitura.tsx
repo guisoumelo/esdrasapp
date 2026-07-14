@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
 import {
   Animated,
   ScrollView,
@@ -208,6 +209,9 @@ function MacroAccordion({
 // ── Reading detail with "Leitura concluída" + check animation ──
 function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () => void }) {
   const colors = useColors();
+  // Height of the (absolute-positioned) tab bar, so the action footer sits
+  // above it instead of being covered. 0 on native-tabs layouts.
+  const tabBarHeight = useContext(BottomTabBarHeightContext) ?? 0;
   const { currentDoctrineId, dayProgress, blockAvailability, completeReading } = useApp();
   const doctrine = getDoctrine(doctrineId);
 
@@ -260,7 +264,10 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
 
       <ScrollView
         style={styles.scroll}
-        contentContainerStyle={[styles.detailContent, { paddingBottom: canMark ? 120 : 40 }]}
+        contentContainerStyle={[
+          styles.detailContent,
+          { paddingBottom: (canMark || alreadyRead ? 140 : 100) + tabBarHeight },
+        ]}
         showsVerticalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={100}
@@ -276,7 +283,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
 
       {/* Footer action (only for current doctrine that still needs reading) */}
       {canMark && (
-        <View style={[styles.footer, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
+        <View style={[styles.footer, { bottom: tabBarHeight, backgroundColor: colors.background, borderTopColor: colors.border }]}>
           <TouchableOpacity
             style={[
               styles.readBtn,
@@ -301,7 +308,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
       )}
 
       {alreadyRead && (
-        <View style={[styles.footer, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
+        <View style={[styles.footer, { bottom: tabBarHeight, backgroundColor: colors.background, borderTopColor: colors.border }]}>
           <View style={[styles.doneCard, { backgroundColor: colors.success }]}>
             <Text style={[styles.doneText, { color: colors.successForeground }]}>
               ✓ Leitura concluída — vá para o Quiz

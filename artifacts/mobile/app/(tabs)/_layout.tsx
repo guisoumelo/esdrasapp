@@ -27,10 +27,6 @@ function NativeTabLayout() {
         <Icon sf={{ default: 'questionmark.circle', selected: 'questionmark.circle.fill' }} />
         <Label>Quiz</Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="erros">
-        <Icon sf={{ default: 'scroll', selected: 'scroll.fill' }} />
-        <Label>Erros</Label>
-      </NativeTabs.Trigger>
       <NativeTabs.Trigger name="ajustes">
         <Icon sf={{ default: 'gearshape', selected: 'gearshape.fill' }} />
         <Label>Ajustes</Label>
@@ -110,18 +106,6 @@ function ClassicTabLayout() {
               <SymbolView name="questionmark.circle" tintColor={color} size={24} />
             ) : (
               <Feather name="help-circle" size={22} color={color} />
-            ),
-        }}
-      />
-      <Tabs.Screen
-        name="erros"
-        options={{
-          title: 'Erros',
-          tabBarIcon: ({ color }) =>
-            isIOS ? (
-              <SymbolView name="scroll" tintColor={color} size={24} />
-            ) : (
-              <Feather name="alert-triangle" size={22} color={color} />
             ),
         }}
       />

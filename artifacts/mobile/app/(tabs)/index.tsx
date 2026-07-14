@@ -5,7 +5,7 @@ import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { TimelineBlock } from '@/components/TimelineBlock';
 import { getDoctrine } from '@/constants/doctrines';
-import { RANKS } from '@/types';
+import { RANKS, profileAvatar } from '@/types';
 
 type BlockState = 'locked' | 'available' | 'passed' | 'failed' | 'completed';
 
@@ -47,7 +47,7 @@ export default function DashboardScreen() {
     ? 'available'
     : 'locked';
 
-  const profileEmoji = activeProfile?.gender === 'female' ? '👩' : '👨';
+  const profileEmoji = activeProfile ? profileAvatar(activeProfile) : '👨';
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
@@ -60,7 +60,7 @@ export default function DashboardScreen() {
         <View style={styles.header}>
           <Text style={[styles.appTitle, { color: colors.primary }]}>✦ ESDRAS ✦</Text>
           <Text style={[styles.appSubtitle, { color: colors.mutedForeground }]}>
-            28 Crenças Fundamentais
+            O Escriba Versado
           </Text>
         </View>
 

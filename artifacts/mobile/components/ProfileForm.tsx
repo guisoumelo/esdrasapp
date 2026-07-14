@@ -7,11 +7,11 @@ import {
   View,
 } from 'react-native';
 import { useColors } from '@/hooks/useColors';
-import { Gender } from '@/types';
+import { Gender, getAvatarsForGender } from '@/types';
 
 interface ProfileFormProps {
   submitLabel?: string;
-  onSubmit: (nome: string, idade: number, gender: Gender) => void;
+  onSubmit: (nome: string, idade: number, gender: Gender, avatar: string) => void;
 }
 
 export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormProps) {
@@ -19,9 +19,23 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
   const [gender, setGender] = useState<Gender | null>(null);
+  const [avatar, setAvatar] = useState<string | null>(null);
 
   const idadeNum = parseInt(idade, 10);
-  const valid = nome.trim().length >= 2 && !isNaN(idadeNum) && idadeNum > 0 && idadeNum < 120 && gender !== null;
+  const valid =
+    nome.trim().length >= 2 &&
+    !isNaN(idadeNum) &&
+    idadeNum > 0 &&
+    idadeNum < 120 &&
+    gender !== null &&
+    avatar !== null;
+
+  function selectGender(g: Gender) {
+    if (g !== gender) {
+      setGender(g);
+      setAvatar(null); // avatars are gender-specific; reset on change
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -58,7 +72,7 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
         />
       </View>
 
-      {/* Ícone */}
+      {/* Gênero */}
       <View style={styles.field}>
         <Text style={[styles.label, { color: colors.mutedForeground }]}>Escolha seu ícone</Text>
         <View style={styles.genderRow}>
@@ -77,7 +91,7 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
                     borderColor: selected ? colors.primary : colors.border,
                   },
                 ]}
-                onPress={() => setGender(g.key)}
+                onPress={() => selectGender(g.key)}
                 activeOpacity={0.8}
               >
                 <Text style={styles.genderEmoji}>{g.emoji}</Text>
@@ -95,13 +109,41 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
         </View>
       </View>
 
+      {/* Avatar (5 variações por gênero) */}
+      {gender !== null && (
+        <View style={styles.field}>
+          <Text style={[styles.label, { color: colors.mutedForeground }]}>Escolha seu avatar</Text>
+          <View style={styles.avatarRow}>
+            {getAvatarsForGender(gender).map((a) => {
+              const selected = avatar === a;
+              return (
+                <TouchableOpacity
+                  key={a}
+                  style={[
+                    styles.avatarCard,
+                    {
+                      backgroundColor: selected ? colors.secondary : colors.card,
+                      borderColor: selected ? colors.primary : colors.border,
+                    },
+                  ]}
+                  onPress={() => setAvatar(a)}
+                  activeOpacity={0.8}
+                >
+                  <Text style={styles.avatarEmoji}>{a}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </View>
+      )}
+
       {/* Submit */}
       <TouchableOpacity
         style={[
           styles.submit,
           { backgroundColor: valid ? colors.primary : colors.muted, opacity: valid ? 1 : 0.5 },
         ]}
-        onPress={valid ? () => onSubmit(nome, idadeNum, gender as Gender) : undefined}
+        onPress={valid ? () => onSubmit(nome, idadeNum, gender as Gender, avatar as string) : undefined}
         activeOpacity={valid ? 0.85 : 1}
       >
         <Text
@@ -139,6 +181,15 @@ const styles = StyleSheet.create({
   },
   genderEmoji: { fontSize: 36 },
   genderLabel: { fontSize: 14, fontWeight: '600' },
+  avatarRow: { flexDirection: 'row', gap: 8 },
+  avatarCard: {
+    flex: 1,
+    borderRadius: 12,
+    borderWidth: 2,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  avatarEmoji: { fontSize: 30 },
   submit: {
     borderRadius: 12,
     paddingVertical: 16,
