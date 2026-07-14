@@ -16,6 +16,7 @@ import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { getDoctrine, THEME_GROUPS } from '@/constants/doctrines';
 import { DOCTRINES } from '@/constants/doctrines';
+import { getLeitura, getParagraphs } from '@/constants/leituras';
 import { MAX_UNLOCKED_DOCTRINE } from '@/types';
 
 function nameFor(id: number): string {
@@ -321,7 +322,17 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
         <View style={styles.ornamentRow}>
           <Text style={[styles.ornament, { color: colors.primary }]}>✦ ─────── ✦ ─────── ✦</Text>
         </View>
-        <Text style={[styles.bodyText, { color: colors.foreground }]}>{doctrine?.texto ?? ''}</Text>
+
+        {/* Render rich paragraphs from leituras.json; fall back to doctrine.texto */}
+        {getParagraphs(doctrineId, doctrine?.texto ?? '').map((paragraph, idx) => (
+          <Text
+            key={idx}
+            style={[styles.bodyText, { color: colors.foreground }]}
+          >
+            {paragraph}
+          </Text>
+        ))}
+
         <View style={styles.ornamentRow}>
           <Text style={[styles.ornament, { color: colors.primary }]}>✦ ─────── ✦ ─────── ✦</Text>
         </View>
