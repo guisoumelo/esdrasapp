@@ -12,6 +12,7 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
@@ -281,6 +282,7 @@ function EditProfilesList({
   colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
 }) {
   const { resetAll } = useApp();
+  const router = useRouter();
   const [showReset, setShowReset] = useState(false);
 
   return (
@@ -352,6 +354,7 @@ function EditProfilesList({
           setShowReset(false);
           onClose();
           await resetAll();
+          router.replace('/onboarding');
         }}
       />
     </SafeAreaView>
