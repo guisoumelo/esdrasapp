@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "AhCGf7_4BR-I43d6FG0jb"
+uri = "file://esdras-mobile.zip"
+type = "unspecified"
+title = "Esdras — Projeto Mobile"
