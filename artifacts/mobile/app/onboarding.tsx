@@ -1,6 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   Dimensions,
+  Easing,
   Modal,
   ScrollView,
   StyleSheet,
@@ -35,6 +37,41 @@ const SLIDES = [
   },
 ];
 
+/** Continuously floats an element up and down. */
+function FloatingIcon({ icon, color, delay = 0 }: { icon: string; color: string; delay?: number }) {
+  const anim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(anim, {
+          toValue: -14,
+          duration: 1800,
+          delay,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: false,
+        }),
+        Animated.timing(anim, {
+          toValue: 0,
+          duration: 1800,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: false,
+        }),
+      ]),
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [anim, delay]);
+
+  return (
+    <Animated.Text
+      style={[styles.slideIcon, { color, transform: [{ translateY: anim }] }]}
+    >
+      {icon}
+    </Animated.Text>
+  );
+}
+
 export default function OnboardingScreen() {
   const colors = useColors();
   const { createProfile } = useApp();
@@ -66,7 +103,12 @@ export default function OnboardingScreen() {
       >
         {SLIDES.map((s, i) => (
           <View key={i} style={[styles.slide, { width }]}>
-            <Text style={[styles.slideIcon, { color: colors.primary }]}>{s.icon}</Text>
+            {/* Each slide's icon floats with a staggered phase */}
+            <FloatingIcon
+              icon={s.icon}
+              color={colors.primary}
+              delay={i * 300}
+            />
             <Text style={[styles.slideTitle, { color: colors.foreground }]}>{s.title}</Text>
             {s.body ? (
               <Text style={[styles.slideBody, { color: colors.mutedForeground }]}>{s.body}</Text>
@@ -127,7 +169,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 36,
     gap: 24,
   },
-  slideIcon: { fontSize: 64 },
+  slideIcon: { fontSize: 72 },
   slideTitle: { fontSize: 26, fontWeight: '800', textAlign: 'center', lineHeight: 36 },
   slideBody: { fontSize: 17, textAlign: 'center', lineHeight: 26 },
   footer: { paddingHorizontal: 28, paddingBottom: 24, gap: 20 },

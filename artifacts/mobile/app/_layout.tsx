@@ -21,19 +21,20 @@ SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 
 function RootLayoutNav() {
-  const { loaded, activeProfile } = useApp();
+  const { loaded, activeProfile, profiles } = useApp();
   const segments = useSegments();
   const router = useRouter();
 
   useEffect(() => {
     if (!loaded) return;
     const inOnboarding = segments[0] === 'onboarding';
-    if (!activeProfile && !inOnboarding) {
+    const hasProfile = profiles.length > 0 && activeProfile != null;
+    if (!hasProfile && !inOnboarding) {
       router.replace('/onboarding');
-    } else if (activeProfile && inOnboarding) {
+    } else if (hasProfile && inOnboarding) {
       router.replace('/(tabs)');
     }
-  }, [loaded, activeProfile, segments, router]);
+  }, [loaded, activeProfile, profiles, segments, router]);
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
