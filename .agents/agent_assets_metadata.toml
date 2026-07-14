@@ -6,3 +6,27 @@ id = "AhCGf7_4BR-I43d6FG0jb"
 uri = "file://esdras-mobile.zip"
 type = "unspecified"
 title = "Esdras — Projeto Mobile"
+
+[[outputs]]
+id = "TqC3izEo3JlwTOQmL9E-T"
+uri = "file://attached_assets/generated_images/feature-graphic.png"
+type = "image"
+title = "Feature Graphic (1024×500)"
+
+[[outputs]]
+id = "IVZ5PBjQQUDRXv3A3yEba"
+uri = "file://attached_assets/generated_images/icon-512.png"
+type = "image"
+title = "Ícone 512×512 px"
+
+[[outputs]]
+id = "ktBgOGrUARnaQq85EIpue"
+uri = "file://attached_assets/generated_images/descricao-play-store.txt"
+type = "text"
+title = "Descrição para a Play Store"
+
+[[outputs]]
+id = "uPmFpgTRCNfvNvLuVj4wh"
+uri = "file://attached_assets/generated_images/politica-de-privacidade.html"
+type = "unspecified"
+title = "Política de Privacidade"

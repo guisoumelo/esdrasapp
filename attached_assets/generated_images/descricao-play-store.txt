@@ -1,0 +1,43 @@
+========================================
+TÍTULO DO APP (máx. 30 caracteres):
+========================================
+Esdras: Quiz Adventista
+
+========================================
+DESCRIÇÃO CURTA (máx. 80 caracteres):
+========================================
+Teste seus conhecimentos sobre as 28 Crenças Fundamentais Adventistas!
+
+========================================
+DESCRIÇÃO LONGA (máx. 4.000 caracteres):
+========================================
+Você conhece realmente as 28 Crenças Fundamentais da Igreja Adventista do Sétimo Dia?
+
+O Esdras é um aplicativo de quiz gamificado criado para ajudar adventistas, estudantes da Bíblia e interessados a aprofundar seu conhecimento doutrinário de forma dinâmica e desafiadora.
+
+🌟 O QUE VOCÊ VAI ENCONTRAR:
+
+• 28 doutrinas completas — de Deus e a Escritura até o Milênio e a Nova Terra
+• Mais de 700 perguntas organizadas por categoria
+• Questões de múltipla escolha, verdadeiro/falso e apologética
+• Sistema de pontuação e progresso por doutrina
+• Interface elegante com tema manuscrito bíblico
+
+📖 CATEGORIAS DE PERGUNTAS:
+- Perguntas certas (aprofundamento doutrinário)
+- Perguntas incorretas (identifique os erros)
+- Verdadeiro ou Falso
+- Apologética (defenda a sua fé)
+
+🔒 TOTALMENTE OFFLINE
+O Esdras funciona 100% sem internet. Sem anúncios, sem rastreamento, sem coleta de dados. Seu progresso fica salvo no seu dispositivo.
+
+Ideal para:
+✅ Preparo para o batismo
+✅ Estudo pessoal e devocionais
+✅ Classes bíblicas e grupos de jovens
+✅ Revisão das doutrinas adventistas
+
+"Toda a Escritura é inspirada por Deus e útil para o ensino, para a repreensão, para a correção e para a instrução na justiça." — 2 Timóteo 3:16
+
+Baixe agora e comece sua jornada pelas 28 Crenças!
