@@ -1,0 +1,803 @@
+{
+  "doutrina_3_continuacao": [
+    {
+      "id": 53,
+      "categoria": "certa",
+      "enunciado": "A misericórdia de Deus Pai revelada a Moisés no Sinai não perdoa cegamente. Qual princípio equilibra Sua compaixão?",
+      "opcoes": [
+        "a) O princípio da tradição cultural rabínica.",
+        "b) O princípio da justiça absoluta, que visita a iniquidade mas oferece perdão ao arrependido.",
+        "c) A anulação das leis civis e morais do deserto.",
+        "d) O isolamento completo da Divindade face aos pecadores."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 41,
+      "categoria": "certa",
+      "enunciado": "Através dos pactos celebrados com Noé e Abraão, o que Deus Pai manifesta de forma evidente?",
+      "opcoes": [
+        "a) Que Ele é uma força mística abstrata e desinteressada pelas nações.",
+        "b) Que Ele é um Deus pessoal e amorável, intensamente envolvido nos assuntos de Seu povo.",
+        "c) Que as promessas materiais são superiores à salvação espiritual.",
+        "d) Que o concerto depende inteiramente da perfeição genética humana."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 42,
+      "categoria": "certa",
+      "enunciado": "De acordo com o livro, de quais duas formas principais Deus se revela como nosso Pai?",
+      "opcoes": [
+        "a) Através do santuário terrestre e do sacerdócio de Arão.",
+        "b) Através da criação e através do processo redentor da adoção.",
+        "c) Unicamente através das profecias cronológicas apocalípticas.",
+        "d) Por meio das forças da natureza e do julgamento dos impios."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 43,
+      "categoria": "certa",
+      "enunciado": "Qual parábola contada por Jesus ensina de forma mais contundente a iniciativa de Deus Pai em buscar ativamente o perdido?",
+      "opcoes": [
+        "a) A parábola do semeador e dos diferentes terrenos.",
+        "b) A parábola da ovelha perdida, que mostra Deus tomando a iniciativa do resgate.",
+        "c) A parábola do joio e do trigo no tempo do fim.",
+        "d) A parábola dos talentos distribuídos aos servos."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 44,
+      "categoria": "certa",
+      "enunciado": "No contexto cósmico da parábola da ovelha perdida, o que representa a única ovelha desgarrada?",
+      "opcoes": [
+        "a) A liderança espiritual rebelde da época de Cristo.",
+        "b) O nosso planeta Terra, rebelde, mas infinitamente precioso para a Divindade.",
+        "c) O anjo Lúcifer antes de ser expulso das cortes celestes.",
+        "d) O povo de Israel exilado nos tempos de cativeiro."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 45,
+      "categoria": "certa",
+      "enunciado": "Quem é a suprema, exata e perfeita revelação pessoal de Deus Pai para a humanidade?",
+      "opcoes": [
+        "a) O profeta Moisés ao descer do Monte Sinai.",
+        "b) Jesus Cristo, o Deus Filho feito carne.",
+        "c) O sumo sacerdote Josué com suas vestes limpas.",
+        "d) O dom de profecia manifestado no remanescente."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 46,
+      "categoria": "certa",
+      "enunciado": "O ato de Deus Pai em entregar Seu Filho em Belém e no Calvário demonstra que Ele é essencialmente um Deus:",
+      "opcoes": [
+        "a) Exigente de rituais e sacrifícios materiais punitivos.",
+        "b) Doador, que compartilha Sua própria vida e sofre junto com o Filho.",
+        "c) Indiferente ao sofrimento humano até o fim dos tempos.",
+        "d) Focado exclusivamente na condenação legal do universo."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 47,
+      "categoria": "incorreta",
+      "enunciado": "A respeito do caráter de Deus Pai revelado no Antigo Testamento, assinale a alternativa INCORRETA:",
+      "opcoes": [
+        "a) Ele estabeleceu um santuário terrestre expressando o desejo de habitar no meio do povo.",
+        "b) Ele revelou-se a Moisés como um Deus clemente, longânimo e perdoador.",
+        "c) Ele é retratado nos Salmos como um refúgio e fortaleza bem presente na tribulação.",
+        "d) Ele agiu de forma fria e cruel, desvinculado de qualquer plano de amor até o Novo Testamento."
+      ],
+      "resposta_correta": "d"
+    },
+    {
+      "id": 48,
+      "categoria": "incorreta",
+      "enunciado": "Sobre o relacionamento espiritual de filiação estabelecido no Novo Testamento, assinale a alternativa INCORRETA:",
+      "opcoes": [
+        "a) O relacionamento de Pai e filhos é estendido automaticamente a toda a humanidade, sem necessidade de aceitar a Cristo.",
+        "b) Os crentes recebem o Espírito de adoção, que os capacita a clamar 'Aba, Pai'.",
+        "c) Esse vínculo é estabelecido mediante a aceitação de Jesus Cristo pela fé.",
+        "d) Os redimidos tornam-se de forma real herdeiros e filhos legítimos do Rei."
+      ],
+      "resposta_correta": "a"
+    },
+    {
+      "id": 49,
+      "categoria": "incorreta",
+      "enunciado": "Considerando a união de caráter entre o Pai e o Filho expressa nos Evangelhos, assinale a alternativa INCORRETA:",
+      "opcoes": [
+        "a) Jesus lavou os pés do traidor para revelar a natureza humilde e amorosa do Pai.",
+        "b) Os milagres de cura operados por Jesus eram demonstrações do próprio Pai labutando entre os homens.",
+        "c) O Pai permaneceu alheio e sem sofrimento enquanto o Filho agonizava na cruz.",
+        "d) Conhecer e contemplar a vida de Jesus equivale a conhecer e ver o próprio Pai."
+      ],
+      "resposta_correta": "c"
+    },
+    {
+      "id": 50,
+      "categoria": "incorreta",
+      "enunciado": "A respeito das parábolas do lucro e da busca divina em Lucas 15, assinale a alternativa INCORRETA:",
+      "opcoes": [
+        "a) A parábola da dracma perdida enfatiza o imenso valor que Deus atribui ao pecador.",
+        "b) A parábola do filho pródigo demonstra a hesitação e a demora do Pai em perdoar quem errou.",
+        "c) O arrependimento do pecador gera transbordante alegria nas cortes celestes.",
+        "d) Os relatos provam que a salvação parte da iniciativa e do amor incondicional de Deus."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 51,
+      "categoria": "incorreta",
+      "enunciado": "Sobre a manifestação da soberania de Deus Pai na escatologia bíblica, assinale a alternativa INCORRETA:",
+      "opcoes": [
+        "a) O Filho do homem retornará revestido de forma gloriosa com a própria glória do Pai.",
+        "b) O Pai antecipa com coração anelante o momento de levar os remidos para o eterno lar.",
+        "c) O dia da vingança divina representa a destruição arbitrária de inocentes.",
+        "d) Na segunda vinda, a justiça e o governo de Deus Pai serão plenamente expostos ao universo."
+      ],
+      "resposta_correta": "c"
+    },
+    {
+      "id": 52,
+      "categoria": "vf",
+      "enunciado": "O Deus do Antigo Testamento difere substancialmente do Deus do Novo Testamento em Seus princípios morais e objetivos de salvação.",
+      "opcoes": ["Verdadeiro", "Falso"],
+      "resposta_correta": "Falso"
+    },
+    {
+      "id": 53,
+      "categoria": "vf",
+      "enunciado": "Embora nenhum ser humano pecador tenha visto a face de Deus Pai, Seu caráter foi plenamente exposto através de Seus atos históricos e da vida de Seu Filho.",
+      "opcoes": ["Verdadeiro", "Falso"],
+      "resposta_correta": "Verdadeiro"
+    },
+    {
+      "id": 54,
+      "categoria": "vf",
+      "enunciado": "A soberania de Deus Pai anula por completo o livre-arbítrio e a liberdade de escolha da humanidade no plano de salvação.",
+      "opcoes": ["Verdadeiro", "Falso"],
+      "resposta_correta": "Falso"
+    },
+    {
+      "id": 55,
+      "categoria": "vf",
+      "enunciado": "Na cruz do Calvário, a dor e o sofrimento da separação foram suportados em igual e profunda medida tanto pelo Filho quanto pelo Pai.",
+      "opcoes": ["Verdadeiro", "Falso"],
+      "resposta_correta": "Verdadeiro"
+    },
+    {
+      "id": 56,
+      "categoria": "vf",
+      "enunciado": "O livro 'Nisto Cremos' ensina que Deus Pai decretou e predestinou arbitrariamente algumas pessoas para a perdição eterna antes do nascimento delas.",
+      "opcoes": ["Verdadeiro", "Falso"],
+      "resposta_correta": "Falso"
+    },
+    {
+      "id": 57,
+      "categoria": "apologetica",
+      "enunciado": "Um crítico da religião diz: 'O Deus do Antigo Testamento é um tirano irado que exige sangue, enquanto Jesus no Novo Testamento é amoroso e pacífico'. Como você corrige esse argumento com base no livro?",
+      "opcoes": [
+        "a) Admitindo que houve uma evolução moral no caráter de Deus ao longo da história humana.",
+        "b) Explicando que o Antigo e o Novo Testamento revelam o mesmo Deus; a misericórdia, a paciência e a aliança protetora são a base de Seus atos no Antigo Testamento, culminando na cruz do Filho.",
+        "c) Afirmando que Jesus veio para anular e destruir o governo cruel do Pai terrenal.",
+        "d) Dizendo que o Antigo Testamento foi escrito por profetas falsos que não conheciam o amor."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 58,
+      "categoria": "apologetica",
+      "enunciado": "Alguém afirma: 'Se Deus Pai conhece o futuro e sabe quem vai se perder, o livre-arbítrio não existe; a presciência divina força as nossas decisões'. Qual é a resposta teológica correta?",
+      "opcoes": [
+        "a) A presciência realmente elimina a liberdade, tornando a humanidade um mero joguete de robôs.",
+        "b) O conhecimento antecipado de Deus penetra o futuro sem alterá-lo; da mesma forma que uma câmera registra uma cena sem interferir nela, a presciência jamais viola a liberdade de escolha humana.",
+        "c) Deus optou por apagar Sua própria memória do futuro para salvaguardar a nossa paz mental.",
+        "d) A Bíblia ensina que Deus não sabe o que as pessoas vão escolher até que o façam."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 59,
+      "categoria": "apologetica",
+      "enunciado": "Um amigo argumenta: 'A Bíblia diz que Deus endureceu o coração de Faraó no Egito. Isso prova que Deus Pai força as pessoas a pecarem para depois puni-las'. Como o texto do livro esclarece essa expressão?",
+      "opcoes": [
+        "a) Confirmando que Deus retira a salvação de quem Ele deseja destruir por capricho político.",
+        "b) Esclarecendo que a Bíblia atribui a Deus o crédito por aquilo que Ele meramente permite; a recusa persistente de Faraó diante dos apelos divinos ilustra o respeito de Deus pela liberdade de escolha.",
+        "c) Mostrando que Faraó era um robô biológico programado para falhar desde a fundação do mundo.",
+        "d) Afirmando que aquela história foi apenas um mito poético inventado por Moisés."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 60,
+      "categoria": "apologetica",
+      "enunciado": "Durante um debate, alguém afirma: 'Deus Pai está muito distante nas galáxias para se importar com as nossas pequenas vidas orações terrestres'. Que evidência do Êxodo e do Calvário destrói essa ideia?",
+      "opcoes": [
+        "a) O fato de que Deus exige que enviemos ofertas caras para atrair Sua atenção mística.",
+        "b) A revelação de um Deus que desceu para libertar escravos no Êxodo, que ordenou a construção de um santuário para habitar com o povo e que entregou Seu próprio Filho na cruz.",
+        "c) A constatação de que Deus só responde às orações de reis e grandes líderes espirituais.",
+        "d) O ensinamento de que Deus Pai delegou o controle total da Terra aos anjos caídos."
+      ],
+      "resposta_correta": "b"
+    },
+    {
+      "id": 61,
+      "categoria": "apologetica",
+      "enunciado": "Um estudante de teologia afirma: 'A predestinação em Romanos prova que Deus escolhe quem vai para o céu e quem vai para o inferno de forma arbitrária'. Como o livro define a verdadeira predestinação bíblica?",
+      "opcoes": [
+        "a) Como a escolha caprichosa de um panteão de deuses independentes.",
+        "b) Como o propósito efetivo e inclusivo de Deus de que todos os que crerem em Cristo e aceitarem o convite da graça sejam salvos e adotados.",
+        "c) Como um decreto oculto e secreto que anula a necessidade de pregar o Evangelho.",
+        "d) Como a herança genética e cultural recebida exclusivamente dos patriarcas de Israel."
+      ],
+      "resposta_correta": "b"
+    }
+  ],
+  "doutrina_4": {
+    "nome": "Deus Filho",
+    "perguntas": [
+      {
+        "id": 62,
+        "categoria": "certa",
+        "enunciado": "Qual termo teológico e bíblico o livro utiliza para identificar o mistério de Deus Filho manifestar-Se em carne humana?",
+        "opcoes": [
+          "a) A metamorfose angélica do deserto.",
+          "b) O mistério da piedade ou Encarnação.",
+          "c) A transfiguração mística planetária.",
+          "d) A teofania temporária do Antigo Testamento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 63,
+        "categoria": "certa",
+        "enunciado": "Com base no princípio profético do dia-ano, quanto tempo literal representam as 70 semanas da profecia de Daniel 9?",
+        "opcoes": [
+          "a) 70 anos literais de cativeiro.",
+          "b) 490 anos literais determinados para a nação judaica.",
+          "c) 7 mil anos de história humana.",
+          "d) 49 anos determinados para a reconstrução do templo."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 64,
+        "categoria": "certa",
+        "enunciado": "De acordo com a cronologia profética exata confirmada pelo livro, em qual ano d.C. Jesus foi batizado e ungido como o Messias?",
+        "opcoes": [
+          "a) No outono do ano 31 d.C.",
+          "b) No outono do ano 27 d.C.",
+          "c) Na primavera do ano 34 d.C.",
+          "d) No ano 1 a.C., em Belém."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 65,
+        "categoria": "certa",
+        "enunciado": "O que aconteceu no momento da morte de Jesus na primavera de 31 d.C. que assinalou o fim definitivo do sistema de sacrifícios da lei cerimonial?",
+        "opcoes": [
+          "a) O desmoronamento completo das muralhas da cidade de Jerusalém.",
+          "b) O véu do templo foi miraculosamente rasgado em duas partes de alto a baixo.",
+          "c) A arca da aliança desapareceu misteriosamente do lugar santíssimo.",
+          "d) Os sacerdotes judeus decidiram fechar as portas do templo voluntariamente."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 66,
+        "categoria": "certa",
+        "enunciado": "Ao assumir a natureza humana, a vida que residia em Jesus Cristo era original, não-emprestada e não-derivada. Isso comprova Sua:",
+        "opcoes": [
+          "a) Dependência das faculdades físicas da virgem Maria.",
+          "b) Divindade inerente e auto-existente como o Filho Eterno.",
+          "c) Natureza puramente angélica e espiritual.",
+          "d) Qualificação como um mero profeta iluminado."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 67,
+        "categoria": "certa",
+        "enunciado": "Qual era o título que Jesus mais utilizava para Se referir a Si próprio, enfatizando Sua solidariedade e identificação com a raça decaída?",
+        "opcoes": [
+          "a) O Príncipe de Babilônia.",
+          "b) O Filho do homem.",
+          "c) O Querubim Cobridor.",
+          "d) O Escriba Versado."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 68,
+        "categoria": "certa",
+        "enunciado": "Em Seu papel como o 'Segundo Adão', o que Jesus provou perante o universo que o primeiro Adão falhou em demonstrar?",
+        "opcoes": [
+          "a) Que o ambiente do paraíso era imperfeito para a raça.",
+          "b) Que é plenamente possível ao ser humano obedecer à lei de Deus através da total dependência do poder divino.",
+          "c) Que a matéria física é inerentemente pecaminosa e má.",
+          "d) Que os seres criados precisam de poderes sobrenaturais próprios para vencer."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 69,
+        "categoria": "certa",
+        "enunciado": "Quais são os três grandes ofícios mediadores exercidos por Jesus Cristo para operar a salvação humana?",
+        "opcoes": [
+          "a) Escriba, Levita e Juiz terrenal.",
+          "b) Profeta, Sacerdote e Rei.",
+          "c) Patriarca, Administrador e Guerreiro.",
+          "d) Zelador, Copiador e Intérprete."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 70,
+        "categoria": "certa",
+        "enunciado": "Onde se localiza o centro atual da atividade intercessória e do ministério sacerdotal do ressurreto Jesus Cristo?",
+        "opcoes": [
+          "a) No antigo templo reconstruído na Jerusalém terrestre.",
+          "b) No santuário celestial, à direita do trono da Majestade.",
+          "c) Exclusivamente no interior do subconsciente humano.",
+          "d) Nos altares de sacrifícios montados nos desertos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 71,
+        "categoria": "certa",
+        "enunciado": "Quais são os dois tronos que simbolizam os dois reinos messiânicos estabelecidos por Jesus Cristo?",
+        "opcoes": [
+          "a) O trono de ferro e o trono de ouro purificado.",
+          "b) O trono da graça e o trono da Sua glória.",
+          "c) O trono de Davi terrenal e o trono de Nabucodonosor.",
+          "d) O trono do Sinai e o trono do monte Sião físico."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 72,
+        "categoria": "incorreta",
+        "enunciado": "A respeito das evidências da divindade inerente de Jesus Cristo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele possui os atributos de onipotência, onisciência e imutabilidade.",
+          "b) Ele aceitou e recebeu adoração por parte de seres humanos e anjos.",
+          "c) Ele adquiriu divindade progressiva ao longo de Sua vida como recompensa por Seus méritos morais.",
+          "d) Ele perdoou pecados e demonstrou autoridade para ressuscitar os mortos."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 73,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a real humanidade assumida por Deus Filho, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) Ele achava-Se sujeito às leis naturais do desenvolvimento físico e mental.",
+          "b) Sua natureza humana não continha poderes sobrenaturais próprios isolados do Pai.",
+          "c) Ele experimentou cansaço, fome, sede, tristeza profunda e dores reais.",
+          "d) Sua humanidade era uma ilusão espiritual ou uma capa corpórea desprovida de sentimentos reais."
+        ],
+        "resposta_correta": "d"
+      },
+      {
+        "id": 74,
+        "categoria": "incorreta",
+        "enunciado": "Considerando o cumprimento exato da profecia do tempo em Jesus, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) A ordem para restaurar Jerusalém que iniciou a profecia foi emitida em 457 a.C.",
+          "b) O Messias deveria ser cortado/morto exatamente no término da septuagésima semana profética, no ano 70 d.C.",
+          "c) Jesus iniciou Seu ministério público exatamente no tempo indicado: outono de 27 d.C.",
+          "d) O sacrifício vicário de Jesus na primavera de 31 d.C. cumpriu o antítipo da Páscoa pascal."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 75,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do reino da graça estabelecido por Cristo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele foi instituído por meio de uma promessa logo após o pecado e ratificado na cruz.",
+          "b) Ele recebe cidadãos por meio da regeneração ou o novo nascimento espiritual.",
+          "c) Ele é estabelecido de forma visível e imponente através de exércitos e armas geopolíticas deste mundo.",
+          "d) Ele opera no coração dos crentes através da verdade e da justiça do Espírito."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 76,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a união das duas naturezas na pessoa única de Jesus Cristo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Em Jesus, a divindade foi convertida em humanidade, deixando de ser Deus por 33 anos.",
+          "b) Ele é perfeitamente o Deus-homem, uma única pessoa com duas naturezas distintas.",
+          "c) Durante a crucifixão, a Sua natureza humana experimentou a morte, e não a Sua divindade.",
+          "d) A divindade foi revestida com o manto da humanidade para que os pecadores pudessem suportar Sua presença."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 77,
+        "categoria": "vf",
+        "enunciado": "O termo bíblico 'unigênito' (monogenes) aplicado a Jesus descreve um evento cronológico onde Ele foi gerado ou criado em algum momento do tempo passado.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 78,
+        "categoria": "vf",
+        "enunciado": "O livro 'Nisto Cremos' sustenta a absoluta e inquestionável ausência de pecado e de propensões para o mal na natureza humana assumida por Jesus Cristo.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 79,
+        "categoria": "vf",
+        "enunciado": "Jesus executou inúmeros milagres de forma egoísta para poupar a Si próprio dos sofrimentos normais e das limitações físicas comuns da humanidade.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 80,
+        "categoria": "vf",
+        "enunciado": "A ressurreição física e corpórea de Jesus Cristo é a cidadela e o fundamento indispensável da fé e da certeza da nossa própria salvação futura.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 81,
+        "categoria": "vf",
+        "enunciado": "O reino da glória foi plenamente estabelecido na Terra de forma definitiva durante a primeira vinda de Jesus a Jerusalém.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 82,
+        "categoria": "apologetica",
+        "enunciado": "Um crítico afirma: 'Se Jesus sentiu fome, cansaço e chorou, Ele era apenas um homem iluminado e falível, não o Deus Criador'. Como você rebate esse argumento?",
+        "opcoes": [
+          "a) Concordando que a divindade de Jesus foi apagada e deixou de existir na manjedoura.",
+          "b) Explicando que a Bíblia ensina o mistério das duas naturezas: Ele velou Sua divindade e assumiu a real e frágil natureza humana para condoer-Se de nós e morrer em nosso lugar, sem jamais deixar de ser o Deus auto-existente.",
+          "c) Dizendo que os sentimentos humanos de Jesus eram apenas uma encenação para enganar o povo.",
+          "d) Afirmando que os Evangelhos erraram ao registrar as fraquezas fisicas do Salvador."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 83,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'Jesus foi tentado em tudo como nós, portanto Ele devia possuir pensamentos pecaminosos internos e inclinações para o mal ocultas no coração'. Qual é a defesa ortodoxa correta?",
+        "opcoes": [
+          "a) O livro ensina que Jesus possuía paixões pecaminosas, mas conseguia controlá-las pela força de vontade física.",
+          "b) A avalanche de tentações externas foi real e severa, trazendo imenso sofrimento à Sua alma pura, mas Jesus manteve-Se santo, inculpável e sem mácula, completamente livre de qualquer traço ou inclinação interna para o mal.",
+          "c) A tentação de Jesus não foi real porque, sendo Deus, era impossível que Ele sentisse a pressão do inimigo.",
+          "d) Jesus cedeu mentalmente em algumas ocasiões, mas não concretizou o pecado em ações visíveis."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 84,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma classe bíblica, um integrante diz: 'A morte de Jesus foi injusta, o que prova que as profecias do Antigo Testamento falharam ao descrever um Messias estritamente vitorioso e coroado de ouro'. Como você esclarece o erro?",
+        "opcoes": [
+          "a) Admitindo que os judeus mudaram o texto para justificar o assassinato de Cristo.",
+          "b) Mostrando que Isaías 53 profetizou com detalhes impressionantes que o Messias seria desprezado, rejeitado, levado como cordeiro ao matadouro e moído pelas nossas transgressões; Sua humilhação antecede Sua coroa.",
+          "c) Dizendo que as profecias de vitória se referiam exclusivamente ao reinado político do rei Davi antigo.",
+          "d) Afirmando que a cruz foi um acidente imprevisto que mudou o plano de Deus de última hora."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 85,
+        "categoria": "apologetica",
+        "enunciado": "Um colega diz: 'Se Jesus venceu o pecado usando Seu poder divino oculto, Ele não serve como exemplo para nós, seres humanos limitados'. Como o livro desfaz essa objeção?",
+        "opcoes": [
+          "a) Concordando que a vitória de Jesus é inalcançável e serve apenas para nos humilhar mormente.",
+          "b) Esclarecendo que Jesus viveu na Terra em total e completa dependência do poder de Seu Pai, não exercendo nenhum poder que o ser humano não possa ter acesso mediante a comunhão diária e a fé.",
+          "c) Afirmando que Jesus usou feitiçaria e misticismo oriental para resistir às tentações do deserto.",
+          "d) Mostrando que os seres humanos possuem poder moral inerente e não precisam de ajuda divina para vencer."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 86,
+        "categoria": "apologetica",
+        "enunciado": "Alguém afirma: 'A Bíblia diz que o Filho está assentado no trono e intercede por nós. Isso significa que Ele está tentando convencer um Deus Pai irado a deixar de nos odiar'. Como o amor da Trindade corrige essa visão?",
+        "opcoes": [
+          "a) Confirmando que o Pai realmente nos odeia, mas é obrigado a nos aceitar devido ao contrato do sangue.",
+          "b) Mostrando que a intercessão de Jesus baseia-se no próprio amor do Pai, que enviou o Filho e estava 'em Cristo reconciliando consigo o mundo'; as orações e os méritos de Jesus aplicam o plano que Ambos arquitetaram juntos.",
+          "c) Dizendo que o Pai abdicou do trono e não participa mais de nenhuma decisão jurídica universal.",
+          "d) Afirmando que a intercessão sacerdotal é uma função mística desprovida de base legal nas Escrituras."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  "doutrina_5": {
+    "nome": "Deus Espírito Santo",
+    "perguntas": [
+      {
+        "id": 87,
+        "categoria": "certa",
+        "enunciado": "Além de convencer o mundo do pecado e do juízo, qual é a terceira e crucial realidade divina que o Espírito Santo faz a mente humana compreender?",
+        "opcoes": [
+          "a) A validade das tradições rabínicas antigas.",
+          "b) A justiça perfeita de Jesus Cristo.",
+          "c) A superioridade da retórica técnica dos escribas.",
+          "d) A necessidade de sacrifícios contínuos no deserto."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 88,
+        "categoria": "certa",
+        "enunciado": "Qual palavra grega Jesus utilizou para identificar o Espírito Santo como nosso 'Ajudador', 'Advogado' ou 'Consolador'?",
+        "opcoes": [
+          "a) Theopneustos.",
+          "b) Parakletos.",
+          "c) Monogenes.",
+          "d) Epistrophe."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 89,
+        "categoria": "certa",
+        "enunciado": "De acordo com o livro, o que era o pré-requisito absoluto e indispensável para o derramamento da plenitude do Espírito Santo no Pentecostes?",
+        "opcoes": [
+          "a) A reconstrução física das muralhas de Jerusalém.",
+          "b) A aceitação do sacrifício e a glorificação/entronização de Jesus nas cortes celestiais.",
+          "c) O exílio definitivo de toda a liderança do Sinédrio judaico.",
+          "d) A catalogação técnica de todos os livros do Novo Testamento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 90,
+        "categoria": "certa",
+        "enunciado": "Como o livro define o papel administrativo do Espírito Santo na governança da igreja cristã?",
+        "opcoes": [
+          "a) Ele atua de forma secundária, submetido às decisões e decretos de líderes humanos.",
+          "b) Ele é o verdadeiro Vigário de Cristo na Terra, o centro de autoridade que dirige a missão e distribui os dons.",
+          "c) Ele opera de forma estritamente mística, isolado da pregação e das Escrituras.",
+          "d) Sua função administrativa encerrou-se definitivamente na morte dos doze apóstolos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 91,
+        "categoria": "certa",
+        "enunciado": "O ato do Espírito Santo em habitar no íntimo do pecador arrependido opera qual milagre essencial para a salvação?",
+        "opcoes": [
+          "a) A transformação corpórea imediata em um ser imortal.",
+          "b) O novo nascimento ou regeneração espiritual.",
+          "c) A anulação da necessidade de estudar as Escrituras Sagradas.",
+          "d) A infusão de talentos artísticos e intelectuais seculares."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 92,
+        "categoria": "certa",
+        "enunciado": "Qual é o principal objetivo de todas as mensagens, revelações e testemunhos trazidos pelo Espírito Santo?",
+        "opcoes": [
+          "a) Exaltar a Si próprio e buscar adoração isolada no universo.",
+          "b) Glorificar a Jesus Cristo e revelar a Sua graça salvadora.",
+          "c) Substituir os preceitos da lei moral dada no Sinai.",
+          "d) Validar as filosofias e sabedorias intelectuais humanas."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 93,
+        "categoria": "certa",
+        "enunciado": "Segundo as Escrituras, quem distribui os dons espirituais à igreja cristã e com base em qual critério?",
+        "opcoes": [
+          "a) A liderança eclesiástica, com base em méritos e heranças culturais.",
+          "b) O Espírito Santo, distribuindo a cada um individualmente como Lhe apraz.",
+          "c) Os próprios membros, escolhendo as funções por votação democrática.",
+          "d) Os anjos leais, de forma oculta durante as visões da noite."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 94,
+        "categoria": "certa",
+        "enunciado": "Como o livro diferencia o trabalho do Espírito Santo daquele realizado por Jesus Cristo na cruz?",
+        "opcoes": [
+          "a) O Espírito Santo veio para corrigir os erros cometidos pelo Filho na Terra.",
+          "b) O sacrifício de Cristo foi objetivo na cruz; o Espírito Santo aplica essa propiciação de forma subjetiva no crente.",
+          "c) O Espírito Santo anula a necessidade dos méritos do Calvário.",
+          "d) Não há diferença real, pois Ambos realizaram exatamente as mesmas ações corpóreas."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 95,
+        "categoria": "certa",
+        "enunciado": "A advertência bíblica contra a blasfêmia ou pecado imperdoável contra o Espírito Santo baseia-se em qual realidade?",
+        "opcoes": [
+          "a) No fato de que Ele é mais severo e vingativo do que o Pai e o Filho.",
+          "b) Na rejeição persistente e deliberada da mente humana à Sua influência transformadora e convincente.",
+          "c) Em pronunciar o Seu nome sagrado de forma incorreta durante os cultos.",
+          "d) Na quebra involuntária de alguma regra social da comunidade."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 96,
+        "categoria": "certa",
+        "enunciado": "Por qual título exclusivo e singular o Espírito Santo passa a ser identificado no Novo Testamento, denotando Sua nova função histórica?",
+        "opcoes": [
+          "a) O Anjo do Senhor do deserto.",
+          "b) O Espírito de Jesus ou de Cristo.",
+          "c) O Vento impetuoso de Babilônia.",
+          "d) O Escriba Versado celestial."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 97,
+        "categoria": "incorreta",
+        "enunciado": "A respeito dos atributos divinos plenamente associados à pessoa do Espírito Santo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele possui os atributos absolutos de onipresença, onisciência e onipotência.",
+          "b) Ele perscruta todas as coisas, incluindo as profundezas ocultas de Deus.",
+          "c) Ele é um ser criado subordinado no tempo, destituído de auto-existência própria.",
+          "d) Amor, verdade e santidade absoluta constituem parte intrínseca de Sua essência."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 98,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o envolvimento histórico do Espírito Santo revelado nas Escrituras, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele pairava sobre as águas no registro histórico da Criação original.",
+          "b) Ele operou de forma oculta enchendo de poder e ungindo a vida pública de Cristo.",
+          "c) Ele permaneceu completamente inativo e ausente ao longo de todo o Antigo Testamento.",
+          "d) Ele inspirou os santos homens de Deus a falarem e redigirem os pergaminhos sagrados."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 99,
+        "categoria": "incorreta",
+        "enunciado": "Considerando as exortações bíblicas direcionadas aos crentes a respeito do Espírito Santo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Somos advertidos de forma severa contra o resistir, entristecer ou apagar o Espírito.",
+          "b) É impossível ao cristão perder a habitação do Espírito Santo, mesmo vivendo em rebelião deliberada.",
+          "c) O recebimento contínuo de Sua presença permanente exige uma atitude de fidelidade e obediência.",
+          "d) Fomos chamados a ser templos vivos e puros para a morada do Espírito de santidade."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 100,
+        "categoria": "incorreta",
+        "enunciado": "A respeito dos efeitos do derramamento do Espírito Santo no dia do Pentecostes, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele removeu as barreiras culturais e linguísticas unindo os discípulos em amor.",
+          "b) Ele transformou pescadores galileus despretensiosos em testemunhas corajosas e poderosas.",
+          "c) Ele manifestou sinais audíveis e visíveis como línguas de fogo e som de vento.",
+          "d) Ele embriagou fisicamente os apóstolos com vinho doce, justificando a zombaria do povo."
+        ],
+        "resposta_correta": "d"
+      },
+      {
+        "id": 101,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a relação entre o Espírito Santo, as Escrituras e a liderança da igreja, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) As decisões administrativas guiadas pelo Espírito Santo podem contradizer a Bíblia escrita.",
+          "b) O primeiro concílio eclesiástico em Jerusalém declarou: 'Pareceu bem ao Espírito Santo e a nós'.",
+          "c) Os líderes espirituais fiéis são comissionados e colocados em suas posições pelo próprio Espírito.",
+          "d) Toda orientação ou dom atribuído ao Espírito deve ser provado e testado pelo texto bíblico."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 102,
+        "categoria": "vf",
+        "enunciado": "Sem a iluminação direta e o auxílio interpretativo do Espírito Santo, a mente humana natural considera a mensagem da cruz como loucura absoluta.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 103,
+        "categoria": "vf",
+        "enunciado": "O livro ensina que o recebimento inicial da convicção do pecado e o batismo pleno do Espírito Santo são exatamente a mesma experiência espiritual.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 104,
+        "categoria": "vf",
+        "enunciado": "A ausência ou negligência da presença do Espírito Santo é o fator principal que torna o ministério evangélico sem poder e infrutífero.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 105,
+        "categoria": "vf",
+        "enunciado": "O Espírito Santo foi prometido à igreja cristã com o objetivo teológico de substituir ou anular a necessidade das Escrituras Sagradas nos tempos do fim.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 106,
+        "categoria": "vf",
+        "enunciado": "A transformação interior operada pelo Espírito Santo escreve a lei de amor de Deus diretamente no coração do pecador arrependido.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 107,
+        "categoria": "apologetica",
+        "enunciado": "Um integrante da igreja afirma: 'Erudição, talento natural e grande eloquência humana bastam para converter corações; o Espírito Santo é apenas um detalhe'. Como o livro rebate esse erro?",
+        "opcoes": [
+          "a) Concordando que grandes oradores conseguem salvar almas por conta própria.",
+          "b) Mostrando que sem a presença do Espírito nenhum coração é tocado e nenhum pecador é ganho; mas, sob Sua influência, até os mais pobres e ignorantes discípulos possuem o maior poder do universo.",
+          "c) Dizendo que a Bíblia proíbe o estudo e a busca por erudição humana.",
+          "d) Afirmando que os talentos naturais humanos pertencem inteiramente a Satanás."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 108,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'O Espírito Santo me deu uma nova revelação em sonhos que anula o sábado e muda os Dez Mandamentos'. Como o app Esdras blinda o usuário contra isso?",
+        "opcoes": [
+          "a) Aceitando a revelação se ela trouxer sentimentos de paz interior profunda.",
+          "b) Aplicando o critério absoluto de que as Sagradas Escrituras e o Espírito jamais se separam; o Espírito é o autor da Bíblia e todos os dons espirituais modernos devem ser testados e julgados estritamente pelo texto escrito.",
+          "c) Dizendo que o dom de profecia e sonhos encerrou-se completamente no Antigo Testamento.",
+          "d) Aceitando a nova luz se ela for confirmada por uma votação democrática da liderança."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 109,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma discussão, um conhecido diz: 'Eu cometi erros graves e fui desonesto ontem, mas isso não importa porque fui batizado com o Espírito há dez anos e estou salvo para sempre'. Qual verdade sobre a permanência do Espírito corrige isso?",
+        "opcoes": [
+          "a) O fato de que o Espírito Santo perdoa os pecados futuros automaticamente.",
+          "b) A compreensão de que o recebimento contínuo e a habitação permanente do Espírito dependem de uma atitude de fidelidade e obediência diárias; o pecado deliberado e a impenitência o entristecem e o afastam.",
+          "c) A certeza de que os Dez Mandamentos deixaram de existir para quem tem o Espírito.",
+          "d) O ensinamento de que o batismo na água elimina a nossa natureza pecaminosa terrenal."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 110,
+        "categoria": "apologetica",
+        "enunciado": "Um estudante afirma: 'Jesus prometeu enviar outro Consolador. Isso prova que o Espírito Santo é um anjo proeminente enviado para substituir a Jesus, que nos abandonou órfãos'. Como você desfaz esse erro?",
+        "opcoes": [
+          "a) Confirmando que Jesus nos abandonou e que o Espírito é de fato uma criatura angélica superior.",
+          "b) Esclarecendo que o Espírito Santo é Deus, o terceiro membro coeterno da Divindade; Ele não substitui a Jesus como se Cristo estivesse ausente, mas traz a própria presença real, onipresente e espiritual do Salvador ao coração dos crentes.",
+          "c) Mostrando que Jesus mentiu ao prometer o Consolador para os discípulos daquela época.",
+          "d) Provando que o Espírito Santo e Jesus são exatamente a mesma pessoa corpórea."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 111,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'As Escrituras dizem que o Espírito Santo intercede por nós com gemidos inexprimíveis. Isso prova que Ele é um ser sofredor, fraco e incompleto que não possui poder próprio'. Como você defende a divindade dEle?",
+        "opcoes": [
+          "a) Admitindo que o Espírito Santo é uma divindade inferior e em processo de evolução.",
+          "b) Mostrando que Sua intercessão demonstra a profundidade de Seu envolvimento amoroso e pessoal com a humanidade; Ele é onipotente e onisciente, distribuindo os dons espirituais soberanamente como Lhe apraz.",
+          "c) Dizendo que esses gemidos são apenas uma metáfora poética desprovida de realidade espiritual.",
+          "d) Afirmando que o texto de Romanos refere-se exclusivamente às dores fisicas do apóstolo Paulo."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  }
+}

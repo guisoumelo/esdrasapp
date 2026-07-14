@@ -1,0 +1,842 @@
+{
+  "doutrina_6": {
+    "nome": "A Criação",
+    "perguntas": [
+      {
+        "id": 112,
+        "categoria": "certa",
+        "enunciado": "Segundo o relato bíblico da Criação em Gênesis, qual expressão é repetida ao final de cada etapa para atestar a bondade e a perfeição da matéria criada?",
+        "opcoes": [
+          "a) Que era o resultado de mudanças acidentais.",
+          "b) Que era bom / muito bom.",
+          "c) Que evoluiria ao longo de eras.",
+          "d) Que continha uma centelha de mal intrínseco."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 113,
+        "categoria": "certa",
+        "enunciado": "A palavra hebraica 'yom', quando acompanhada de um número definido no texto bíblico, significa invariavelmente o quê?",
+        "opcoes": [
+          "a) Um período metafórico de milhões de anos.",
+          "b) Um dia literal de 24 horas.",
+          "c) Uma era xeológica indefinida.",
+          "d) O ciclo completo de uma geração."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 114,
+        "categoria": "certa",
+        "enunciado": "Qual mandamento do Decálogo evoca diretamente a semana da Criação como o fundamento para o repouso e a adoração humana?",
+        "opcoes": [
+          "a) O primeiro mandamento, contra a idolatria.",
+          "b) O quinto mandamento, sobre honrar os pais.",
+          "c) O quarto mandamento, sobre o sábado.",
+          "d) O décimo mandamento, contra a cobiça."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 115,
+        "categoria": "certa",
+        "enunciado": "O livro indica que a criação da matéria pelo comando da palavra divina ocorreu de que forma?",
+        "opcoes": [
+          "a) A partir de uma matéria caótica pré-existente.",
+          "b) Do nada (ex nihilo).",
+          "c) Através do desdobramento de energias espirituais caídas.",
+          "d) Mediante a ajuda de agências angélicas subordinadas."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 116,
+        "categoria": "certa",
+        "enunciado": "Quem foi o agente divino ativo que trouxe a Terra à existência através de Sua palavra, conforme o prólogo de João?",
+        "opcoes": [
+          "a) O profeta Moisés.",
+          "b) Jesus Cristo, o Verbo eterno.",
+          "c) O querubim Lúcifer antes da queda.",
+          "d) A humanidade em seu estado espiritual puro."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 117,
+        "categoria": "certa",
+        "enunciado": "O fato de Deus moldar o homem com as próprias mãos e assoprar nele o fôlego de vida demonstra:",
+        "opcoes": [
+          "a) Uma semelhança evolutiva direta com o reino animal.",
+          "b) Uma clara descontinuidade e uma posição de destaque para a humanidade.",
+          "c) Que o corpo humano é puramente espiritual e incorpóreo.",
+          "d) A incapacidade de Deus em criar por meio da palavra."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 118,
+        "categoria": "certa",
+        "enunciado": "A instituição do matrimônio edênico estabelece que a união entre os dois indivíduos deve ser:",
+        "opcoes": [
+          "a) Um contrato social temporário e revogável.",
+          "b) Uma união sagrada e indissolúvel.",
+          "c) Baseada estritamente em alianças geopolíticas.",
+          "d) Um arranjo focado apenas na sobrevivência econômica."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 119,
+        "categoria": "certa",
+        "enunciado": "Por qual motivo principal Deus providenciou a criação da Terra e a organizou ao longo de seis dias?",
+        "opcoes": [
+          "a) Para testar se as leis físicas funcionariam sozinhas.",
+          "b) Para preparar um ambiente ideal, perfeito e maduro para habitação humana.",
+          "c) Para isolar o pecado cósmico em um canto do universo.",
+          "d) Para preencher o tempo ocioso da Divindade na eternidade."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 120,
+        "categoria": "certa",
+        "enunciado": "Qual é a base fundamental da verdadeira auto-estima humana revelada no relatório da Criação?",
+        "opcoes": [
+          "a) O acúmulo de posses e conhecimentos científicos seculares.",
+          "b) O fato de termos sido criados à imagem e semelhança de Deus.",
+          "c) A nossa capacidade de dominar e destruir os recursos naturais.",
+          "d) A nossa independência absoluta em relação ao governo do Céu."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 121,
+        "categoria": "certa",
+        "enunciado": "A ordem de Deus para Adão cultivar e guardar o Jardim do Éden demonstra:",
+        "opcoes": [
+          "a) Que o labor manual era uma punição prévia ao pecado.",
+          "b) A dignidade e o valor do trabalho manual mesmo num mundo perfeito.",
+          "c) A escassez de recursos alimentares no paraíso original.",
+          "d) Que o homem deveria viver como um escravo sem tempo de lazer."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 122,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o relacionamento entre os dois relatos da Criação (Gênesis 1 e Gênesis 2), assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O primeiro apresenta a criação em ordem estritamente cronológica.",
+          "b) O segundo é focado em descrever detalhadamente o lugar do homem no ambiente edênico.",
+          "c) Os dois relatos são contraditórios e anulam a fidedignidade histórica um do outro.",
+          "d) Ambos se harmonizam perfeitamente quando aceitos de forma literal."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 123,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do propósito de Deus ao conceder o livre-arbítrio à criação humana, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Deus desejava que a obediência e o amor humanos ocorressem de forma natural e livre.",
+          "b) Deus forçou a raça a amá-Lo eliminando qualquer possibilidade de erro.",
+          "c) A liberdade de escolha traz consigo a responsabilidade moral pelas decisões.",
+          "d) O verdadeiro amor exige a existência do direito de escolha para ser real."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 124,
+        "categoria": "incorreta",
+        "enunciado": "Considerando o impacto do sábado como memorial da Criação, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele funciona como um antídoto direto contra a idolatria.",
+          "b) Ele recorda semanalmente que somos criaturas e Deus é o Criador.",
+          "c) Ele foi instituído para ser um fardo pesado e restritivo à alegria humana.",
+          "d) Ele convida à celebração das obras e do caráter beneficente de Deus."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 125,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a continuidade da energia e do poder criativo de Deus hoje, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O mundo se mantém hoje através de um poder mecânico inerente e independente de Deus.",
+          "b) Deus preserva e sustenta cada célula e batimento cardíaco por Sua palavra.",
+          "c) O poder criador atua na redenção ao recriar e transformar corações.",
+          "d) O mesmo poder original criará um novo Céu e uma nova Terra no futuro."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 126,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do valor do universo físico criado por Deus, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) A matéria física é intrinsecamente má, poluída e inferior ao mundo espiritual.",
+          "b) O Criador avaliou Suas obras e declarou que tudo era muito bom.",
+          "c) O corpo e a matéria física possuem dignidade e valor perante Deus.",
+          "d) A desvalorização da matéria abre margem para filosofias pessimistas e niilistas."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 127,
+        "categoria": "vf",
+        "enunciado": "A expressão 'tarde e manhã' no relato da Criação especifica o início de dias individuais ao pôr-do-sol, seguindo o padrão literal de 24 horas.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 128,
+        "categoria": "vf",
+        "enunciado": "O quarto mandamento perderia o sentido lógico se os dias da semana da Criação representassem longos períodos de eras geológicas.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 129,
+        "categoria": "vf",
+        "enunciado": "A semana da Criação relatada em Gênesis envolveu a criação dos céus onde Deus habita desde a eternidade.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 130,
+        "categoria": "vf",
+        "enunciado": "A Bíblia apresenta a paternidade de Deus e a igualdade racial baseando-se no fato de que todos fomos criados a partir do mesmo primeiro par humano.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 131,
+        "categoria": "vf",
+        "enunciado": "O livro ensina que a salvação exige um longo período de tempo histórico por focar no maior interesse de salvar o maior número possível de pessoas.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 132,
+        "categoria": "apologetica",
+        "enunciado": "Um teólogo liberal defende a 'evolução teísta', alegando que o Gênesis é apenas um mito poético e que Deus usou o processo de evolução e a morte de bilhões de animais ao longo de eras para criar o homem. Como você responde?",
+        "opcoes": [
+          "a) Aceitando a teoria, pois a ciência humana está acima da revelação escrita.",
+          "b) Mostrando que a evolução teísta contradiz as Escrituras e o Calvário; a Bíblia trata os seis dias como literais, e a morte entrou no mundo somente após o pecado de Adão, exigindo um Substituto real.",
+          "c) Dizendo que a Bíblia ensina que o homem evoluiu a partir de criaturas marinhas abençoadas.",
+          "d) Afirmando que os seis dias duraram exatamente 6 mil anos cada um."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 133,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'O texto de 2 Pedro 3:8 diz que para o Senhor um dia é como mil anos, logo os dias da Criação duraram mil anos cada'. Como desatar esse erro hermenêutico?",
+        "opcoes": [
+          "a) O texto de Pedro refere-se à paciência divina quanto ao tempo e conclui dizendo que 'mil anos são como um dia'; o uso de números com 'yom' e a expressão 'tarde e manhã' exigem dias de 24 horas em Gênesis.",
+          "b) Aceitando que Adão viveu de fato mais de 6 mil anos dentro do Jardim do Éden.",
+          "c) Mostrando que Pedro estava reescrevendo a cronologia de Moisés para corrigir erros de tradução.",
+          "d) Afirmando que o tempo de Deus é mecânico e segue exatamente o relógio atômico moderno."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 134,
+        "categoria": "apologetica",
+        "enunciado": "Um ativista radical afirma: 'A Bíblia ensina que o homem tem domínio sobre a Terra, logo a teologia cristã justifica o egoísmo humano em poluir e destruir a natureza'. Como a verdadeira mordomia da criação rebate isso?",
+        "opcoes": [
+          "a) O domínio dado por Deus foi uma autorização legal para a exploração gananciosa e destruidora.",
+          "b) O domínio humano foi comissionado para refletir o governo gracioso e beneficente de Deus; fomos colocados como administradores e guardiões responsáveis por preservar o ambiente.",
+          "c) A Bíblia ensina que a natureza pertence inteiramente a Satanás e deve ser destruída.",
+          "d) O texto prova que a raça humana não possui nenhuma relação de dever moral com o planeta."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 135,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma conversa, um materialista diz: 'O universo surgiu por um acaso de forças físicas cegas e explosões caóticas; a vida não possui nenhum significado real'. Qual verdade da Criação resgata a dignidade humana?",
+        "opcoes": [
+          "a) A constatação de que a matéria surgiu da evolução orgânica de vírus espaciais caóticos.",
+          "b) A revelação de que fomos planejados por um Deus pessoal com um propósito eterno; a vida é um dom do amor divino feito para o companheirismo com o Criador.",
+          "c) A ideia de que somos robôs biológicos destinados à aniquilação nuclear inevitável.",
+          "d) A aceitação de que o homem é o deus supremo do universo observável."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 136,
+        "categoria": "apologetica",
+        "enunciado": "Alguém afirma: 'Se a ciência humana mutável não consegue reproduzir a criação ex nihilo em laboratório hoje, o relato bíblico deve ser descartado por falta de provas'. Qual é o erro epistemológico subjacente?",
+        "opcoes": [
+          "a) Achar que a ciência humana é o padrão supremo capaz de julgar e quantificar os atos do Deus infinito; a Criação é aceita pela fé baseada em evidências razoáveis da Palavra e da natureza.",
+          "b) Ignorar que os cientistas já conseguiram criar seres humanos do nada em laboratórios secretos.",
+          "c) Aceitar que a Bíblia está desatualizada e precisa ser corrigida pelos novos manuais seculares.",
+          "d) Acreditar que a fé cristã exige uma mente cega e desprovida de qualquer lógica racional."
+        ],
+        "resposta_correta": "a"
+      }
+    ]
+  },
+  "doutrina_7": {
+    "nome": "A Natureza do Homem",
+    "perguntas": [
+      {
+        "id": 137,
+        "categoria": "certa",
+        "enunciado": "De acordo com a antropologia bíblica expressa na equação de Gênesis 2:7, o que constitui a 'alma vivente' (nephesh chayyah)?",
+        "opcoes": [
+          "a) Uma entidade invisível e imortal aprisionada temporariamente dentro do corpo.",
+          "b) A união dos elementos físicos da terra com o fôlego de vida energizante de Deus.",
+          "c) O subconsciente mental isolado das funções do cérebro físico.",
+          "d) Uma faísca divina que reencarna sucessivamente em diferentes gerações."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 138,
+        "categoria": "certa",
+        "enunciado": "Qual é o significado etimológico básico da palavra hebraica 'nephesh', traduzida comumente por 'ser' ou 'alma'?",
+        "opcoes": [
+          "a) Espírito imortal.",
+          "b) Uma criatura que respira; pessoa.",
+          "c) Assombração corpórea.",
+          "d) Mente desencarnada."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 139,
+        "categoria": "certa",
+        "enunciado": "A respeito do termo 'espírito' (hebraico 'ruach' / grego 'pneuma') associado ao homem, o que ele representa fundamentalmente no texto sagrado?",
+        "opcoes": [
+          "a) Uma entidade inteligente capaz de pensar fora do corpo físico.",
+          "b) A energizante centelha de vida, ou princípio vital, que retorna a Deus na morte.",
+          "c) O fantasma do indivíduo que vaga pela Terra após o falecimento.",
+          "d) As inclinações pecaminosas e carnais herdadas dos pais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 140,
+        "categoria": "certa",
+        "enunciado": "Como o apóstolo Paulo descreve a unidade tripla do homem em 1 Tessalonicenses 5:23, demonstrando que toda a pessoa participa do processo de santificação?",
+        "opcoes": [
+          "a) Mente, Razão e Emoção.",
+          "b) Espírito, Alma e Corpo.",
+          "c) Carne, Sangue e Ossos.",
+          "d) Consciência, Ego e Superego."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 141,
+        "categoria": "certa",
+        "enunciado": "Na Criação original, qual era a condição da imortalidade concedida a Adão e Eva?",
+        "opcoes": [
+          "a) Absoluta e inerente à sua própria natureza espiritual.",
+          "b) Condicionada à obediência contínua e ao acesso à árvore da vida.",
+          "c) Temporária, durando apenas até o nascimento do primeiro filho.",
+          "d) Fictícia, servindo como uma metáfora poética sem efeito real."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 142,
+        "categoria": "certa",
+        "enunciado": "De acordo com a Bíblia, qual é a definição doutrinária mais direta e exata para o pecado?",
+        "opcoes": [
+          "a) Um erro involuntário decorrente da falta de instrução acadêmica.",
+          "b) A transgressão da lei de Deus; desvio de Sua conhecida vontade.",
+          "c) Um comportamento julgado inadequado pelas regras sociais da época.",
+          "d) O desenvolvimento natural das paixões fisicas humanas."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 143,
+        "categoria": "certa",
+        "enunciado": "Qual é a verdadeira sede moral e o centro de controle do pecado de onde procedem os maus desígnios, segundo Cristo?",
+        "opcoes": [
+          "a) As mãos físicas que executam o roubo.",
+          "b) O coração ou mente humana.",
+          "c) O meio-ambiente e as circunstâncias externas sociais.",
+          "d) As agências angélicas caídas de forma direta e mecânica."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 144,
+        "categoria": "certa",
+        "enunciado": "Como o pecado original de Adão afetou a herança de toda a raça e dos descendentes humanos?",
+        "opcoes": [
+          "a) Não causou efeito, pois cada indivíduo nasce moralmente perfeito.",
+          "b) Transmitiu uma natureza caída, com fraquezas e propensões herdadas para o mal.",
+          "c) Eliminou completamente a liberdade de escolha em termos de conduta civil.",
+          "d) Causou apenas a alteração da linguagem humana na torre de Babel."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 145,
+        "categoria": "certa",
+        "enunciado": "Qual é o fruto imediato e o único antídoto eficaz contra a culpa avassaladora produzida pelo pecado?",
+        "opcoes": [
+          "a) O isolamento ascético nos desertos antigos.",
+          "b) O perdão de Deus mediante a aceitação de Cristo, limpando a consciência.",
+          "c) O cumprimento estrito de rituais e penitências punitivas.",
+          "d) A negação psicológica e a supressão do sentimento de erro."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 146,
+        "categoria": "certa",
+        "enunciado": "Para que fomos criados e qual é o chamado supremo direcionado à humanidade recuperada em Cristo?",
+        "opcoes": [
+          "a) Buscar o acúmulo de glória e honra individuais seculares.",
+          "b) Para a glória de Deus, sendo chamados a amá-Lo e uns aos outros.",
+          "c) Viver de forma isolada e sem responsabilidade com o próximo.",
+          "d) Desenvolver sociedades ricas baseadas no domínio militar."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 147,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do termo hebraico 'nephesh' utilizado no Antigo Testamento, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) É frequentemente traduzido como 'vida' ou aplicado aos pronomes pessoais.",
+          "b) Denota uma porção imortal que se desvincula conscientemente do corpo após a morte.",
+          "c) É aplicado também para descrever a vida e o movimento de criaturas animais.",
+          "d) Pode referir-se a um corpo morto ou cadáver em certas porções do texto."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 148,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a unidade indivisível e a harmonia das faculdades humanas, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Deficiências ou doenças na mente/espírito causam efeitos deletérios na saúde física.",
+          "b) Uma constituição física enfraquecida geralmente afeta a saúde espiritual.",
+          "c) As faculdades mentais, espirituais e físicas funcionam de forma totalmente independente e isolada.",
+          "d) Temos a responsabilidade moral de manter todo o nosso organismo nas melhores condições."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 149,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do impacto imediato do primeiro pecado no Éden, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Adão e Eva experimentaram vergonha, medo e tentaram esconder-se da presença divina.",
+          "b) O casal assumiu a responsabilidade pelo erro com profundo orgulho e petulância.",
+          "c) Adão tentou passar a culpa para Eva e, indiretamente, para o próprio Deus.",
+          "d) A transgressão resultou na perda do acesso à árvore da vida e na expulsão do lar."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 150,
+        "categoria": "incorreta",
+        "enunciado": "Considerando a universalidade e a erradicação do comportamento pecaminoso, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) As Escrituras declaram de forma inequívoca que todos pecaram e carecem de Deus.",
+          "b) O ser humano possui forças e méritos morais inerentes para remover o pecado sozinho.",
+          "c) A tentativa de desenvolver a justiça própria através das obras da lei é condenada.",
+          "d) Somente o poder de Cristo pode emancipar o indivíduo da escravidão do pecado."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 151,
+        "categoria": "incorreta",
+        "enunciado": "Sobre as características humanas recebidas por Jesus Cristo na encarnação, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele foi feito carne e sangue, tornando-Se em tudo semelhante aos irmãos.",
+          "b) Sua natureza humana era rodeada de fraquezas inocentes, como cansaço e fome.",
+          "c) Ele herdou a corrupção moral interna, a depravação hereditária e o pecado afetivo.",
+          "d) Ele dependia totalmente do Pai por meio da oração contínua para vencer."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 152,
+        "categoria": "vf",
+        "enunciado": "A Bíblia ensina de forma categórica que o homem possui uma alma imortal inerente que sobrevive de forma consciente fora do organismo físico.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 153,
+        "categoria": "vf",
+        "enunciado": "O termo grego 'psuche' em o Novo Testamento não é inerentemente imortal, sendo passível de morte e destruição total.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 154,
+        "categoria": "vf",
+        "enunciado": "A imagem moral de Deus no homem envolvia a santidade, a justiça e a plena liberdade de escolha para amar e obedecer.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 155,
+        "categoria": "vf",
+        "enunciado": "O pecado atua de forma absoluta, de modo que transgredir um único ponto da santa lei de Deus torna o indivíduo culpado de todos.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 156,
+        "categoria": "vf",
+        "enunciado": "A teologia bíblica apoia o conceito de que os seres humanos evoluíram de forma ascendente a partir de espécies animais inferiores ao longo de eras.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 157,
+        "categoria": "apologetica",
+        "enunciado": "Em uma conversa sobre o luto, um amigo afirma: 'Quando uma pessoa boa morre, sua alma imortal se desprende do corpo imediatamente e vai para o céu olhar por nós de forma consciente'. Como a antropologia bíblica corrige esse engano?",
+        "opcoes": [
+          "a) Validando o argumento, pois a alma possui consciência separada do corpo físico.",
+          "b) Esclarecendo que a Bíblia ensina a unidade indivisível do homem; a alma não possui consciência separada do organismo e entra em estado de sono inconsciente até o dia da ressurreição.",
+          "c) Mostrando que as almas dos mortos reencarnam imediatamente em novas crianças da família.",
+          "d) Afirmando que os mortos se tornam anjos espirituais dotados de poderes divinos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 158,
+        "categoria": "apologetica",
+        "enunciado": "Um conhecido diz: 'O pecado é apenas cometer atos visíveis e violentos, como roubar ou matar; os pensamentos egoístas escondidos na mente não são pecado'. Como os ensinos de Cristo desfazem essa visão reducionista?",
+        "opcoes": [
+          "a) Confirmando que Deus ignora os pensamentos se as ações externas parecerem éticas.",
+          "b) Revelando que o pecado envolve tanto pensamentos quanto desejos internos; a mente é o centro de controle e a ira ou o desejo cobiçoso quebram o Decálogo.",
+          "c) Ensinando que a mente humana é incapaz de cometer erros morais internos.",
+          "d) Mostrando que o pecado é puramente um erro de comportamento social exterior."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 159,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma discussão sobre psicologia, alguém afirma: 'O ser humano nasce como uma tela em branco totalmente pura; a maldade é um comportamento 100% adquirido por imitação cultural'. Qual verdade sobre a natureza caída rebate isso?",
+        "opcoes": [
+          "a) O ensinamento de que nascemos moralmente impecáveis e sem fraquezas biológicas.",
+          "b) A constatação bíblica de que herdamos uma pecaminosidade básica e uma corrupção do coração; por natureza tendemos ao mal e necessitamos da graça regeneradora.",
+          "c) A certeza de que a cultura humana é incapaz de influenciar as decisões individuais.",
+          "d) O conceito de que a maldade provém de mutações genéticas espaciais acidentais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 160,
+        "categoria": "apologetica",
+        "enunciado": "Um integrante da igreja argumenta: 'O apóstolo Paulo em Romanos 7 descreve sua luta contra o pecado e diz que faz o mal que não quer. Isso prova que o cristão é uma vítima sem forças e deve aceitar viver pecando'." ,
+        "opcoes": [
+          "a) Paulo estava defendendo a conformidade com o pecado como um estilo de vida inevitável.",
+          "b) Paulo retrata a futilidade dos esforços humanos sem Deus; em Romanos 8 ele revela a vitória por meio do Espírito de Cristo, mostrando que a graça nos dá poder real para vencer.",
+          "c) O texto prova que a lei de Deus é injusta e exige uma obediência impossível.",
+          "d) Paulo estava justificando seus próprios erros pessoais para não perder o apostolado."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 161,
+        "categoria": "apologetica",
+        "enunciado": "Alguém afirma: 'Se Jesus assumiu a nossa natureza caída e experimentou a tentação, Ele possuía inclinações pecaminosas e falhou mentalmente em algum momento'. Como você defende a impecabilidade de Jesus humana?",
+        "opcoes": [
+          "a) Admitindo que Jesus cometeu pequenos pecados de pensamento durante a infância.",
+          "b) Aplicando o testemunho bíblico de que, embora assumisse as nossas fraquezas inocentes físicas, Sua natureza espiritual era pura, santa e livre de todo traço de corrupção ou propensão para o mal; Ele jamais pecou.",
+          "c) Mostrando que Jesus não foi tentado de verdade porque Sua divindade anulava a pressão.",
+          "d) Dizendo que os Evangelhos erraram ao chamá-Lo de 'Ente Santo' ao nascer."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  "doutrina_8": {
+    "nome": "O Grande Conflito",
+    "perguntas": [
+      {
+        "id": 162,
+        "categoria": "certa",
+        "enunciado": "Onde e através de qual categoria de seres criados originou-se o mistério do pecado e do grande conflito cósmico?",
+        "opcoes": [
+          "a) Na Terra, através do casal Adão e Eva.",
+          "b) No Céu, através de Lúcifer, um querubim cobridor proeminente.",
+          "c) Nos desertos do Oriente Médio, por agências de nações pagãs.",
+          "d) Nas profundezas dos oceanos planetários pré-históricos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 163,
+        "categoria": "certa",
+        "enunciado": "Qual foi a raiz do pecado e o motivo real que levou Lúcifer à rebelião aberta contra o governo de Deus?",
+        "opcoes": [
+          "a) A falta de sabedoria e formosura física recebidas do Criador.",
+          "b) O orgulho de seu coração e a cobiça egoísta de ser igual ao Altíssimo.",
+          "c) O cumprimento estrito de leis físicas estritas celestiais.",
+          "d) A opressão e a falta de liberdade nas cortes celestiais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 164,
+        "categoria": "certa",
+        "enunciado": "Que porção das hóstias angélicas celestiais uniu-se a Lúcifer (Satanás) em sua rebelião e foi expulsa junto com ele?",
+        "opcoes": [
+          "a) Uma metade exata de todos os querubins.",
+          "b) Uma terça parte dos anjos.",
+          "c) Apenas um pequeno grupo de mensageiros rasos.",
+          "d) Toda a totalidade do mundo angélico criado."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 165,
+        "categoria": "certa",
+        "enunciado": "Ao seduzir Adão e Eva por meio de disfarce e mentiras, o que Satanás roubou engenhosamente da humanidade?",
+        "opcoes": [
+          "a) A capacidade biológica de raciocinar e falar línguas.",
+          "b) O domínio legítimo sobre o planeta Terra, autoproclamando-se príncipe deste mundo.",
+          "c) Os manuscritos físicos das Escrituras Sagradas originais.",
+          "d) Os talentos artísticos e as ferramentas de labor manual."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 166,
+        "categoria": "certa",
+        "enunciado": "Qual livro do Antigo Testamento desvenda uma convocação cósmica e o diálogo direto demonstrando que a Terra é o palco desse conflito universal?",
+        "opcoes": [
+          "a) O livro de Levítico.",
+          "b) O livro de Jó.",
+          "c) O livro de Provérbios.",
+          "d) O livro de Esdras."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 167,
+        "categoria": "certa",
+        "enunciado": "Segundo a perspectiva bíblica, diante de qual audiência universal este mundo se tornou um espetáculo ou palco de lutas?",
+        "opcoes": [
+          "a) Apenas perante os imperadores políticos da antiguidade.",
+          "b) Tanto a anjos quanto a homens; a todo o universo observável.",
+          "c) Exclusivamente perante os descendentes da linhagem de Jacó.",
+          "d) Perante os filósofos e intelectuais das escolas gregas."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 168,
+        "categoria": "certa",
+        "enunciado": "Qual é a questão central e o alvo dos ataques insidiosos de Satanás no grande conflito cósmico?",
+        "opcoes": [
+          "a) A arquitetura física das estrelas do espaço.",
+          "b) A lei, o governo e o caráter de amor de Deus.",
+          "c) A organização financeira dos impérios terrestres.",
+          "d) O desenvolvimento tecnológico e científico secular."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 169,
+        "categoria": "certa",
+        "enunciado": "O que Jesus priorizou perante os ataques e as tentações de Satanás no deserto, servindo como nossa arma máxima?",
+        "opcoes": [
+          "a) Seus poderes divinos independentes e isolados.",
+          "b) A Palavra de Deus escrita ('Está escrito') e a total dependência do Pai.",
+          "c) Alianças políticas com os governantes da época.",
+          "d) A fuga mística para longe dos problemas reais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 170,
+        "categoria": "certa",
+        "enunciado": "Onde ocorreu a derrota jurídica decisiva de Satanás e a maior demonstração de amor e obediência fiel da história cósmica?",
+        "opcoes": [
+          "a) Na construção da torre de Babel.",
+          "b) Na cruz do Calvário.",
+          "c) No palácio do rei Nabucodonosor.",
+          "d) No concílio administrativo dos discípulos em Jerusalém."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 171,
+        "categoria": "certa",
+        "enunciado": "Quem Cristo envia para guiar, proteger e amparar Seu povo remanescente em meio aos conflitos finais na Terra?",
+        "opcoes": [
+          "a) Filósofos e grandes cientistas seculares diplomados.",
+          "b) O Espírito Santo e os Seus anjos leais.",
+          "c) Imperadores políticos convertidos à fé militar.",
+          "d) Líderes mundiais detentores de grandes riquezas materiais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 172,
+        "categoria": "incorreta",
+        "enunciado": "A respeito da natureza e das funções originais dos seres angélicos criados por Deus, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Eles pertencem a uma ordem superior à dos seres humanos em vigor.",
+          "b) Eles funcionam como servos e espíritos ministradores em favor dos fiéis.",
+          "c) Eles são deuses independentes destituídos de qualquer dever de prestar contas ao Criador.",
+          "d) Eles possuem a faculdade de assumir a forma humana em certas ocasiões."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 173,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o caráter de Lúcifer (Satanás) antes de sua queda moral, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) Ele foi criado perfeito em todos os seus caminhos originais.",
+          "b) Ele era o querubim cobridor ungido, cheio de sabedoria e formosura.",
+          "c) Ele habitava na presença majestosa de Deus no monte santo.",
+          "d) Ele nasceu com uma semente de maldade mecânica injetada por Deus."
+        ],
+        "resposta_correta": "d"
+      },
+      {
+        "id": 174,
+        "categoria": "incorreta",
+        "enunciado": "Considerando os ataques satânicos contra a humanidade ao longo da história bíblica, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele instigou a inimizade e a desconfiança que levaram Caim ao fratricídio.",
+          "b) Ele motivou a apostasia e a violência que antecederam o Dilúvio mundial.",
+          "c) Ele foi incapaz de influenciar as gerações que ergueram a torre de Babel.",
+          "d) Ele utilizou a liderança do Sinédrio para tramar a crucifixão de Cristo."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 175,
+        "categoria": "incorreta",
+        "enunciado": "A respeito das mentiras desferidas por Satanás contra a lei moral de Deus, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele afirma que a lei divina é arbitrária e restringe a liberdade.",
+          "b) Ele alega que os preceitos de Deus operam contra o interesse das criaturas.",
+          "c) Ele sustenta de forma correta que a lei do Criador é impossível de ser obedecida.",
+          "d) Seu plano visa subverter a soberania e o governo justo do Pai."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 176,
+        "categoria": "incorreta",
+        "enunciado": "Sobre as estratégias modernas de Satanás contra a verdade das Escrituras, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele incentiva o uso de métodos críticos que removem a revelação divina do texto.",
+          "b) Ele busca afastar Jesus Cristo do centro das doutrinas bíblicas.",
+          "c) Ele promove a união inseparável entre a Bíblia escrita e a pessoa de Jesus.",
+          "d) Ele propõe falsos centros de verdade baseados puramente no orgulho humano."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 177,
+        "categoria": "vf",
+        "enunciado": "O pecado originou-se de forma inexplicável e injustificável em um ambiente de absoluta perfeição celestial.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 178,
+        "categoria": "vf",
+        "enunciado": "Lúcifer cobiçou de forma egoísta a autoridade absoluta e a posição de Deus, mas rejeitou imitar o Seu caráter de amor.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 179,
+        "categoria": "vf",
+        "enunciado": "O plano da salvação visa restaurar a confiança no Criador, operando um relacionamento de amor que se manifesta em obediência.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 180,
+        "categoria": "vf",
+        "enunciado": "A palavra grega 'anticristo' denota um centro de verdade que se coloca estritamente contra Cristo, sem intenção de ocupar o Seu lugar.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 181,
+        "categoria": "vf",
+        "enunciado": "O auto-sacrifício e a vitória de Jesus na cruz provaram perante os mundos não caídos que a lei de Deus é justa e passível de obediência.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 182,
+        "categoria": "apologetica",
+        "enunciado": "Um filósofo secular afirma: 'Se existe miséria, sofrimento e tragédias horríveis no mundo, a culpa é inteiramente de Deus; se Ele fosse bom, o mal não existiria'. Como a doutrina do Grande Conflito desfaz essa acusação?",
+        "opcoes": [
+          "a) Admitindo que Deus planejou o sofrimento para punir a humanidade de forma aleatória.",
+          "b) Esclarecendo que Deus é santo e odeia o pecado; o mal e a miséria não se originaram com Ele, mas são frutos diretos da rebelião de Satanás e da quebra da confiança humana.",
+          "c) Mostrando que o sofrimento humano é apenas uma ilusão mental desprovida de realidade física.",
+          "d) Afirmando que Deus delegou o controle e a autoria do mal aos Seus anjos leais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 183,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'A lei de Deus foi abolida por Jesus, porque ela tirava a nossa liberdade individual e funcionava como uma barreira pesada'. Como a estratégia de Satanás é desmascarada aqui?",
+        "opcoes": [
+          "a) Validando a ideia, pois Jesus veio para nos libertar da opressão do Decálogo.",
+          "b) Revelando que esse argumento é a própria mentira original de Satanás usada para subverter o governo justo; a lei moral é indispensável para salvaguardar a felicidade e a harmonia cósmicas.",
+          "c) Ensinando que a lei foi dada para os anjos caídos e não possui aplicação para a raça humana.",
+          "d) Mostrando que os Dez Mandamentos foram criados pelos imperadores de Babilônia antiga."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 184,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma pregação, um palestrante diz: 'O foco do cristão deve ser a teologia abstrata isolada; não precisamos nos preocupar com batalhas espirituais ou vigilância diária'. Qual exortação de Paulo em Efésios 6 rebate isso?",
+        "opcoes": [
+          "a) O conselho de buscar alianças militares terrestres para proteção civil.",
+          "b) A advertência de que nossa luta é contra principados, potestades e forças espirituais do mal, exigindo tomar toda a armadura de Deus e manter constante vigilância.",
+          "c) A afirmação de que a igreja cristã está imune a qualquer tipo de ataque espiritual.",
+          "d) A ordem de focar o estudo exclusivamente nos manuais de filosofia humana seculares."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 185,
+        "categoria": "apologetica",
+        "enunciado": "Um estudante afirma: 'Podemos compreender as doutrinas da Bíblia de forma intelectual e fria separados da pessoa de Jesus Cristo; a verdade são regras sociais'. Qual é o perigo teológico disso?",
+        "opcoes": [
+          "a) Nenhum, pois as regras sociais constituem o centro real das Escrituras escritas.",
+          "b) Divorciar as doutrinas de Cristo significa cair na armadilha de Satanás e desviar a atenção do único Substituto; Jesus é o centro, o contexto e o conteúdo de toda a verdade.",
+          "c) O perigo é tornar a igreja excessivamente espiritualizada e focada na oração contínua.",
+          "d) A constatação de que as Escrituras foram escritas para enaltecer a inteligência secular humana."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 186,
+        "categoria": "apologetica",
+        "enunciado": "Alguém questiona: 'A morte de Jesus na cruz serviu exclusivamente para pagar a dívida humana; ela não possui nenhum efeito ou significado para os anjos que habitam no resto do universo'. Como o escopo cósmico da cruz corrige isso?",
+        "opcoes": [
+          "a) Confirmando que o resto do universo ignora por completo a história da nossa redenção.",
+          "b) Revelando que a cruz possui impacto universal; ela desmascarou a crueldade de Satanás perante todo o cosmo, vindicou a lei de amor do Pai e garantiu a reconciliação e a harmonia galácticas.",
+          "c) Mostrando que Jesus morreu para salvar também os anjos caídos que se arrependeram no Céu.",
+          "d) Afirmando que o sacrifício no Calvário foi uma derrota jurídica que estendeu o poder do mal."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  }
+}

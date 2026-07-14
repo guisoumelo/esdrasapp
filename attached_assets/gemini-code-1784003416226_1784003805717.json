@@ -1,0 +1,591 @@
+{
+  "doutrina_1": {
+    "nome": "As Escrituras Sagradas",
+    "perguntas": [
+      {
+        "id": 1,
+        "categoria": "certa",
+        "enunciado": "De acordo com o livro 'Nisto Cremos', de onde emana a autoridade e a singularidade da Bíblia?",
+        "opcoes": [
+          "a) De suas incomparáveis influências políticas e sociais no mundo ocidental.",
+          "b) De sua origem divina e do assunto central de que trata: Jesus Cristo.",
+          "c) Do fato de ter sido escrita inteiramente pela própria mão de Deus no Sinai.",
+          "d) Da sofisticação literária e retórica dos profetas que a redigiram."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 2,
+        "categoria": "certa",
+        "enunciado": "O livro descreve a 'revelação geral' como aquela disponível a todos os seres humanos através de canais específicos. Quais são esses canais?",
+        "opcoes": [
+          "a) Apenas as visões e os sonhos proféticos dados aos autores bíblicos.",
+          "b) A Natureza, a História, o comportamento e a consciência humana.",
+          "c) O santuário terrestre e o sistema de sacrifícios de animais.",
+          "d) As cartas escritas pelos apóstolos no Novo Testamento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 3,
+        "categoria": "certa",
+        "enunciado": "Qual é o grande problema da 'revelação geral' (como a observação da natureza) quando considerada sozinha para explicar o plano de Deus?",
+        "opcoes": [
+          "a) Ela é inteligível apenas para cientistas e teólogos formados.",
+          "b) Ela provê sinais confusos, manifestando o conflito entre o bem e o mal sem explicar como ele começou ou quem vencerá.",
+          "c) Ela foi completamente destruída após o Dilúvio mundial de Noé.",
+          "d) Ela não apela à razão humana, sendo puramente mística."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 4,
+        "categoria": "certa",
+        "enunciado": "Por que a 'revelação especial' (as Escrituras) tornou-se necessária para a humanidade?",
+        "opcoes": [
+          "a) Because os manuscritos antigos da natureza se perderam com o tempo.",
+          "b) Porque o pecado obscureceu a habilidade humana em interpretar o testemunho de Deus através da criação.",
+          "c) Para que os seres humanos pudessem aprender física quântica e ciência.",
+          "d) Para substituir completamente a necessidade de fé no coração humano."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 5,
+        "categoria": "certa",
+        "enunciado": "Qual é o ponto focal e o tema central de todas as Sagradas Escrituras?",
+        "opcoes": [
+          "a) A história das guerras e vitórias políticas do povo de Israel.",
+          "b) A organização e administração da igreja nos tempos do fim.",
+          "c) A pessoa e a obra de Jesus Cristo, tendo a cruz do Calvário como ponto convergente.",
+          "d) A descrição detalhada da geografia e das nações do Oriente Médio."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 6,
+        "categoria": "certa",
+        "enunciado": "No processo de inspiração divina das Escrituras, o que ou quem foi diretamente inspirado por Deus?",
+        "opcoes": [
+          "a) As palavras exatas e a retórica técnica do texto.",
+          "b) Os homens (os escritores), e não as palavras isoladas.",
+          "c) Apenas as porções escritas em língua hebraica.",
+          "d) O papel e os pergaminhos utilizados na antiguidade."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 7,
+        "categoria": "certa",
+        "enunciado": "O livro apresenta uma analogia para explicar a natureza divino-humana da Bíblia. A Bíblia pode ser comparada a:",
+        "opcoes": [
+          "a) Uma escada mística que liga o subconsciente humano ao cosmos.",
+          "b) Jesus Cristo feito carne, combinando perfeitamente o divino e o humano em um só.",
+          "c) Um código secreto que só pode ser decifrado por meio de visões.",
+          "d) Um compêndio de regras abstratas imutáveis e frias."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 8,
+        "categoria": "certa",
+        "enunciado": "Existe uma porção das Escrituras que é uma exceção direta no processo de inspiração, tendo sido escrita diretamente pelo próprio Deus. Que porção é essa?",
+        "opcoes": [
+          "a) O livro do Apocalipse dado a João.",
+          "b) O Evangelho de Lucas.",
+          "c) Os Dez Mandamentos.",
+          "d) As profecias cronológicas de Daniel."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 9,
+        "categoria": "certa",
+        "enunciado": "De que maneira a orientação do Espírito Santo agiu sobre os relatos históricos contidos na Bíblia?",
+        "opcoes": [
+          "a) Ele ditou palavra por palavra o que aconteceu, eliminando a memória do escritor.",
+          "b) Ele garantiu a confiabilidade e a exatidão das narrativas sob a perspectiva divina, guiando a seleção dos materiais.",
+          "c) Ele transformou fatos reais em mitos e alegorias poéticas.",
+          "d) Ele permitiu que os escritores inventassem histórias para provar pontos teológicos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 10,
+        "categoria": "certa",
+        "enunciado": "Qual é a correta relação entre as Sagradas Escrituras e os dons espirituais?",
+        "opcoes": [
+          "a) Os novos dons espirituais podem substituir ou atualizar as Escrituras.",
+          "b) As Escrituras possuem autoridade sobre todos os dons, e todos os dons devem ser testados por ela.",
+          "c) Os dons espirituais operam de forma totalmente independente da Bíblia.",
+          "d) A Bíblia está sujeita às novas revelações dos profetas modernos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 11,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a fidelidade das biografias bíblicas, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) A Bíblia delineia o verdadeiro caráter das pessoas, apresentando tanto virtudes quanto fraquezas.",
+          "b) O texto bíblico encobre os erros graves de grandes líderes como Abraão, Moisés e Davi para não escandalizar o leitor.",
+          "c) Os pecados das personalidades bíblicas são registrados com a mesma fidelidade que seus sucessos.",
+          "d) Nenhuma escusa ou tentativa de minimização dos erros dos patriarcas é oferecida no texto."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 12,
+        "categoria": "incorreta",
+        "enunciado": "Em relação à unidade das Escrituras, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) A Bíblia apresenta uma estupenda harmonia em seus princípios de verdade salvadora.",
+          "b) A Bíblia foi escrita por cerca de 40 autores ao longo de mais de 1.500 anos.",
+          "c) O Antigo e o Novo Testamento são contraditórios, pois o Antigo apresenta apenas a lei e o Novo apresenta apenas a graça.",
+          "d) O Antigo Testamento é o alicerce do Novo, e o Novo explica os mistérios do Antigo."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 13,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o posicionamento de Jesus em relação à autoridade da Bíblia, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Jesus utilizou a expressão 'Está escrito' tanto para se defender de Satanás quanto em debates.",
+          "b) Jesus colocou as tradições dos líderes judeus e as opiniões humanas acima dos textos do Antigo Testamento.",
+          "c) Jesus cria firmemente na autoridade da palavra profética e afirmou que ela apontava para Ele.",
+          "d) Ele aceitou sem reservas as Escrituras como a revelation autorizada da vontade de Deus."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 14,
+        "categoria": "incorreta",
+        "enunciado": "A respeito da exatidão e preservação do texto bíblico, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) Supostas discrepâncias textuais devem ser usadas para minar nossa confiança nas verdades essenciais da Bíblia.",
+          "b) A arqueologia bíblica tem ajudado a demonstrar que muitos supostos erros eram apenas falta de compreensão dos eruditos.",
+          "c) A comparação dos Manuscritos do Mar Morto com textos posteriores comprovou que a Bíblia foi preservada com miraculosa precisão.",
+          "d) Deus protegeu a transmissão das ideias e verdades essenciais, permitindo que as mensagens continuassem válidas."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 15,
+        "categoria": "incorreta",
+        "enunciado": "Sobre as reivindicações de autoria das Escrituras, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Os autores bíblicos destacaram que não eram os originadores de suas mensagens, mas as recebiam de fontes divinas.",
+          "b) O Espírito Santo é indicado como a fonte direta das revelações dos profetas.",
+          "c) O Novo Testamento desconsidera o Antigo Testamento, alegando que ele não foi inspirado pelo Espírito Santo.",
+          "d) Deus usou a mente e o estilo de escrita individual dos profetas para transmitir Sua própria Palavra."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 16,
+        "categoria": "vf",
+        "enunciado": "A Bíblia ensina que existe inspiração parcial ou graus de inspiração entre os seus livros, o que permite ao leitor escolher quais partes possuem autoridade divina.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 17,
+        "categoria": "vf",
+        "enunciado": "O homem natural, sem a iluminação e o auxílio do Espírito Santo, é incapaz de aceitar ou discernir espiritualmente as verdades profundas da Palavra de Deus.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 18,
+        "categoria": "vf",
+        "enunciado": "A qualificação de alguém para ser um escritor bíblico dependia estritamente de seus talentos naturais impecáveis e de uma vida pessoal totalmente livre de erros ou pecados.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 19,
+        "categoria": "vf",
+        "enunciado": "Jesus aceitou relatos como o de Adão e Eva, de Noé e o Dilúvio, e de Jonas como fatos historicamente verdadeiros, repletos de lições espirituais urgentes.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 20,
+        "categoria": "vf",
+        "enunciado": "A Bíblia deve ser julgada e medida de acordo com os padrões e descobertas da ciência humana mutável ao longo dos séculos.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 21,
+        "categoria": "apologetica",
+        "enunciado": "Um colega de faculdade afirma: 'A Bíblia foi escrita por homens e reflete apenas os limites intelectuais da época deles. Deus não pode estar associado a um livro tão humano.' Com base no livro, como você defende a autoridade bíblica?",
+        "opcoes": [
+          "a) Argumentando que os escritores foram totalmente passivos, como fantoches, e que o Espírito Santo eliminou a individualidade deles.",
+          "b) Explicando que a mente e a vontade divinas foram combinadas com a mente e a vontade humanas; as declarações são do homem, mas, sob a influência do Espírito, são a autêntica Palavra de Deus.",
+          "c) Afirmando que a Bíblia não é humana, pois todas as suas páginas caíram prontas diretamente do céu.",
+          "d) Cedendo ao argumento, dizendo que apenas os Dez Mandamentos possuem autoridade real."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 22,
+        "categoria": "apologetica",
+        "enunciado": "Um conhecido diz: 'Eu não preciso ler a Bíblia para ser salvo. Deus se revela perfeitamente através das montanhas e do pôr do sol. A natureza é o meu único livro sagrado.' Utilizando o conceito de Revelação do livro, qual é a resposta correta?",
+        "opcoes": [
+          "a) A natureza realmente basta para a salvação, pois os atributos invisíveis de Deus são plenamente compreendidos por qualquer pessoa sem auxílio textual.",
+          "b) A revelação geral (natureza) provê sinais confusos e não explica como o conflito começou; o pecado obscureceu a habilidade humana de interpretar a criação, tornando a revelação especial (Bíblia) indispensável.",
+          "c) A natureza passou a revelar apenas o mal após a queda de Adão, perdendo completamente qualquer traço do caráter amoroso do Criador.",
+          "d) A Bíblia rejeita totalmente a natureza, afirmando que o universo visível não possui nenhuma utilidade para testificar da existência de Deus."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 23,
+        "categoria": "apologetica",
+        "enunciado": "Em um grupo de estudos, um integrante diz: 'Para entender bem a Bíblia, precisamos submetê-la aos nossos sentimentos. Se uma doutrina me faz sentir bem, ela é inspirada; se me confronta, posso descartá-la.' Qual é o perigo teológico desse pensamento?",
+        "opcoes": [
+          "a) Nenhum, pois a autoridade da Bíblia depende inteiramente de como o leitor se sente no momento da leitura.",
+          "b) Se a autoridade da Palavra depender das emoções humanas, ela é destruída; a Bíblia é a autoridade absoluta e a norma pela qual nossas ideias e experiências devem ser provadas.",
+          "c) O erro é que o Antigo Testamento dependia de sentimentos, mas o Novo Testamento não.",
+          "d) O perigo é que os sentimentos humanos são sempre infalíveis, ao contrário da Bíblia."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 24,
+        "categoria": "apologetica",
+        "enunciado": "Um crítico afirma: 'As contradições aparentes entre a ciência moderna e a Bíblia provam que o texto sagrado é eivado de mitos falhos.' Como a erudição expressa no livro esclarece esse ponto?",
+        "opcoes": [
+          "a) Admitindo que a Bíblia está errada em termos científicos e históricos.",
+          "b) Esclarecendo que tais contradições são fruto de especulação e compreensão imperfeita tanto da ciência quanto da revelação; corretamente entendidas, elas estão em perfeita harmonia.",
+          "c) Dizendo que a Bíblia proíbe os cristãos de estudarem qualquer tipo de ciência.",
+          "d) Mostrando que a ciência moderna foi inventada por mentes satânicas para destruir a igreja."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 25,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'Eu sigo as orientações de um profeta atual. Se o que ele diz hoje parece ser diferente do que está escrito na Bíblia, prefiro seguir a nova luz.' Qual critério de Isaías 8:20 é violado aqui?",
+        "opcoes": [
+          "a) O critério de que os profetas modernos têm autoridade para reescrever o cânon bíblico.",
+          "b) O Espírito Santo não foi prometido para sobrepor-se à Bíblia; todos os dons espirituais devem ser testados pela Bíblia e, se não falarem de acordo com a lei e o testemunho, devem ser descartados.",
+          "c) O critério de que o dom de profecia não existe mais no Novo Testamento.",
+          "d) A ideia de que a Bíblia só serve para testar os livros do Novo Testamento."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  "doutrina_2": {
+    "nome": "A Trindade",
+    "perguntas": [
+      {
+        "id": 26,
+        "categoria": "certa",
+        "enunciado": "De acordo com o livro 'Nisto Cremos', qual é a essência fundamental de Deus que define o relacionamento interno da Trindade?",
+        "opcoes": [
+          "a) A soberania arbitrária sobre os anjos.",
+          "b) O amor incondicional e altruísta.",
+          "c) A imposição de leis físicas e morais.",
+          "d) O isolamento transcendente do universo."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 27,
+        "categoria": "certa",
+        "enunciado": "Embora o Antigo Testamento não ensine explicitamente a Trindade, de que forma ele alude à pluralidade interna da Divindade?",
+        "opcoes": [
+          "a) Através da descrição de deuses com diferentes funções no panteão.",
+          "b) Através do uso de pronomes e verbos no plural, como na expressão 'Façamos o homem'.",
+          "c) Através da negação completa do monoteísmo hebraico.",
+          "d) Através de rituais e sacrifícios dedicados a três altares diferentes."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 28,
+        "categoria": "certa",
+        "enunciado": "Como o livro descreve a distribuição de autoridade final entre os membros da economia da Divindade?",
+        "opcoes": [
+          "a) A autoridade final reside exclusivamente sobre a pessoa do Pai.",
+          "b) O Filho e o Espírito Santo possuem autoridade delegada e inferior à do Pai.",
+          "c) A autoridade final reside igualmente sobre todos os três membros coeternos.",
+          "d) A autoridade muda de mãos dependendo da dispensação histórica."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 29,
+        "categoria": "certa",
+        "enunciado": "Na economia da Trindade, qual é o papel funcional comumente atribuído à pessoa de Deus Pai?",
+        "opcoes": [
+          "a) Atuar como o executor que aplica a graça no coração humano.",
+          "b) Atuar as o mediador histórico que sofreu na cruz.",
+          "c) Atuar como a fonte, o originador e o mantenedor de toda a criação.",
+          "d) Atuar como o revelador exclusivo dos dons espirituais na igreja."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 30,
+        "categoria": "certa",
+        "enunciado": "Qual membro da Divindade assumiu a função de mediador e se fez carne humana para salvar a raça caída?",
+        "opcoes": [
+          "a) Deus Pai, operando através de uma teofania.",
+          "b) Deus Filho, Jesus Cristo.",
+          "c) Deus Espírito Santo, manifestado de forma corpórea.",
+          "d) Toda a Trindade encarnou-se simultaneamente."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 31,
+        "categoria": "certa",
+        "enunciado": "Na distribuição interna de funções da Trindade, qual é a responsabilidade central do Espírito Santo?",
+        "opcoes": [
+          "a) Modificar ou anular o sacrifício perfeito realizado por Cristo na cruz.",
+          "b) Atuar como o executor que torna Cristo presente e aplica a graça no íntimo do crente.",
+          "c) Substituir a autoridade das Escrituras Sagradas por novas revelações.",
+          "d) Atuar como a fonte original da lei moral dada no Monte Sinai."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 32,
+        "categoria": "certa",
+        "enunciado": "O que aconteceu no batismo de Jesus que serve como uma das maiores evidências da Trindade no Novo Testamento?",
+        "opcoes": [
+          "a) Jesus batizou o Pai e o Espírito Santo nas águas do Jordão.",
+          "b) Todos os três membros estavam presentes: o Pai falou do céu, o Filho foi batizado e o Espírito desceu como pomba.",
+          "c) Jesus manifestou Seus poderes divinos e transformou a água em vinho.",
+          "d) O Espírito Santo substituiu a necessidade da voz do Pai naquele momento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 33,
+        "categoria": "certa",
+        "enunciado": "Segundo o texto, de que forma o Pai e o Filho estabelecem morada no coração do crente hoje?",
+        "opcoes": [
+          "a) Através de rituais e sacrifícios contínuos no templo terrestre.",
+          "b) Através da presença e da operação direta do Espírito Santo.",
+          "c) Através de visões místicas e arrebatamentos espaciais.",
+          "d) Unicamente por meio do cumprimento estrito de regras sociais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 34,
+        "categoria": "certa",
+        "enunciado": "Qual é a maior e mais profunda revelação do amor altruísta e da unidade da Trindade para com o universo?",
+        "opcoes": [
+          "a) A destruição dos ímpios pelas águas do Dilúvio mundial.",
+          "b) A separação dolorosa e o sacrifício sofridos na cruz do Calvário.",
+          "c) A arquitetura física das galáxias e estrelas no cosmos.",
+          "d) A confusão das línguas humanas na torre de Babel."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 35,
+        "categoria": "certa",
+        "enunciado": "A fórmula batismal dada por Jesus em Mateus 28:19 ordena que os crentes sejam batizados em nome de quem?",
+        "opcoes": [
+          "a) Apenas em nome de Jesus, o Salvador.",
+          "b) Em nome do Pai, do Filho e do Espírito Santo.",
+          "c) Em nome dos doze apóstolos e da igreja primitiva.",
+          "d) Em nome da lei, do sábado e das profecias."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 36,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o relacionamento amoroso e a unicidade da Trindade, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Deus é um em propósito, mente e caráter.",
+          "b) A unicidade de propósito destrói as personalidades distintas do Pai, Filho e Espírito Santo.",
+          "c) O amor perfeito faz com que cada Pessoa viva de modo completo para as demais.",
+          "d) Não existe distância, rivalidade ou separatismo moral entre as pessoas da Divindade."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 37,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do dinamismo interno da Divindade e de Suas funções, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Dentro da Divindade existe uma sábia e ordenada distribuição de funções.",
+          "b) O Deus triúno duplica desnecessariamente os Seus serviços de forma confusa.",
+          "c) Ordem é a primeira lei do Céu, e a Divindade opera de modos ordenados.",
+          "d) O trabalho do Espírito Santo aplica subjetivamente o sacrifício que Cristo realizou."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 38,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a revelação da Trindade na encarnação de Jesus, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) O Pai entregou Seu Filho por amor ao mundo rebelde.",
+          "b) O Espírito Santo operou ativamente na concepção humana de Jesus.",
+          "c) O Filho foi forçado pelo Pai a encarnar, contra a Sua própria vontade eterna.",
+          "d) O anjo Gabriel confirmou a Maria a atuação do Espírito, do Altíssimo e do Filho."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 39,
+        "categoria": "incorreta",
+        "enunciado": "Considerando o monoteísmo defendido nas Escrituras, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O Novo Testamento rejeita a unidade de Deus, estabelecendo a adoração a três deuses independentes.",
+          "b) A ênfase monoteísta bíblica indica que não existe um panteão com várias deidades pagãs.",
+          "c) O Antigo e o Novo Testamento confirmam de forma unificada que há um só Deus.",
+          "d) A crença na Trindade não contradiz a afirmação de que o Senhor é o único Deus."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 40,
+        "categoria": "incorreta",
+        "enunciado": "A respeito da aplicação dos atributos divinos aos membros da Trindade, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O Pai, o Filho e o Espírito Santo compartilham das mesmas qualidades divinas absolutas.",
+          "b) O Espírito Santo possui conhecimento limitado se comparado ao conhecimento do Pai.",
+          "c) A eternidade e a auto-existência pertencem igualmente às três Pessoas.",
+          "d) A autoridade final e o poder absoluto são centralizados harmonicamente nos três membros."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 41,
+        "categoria": "vf",
+        "enunciado": "O conceito cristão de Trindade ensina que a Divindade é composta por três deuses que operam em territórios e universos diferentes.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 42,
+        "categoria": "vf",
+        "enunciado": "No Calvário, quando Jesus experimentou a separação do Pai por causa do pecado humano, o sofrimento e a agonia atingiram toda a Divindade.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 43,
+        "categoria": "vf",
+        "enunciado": "O Antigo Testamento faz distinções claras, nominais e teológicas completas entre as três Pessoas da Trindade em todas as suas páginas.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 44,
+        "categoria": "vf",
+        "enunciado": "A união e a harmonia da Trindade são tão absolutas que, embora existam três Pessoas distintas, Elas são um em propósito, mente e caráter.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 45,
+        "categoria": "vf",
+        "enunciado": "O papel do Espírito Santo na salvação é acrescentar méritos novos e superiores àqueles que Cristo já conquistou de forma perfeita na cruz.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 46,
+        "categoria": "apologetica",
+        "enunciado": "Um cético argumenta: 'A Bíblia diz que Deus é um só. Portanto, a Trindade é uma invenção humana que ensina o politeísmo'. Como você defende a doutrina bíblica?",
+        "opcoes": [
+          "a) Admitindo que o cristianismo adora três deuses diferentes que dividem o universo entre si.",
+          "b) Explicando que a Bíblia defende o monoteísmo, mas revela uma pluralidade interna e uma unidade funcional de três Pessoas coeternas que compartilham o mesmo propósito, essência e caráter.",
+          "c) Dizendo que o Antigo Testamento adorava um Deus, mas o Novo Testamento mudou a regra para três.",
+          "d) Afirmando que o Pai e o Espírito Santo são apenas modos ou disfarces temporários que Jesus usava."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 47,
+        "categoria": "apologetica",
+        "enunciado": "Alguém em um grupo diz: 'O Espírito Santo é apenas o poder ativo de Deus, uma energia ou eletricidade celestial impessoal, e não uma pessoa real'. Com base no livro, qual é o erro dessa afirmação?",
+        "opcoes": [
+          "a) O erro é que a energia de Deus tem nome próprio, mas não tem vontade.",
+          "b) O erro está em ignorar que o Espírito Santo possui atributos de personalidade (como ensinar, guiar e interceder), igualdade de autoridade e opera conscientemente.",
+          "c) O erro é achar que a energia divina pode habitar no homem.",
+          "d) O erro está em pensar que o Espírito Santo surgiu apenas no Novo Testamento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 48,
+        "categoria": "apologetica",
+        "enunciado": "Um amigo afirma: 'Jesus na cruz era inferior a Deus, porque clamou por que o Pai o havia desamparado. Isso prova que não há igualdade na Trindade'. Como o livro desfaz esse equívoco?",
+        "opcoes": [
+          "a) Explicando que Jesus realmente era um ser criado e inferior ao Pai em termos de divindade.",
+          "b) Esclarecendo que na cruz Jesus experimentou voluntariamente a separação que o pecado causa, sofrendo como nosso substituto, mas mantendo Sua igualdade substancial eterna.",
+          "c) Mostrando que o clamor de Jesus foi apenas uma encenação teatral para impressionar os soldados romanos.",
+          "d) Confirmando que a Trindade foi desfeita e deixou de existir no momento da crucifixão."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 49,
+        "categoria": "apologetica",
+        "enunciado": "Em um debate, alguém afirma: 'Se a autoridade final da Divindade pertence às três Pessoas, então deve haver disputas, ciúmes e caos no governo do universo'. Como o caráter de Deus responde a isso?",
+        "opcoes": [
+          "a) Explicando que Eles resolveram isso dividindo o universo em três reinos geográficos isolados.",
+          "b) Mostrando que 'Deus é amor' por essência; em Seu relacionamento interno perfeito, cada Pessoa vive de modo tão completo para as demais que há harmonia absoluta.",
+          "c) Admitindo que os anjos precisam intervir frequentemente para acalmar as decisões da Divindade.",
+          "d) Dizendo que o Pai impõe Sua vontade pela força física sobre o Filho e o Espírito Santo."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 50,
+        "categoria": "apologetica",
+        "enunciado": "Um estudante de teologia afirma: 'Como o sacrifício de Cristo na cruz foi perfeito, o Espírito Santo não possui nenhuma função real na salvação humana hoje'. Qual critério funcional do livro rebate essa ideia?",
+        "opcoes": [
+          "a) O critério de que o Espírito Santo precisa criar um novo sacrifício todas as semanas.",
+          "b) A compreensão de que o sacrifício de Cristo foi objetivo na cruz, mas o Espírito Santo atua como o executor necessário que aplica essa graça subjetivamente no íntimo de cada crente.",
+          "c) A ideia de que o Espírito Santo veio para substituir completamente a lembrança do sacrifício de Cristo.",
+          "d) O fato de que o Espírito Santo atua de forma totalmente independente dos méritos alcançados por Jesus."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  "doutrina_3": {
+    "nome": "Deus Pai",
+    "perguntas": [
+      {
+        "id": 51,
+        "categoria": "certa",
+        "enunciado": "Segundo o livro 'Nisto Cremos', qual cena profética do livro de Daniel descreve a majestade de Deus Pai presidindo o tribunal celestial?",
+        "opcoes": [
+          "a) A estátua de metais mistos de Nabucodonosor.",
+          "b) O Ancião de Dias assumindo Seu assento em um trono flamejante enquanto os livros são abertos.",
+          "c) A cova dos leões onde Daniel foi protegido por anjos.",
+          "d) O banquete do rei Belsazar com a escrita na parede."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 52,
+        "categoria": "certa",
+        "enunciado": "Qual é um dos equívocos mais comuns apontados no livro a respeito do caráter de Deus Pai no Antigo Testamento?",
+        "opcoes": [
+          "a) Percebê-Lo como um Deus unicamente misericordioso que ignora as leis.",
+          "b) Vislombrá-Lo como um Deus estritamente vingativo, inflexível e ausente, em oposição ao Filho.",
+          "c) Achar que Ele se manifestou fisicamente a todo o povo no deserto.",
+          "d) Acreditar que Ele não participou em nenhum momento da criação do mundo."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  }
+}
