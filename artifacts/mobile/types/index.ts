@@ -18,11 +18,17 @@ export interface Doctrine {
 
 export type Gender = 'male' | 'female';
 
+// Available color themes. Persisted per-profile.
+export type ThemeId = 'darkNight' | 'sinai' | 'pergaminho' | 'templo';
+
+export const DEFAULT_THEME_ID: ThemeId = 'darkNight';
+
 export interface Profile {
   id: string;
   nome: string;
   idade: number;
   gender: Gender;
+  themeId?: ThemeId;
 }
 
 export interface ProfileData {

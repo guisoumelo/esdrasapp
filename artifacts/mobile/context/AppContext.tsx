@@ -8,6 +8,8 @@ import {
   Profile,
   ProfileData,
   Gender,
+  ThemeId,
+  DEFAULT_THEME_ID,
   getRank,
   getBlockAvailability,
   MAX_UNLOCKED_DOCTRINE,
@@ -113,6 +115,9 @@ interface AppContextType {
   debugHour: number | null;
   currentHour: number;
 
+  // Appearance (per-profile theme)
+  themeId: ThemeId;
+
   // Derived
   blockAvailability: BlockAvailability;
   currentRank: Rank;
@@ -134,10 +139,11 @@ interface AppContextType {
   // Settings actions
   setDebugHour: (hour: number | null) => Promise<void>;
   setTimeLockEnabled: (enabled: boolean) => Promise<void>;
+  setThemeId: (id: ThemeId) => Promise<void>;
   resetProgress: () => Promise<void>;
 }
 
-const AppContext = createContext<AppContextType | null>(null);
+export const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
   const [loaded, setLoaded] = useState(false);
@@ -155,6 +161,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const activeProfile = profiles.find((p) => p.id === activeProfileId) ?? null;
+  const themeId: ThemeId = activeProfile?.themeId ?? DEFAULT_THEME_ID;
   const currentHour = debugHour !== null ? debugHour : getRealHour();
   const blockAvailability = getBlockAvailability(currentHour, data.dayProgress, timeLockEnabled);
   const masterMode = data.completedDoctrines.length >= 28;
@@ -227,7 +234,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // ── Profile actions ──────────────────────────────────────────────────────────
   const createProfile = async (nome: string, idade: number, gender: Gender) => {
-    const profile: Profile = { id: makeId(), nome: nome.trim(), idade, gender };
+    const profile: Profile = {
+      id: makeId(),
+      nome: nome.trim(),
+      idade,
+      gender,
+      themeId: DEFAULT_THEME_ID,
+    };
     const nextProfiles = [...profiles, profile];
     const freshData = buildFreshProfileData();
 
@@ -350,6 +363,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const setThemeId = async (id: ThemeId) => {
+    if (!activeProfileId) return;
+    const nextProfiles = profiles.map((p) =>
+      p.id === activeProfileId ? { ...p, themeId: id } : p,
+    );
+    setProfiles(nextProfiles);
+    await AsyncStorage.setItem(STORAGE_KEYS.PROFILES, JSON.stringify(nextProfiles));
+  };
+
   const resetProgress = async () => {
     const fresh = buildFreshProfileData();
     await commit(fresh);
@@ -368,6 +390,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         timeLockEnabled,
         debugHour,
         currentHour,
+        themeId,
         blockAvailability,
         currentRank,
         masterMode,
@@ -378,6 +401,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         completeBlock,
         setDebugHour,
         setTimeLockEnabled,
+        setThemeId,
         resetProgress,
       }}
     >

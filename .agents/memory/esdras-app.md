@@ -37,8 +37,11 @@ description: Gamified SDA 28 Fundamental Beliefs quiz app (Expo/React Native). A
 - Multiple choice: opcoes = ['a) ...', 'b) ...', ...], resposta_correta = 'a'|'b'|'c'|'d'
 - V/F: opcoes = ['Verdadeiro', 'Falso'], resposta_correta = 'Verdadeiro'|'Falso'
 
-## Theme & tab layout
-- Always dark: `#0D1B2A` navy, `#C9A227` gold, `#F0E6D3` parchment. Colors in `constants/colors.ts` via `hooks/useColors.ts`.
-- Tab layout uses `isLiquidGlassAvailable()` (expo-glass-effect) to switch NativeTabs (iOS 26) vs ClassicTabLayout; `headerShown:false`.
-- `hooks/useColors.ts` has a pre-existing (harmless) tsc error casting the colors object to Record — the `radius:number` key breaks the index signature. Not worth fixing; ignore it in tsc output.
+## Theme system (per-profile, 4 themes)
+- 4 themes in `constants/colors.ts` (`themes` record + `THEMES` metadata for the picker): `darkNight` (default, Pergaminho da Noite), `sinai` (Sinai Sólido), `pergaminho` (Pergaminho Antigo, light), `templo` (Luz do Templo, light). `ThemeId`/`DEFAULT_THEME_ID` live in `types/index.ts`.
+- **Theme is stored per-profile:** `themeId` is a field on `Profile` (persisted in `@esdras_profiles`), NOT a separate key. `setThemeId` maps over profiles and re-persists the list; switching profiles auto-switches theme. Picker UI is the "Aparência" section in `ajustes.tsx`.
+- **`useColors` reads the active theme from AppContext** via `useContext(AppContext)` (AppContext is exported) with a null-safe fallback to `DEFAULT_THEME_ID` — so it works outside the provider (e.g. error boundary). Each palette carries `isDark` + `scrim` tokens so light themes don't get dark-hardcoded overlays/tab-bar tint.
+- **Why palettes carry `isDark`/`scrim`:** any full-screen scrim (leitura success overlay) and the tab-bar blur tint must follow the *selected* theme, not device `useColorScheme()` — otherwise a light theme shows a dark scrim / wrong blur.
+- Tab layout uses `isLiquidGlassAvailable()` (expo-glass-effect) to switch NativeTabs (iOS 26) vs ClassicTabLayout; ClassicTabLayout derives dark/light from `colors.isDark`.
 - `components/ProfileForm.tsx` is shared by onboarding + ajustes (add-profile modal).
+- No debug/test panel: the dashboard (`index.tsx`) no longer has the advance-hour/reset panel. `setDebugHour`/`resetProgress` still exist in context but are unused by UI.

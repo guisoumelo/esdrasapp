@@ -13,6 +13,7 @@ import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
 import { Profile } from '@/types';
+import { THEMES } from '@/constants/colors';
 
 function genderEmoji(p: Profile): string {
   return p.gender === 'female' ? '👩' : '👨';
@@ -28,6 +29,8 @@ export default function AjustesScreen() {
     deleteProfile,
     timeLockEnabled,
     setTimeLockEnabled,
+    themeId,
+    setThemeId,
   } = useApp();
 
   const [showForm, setShowForm] = useState(false);
@@ -121,6 +124,49 @@ export default function AjustesScreen() {
           </View>
         </View>
 
+        {/* ── Aparência (Tema) ── */}
+        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Aparência</Text>
+          <Text style={[styles.sectionSub, { color: colors.mutedForeground }]}>
+            Escolha o tema de cores deste perfil.
+          </Text>
+
+          {THEMES.map((t) => {
+            const selected = themeId === t.id;
+            return (
+              <TouchableOpacity
+                key={t.id}
+                activeOpacity={0.85}
+                onPress={() => setThemeId(t.id)}
+                style={[
+                  styles.themeRow,
+                  {
+                    backgroundColor: selected ? colors.secondary : colors.background,
+                    borderColor: selected ? colors.primary : colors.border,
+                  },
+                ]}
+              >
+                <View style={styles.themeSwatch}>
+                  {t.swatch.map((c, i) => (
+                    <View
+                      key={i}
+                      style={[
+                        styles.swatchDot,
+                        { backgroundColor: c, borderColor: colors.border, marginLeft: i === 0 ? 0 : -8 },
+                      ]}
+                    />
+                  ))}
+                </View>
+                <View style={styles.themeInfo}>
+                  <Text style={[styles.themeName, { color: colors.foreground }]}>{t.label}</Text>
+                  <Text style={[styles.themeDesc, { color: colors.mutedForeground }]}>{t.description}</Text>
+                </View>
+                {selected && <Text style={[styles.activeCheck, { color: colors.primary }]}>✓</Text>}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+
         <Text style={[styles.footerNote, { color: colors.mutedForeground }]}>
           Esdras · 28 Crenças Fundamentais da IASD
         </Text>
@@ -205,6 +251,19 @@ const styles = StyleSheet.create({
   deleteText: { fontSize: 12, fontWeight: '600' },
   addBtn: { borderRadius: 12, borderWidth: 1.5, borderStyle: 'dashed', paddingVertical: 14, alignItems: 'center' },
   addText: { fontSize: 14, fontWeight: '700' },
+  themeRow: {
+    borderRadius: 12,
+    borderWidth: 1.5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    padding: 12,
+  },
+  themeSwatch: { flexDirection: 'row', alignItems: 'center', paddingLeft: 4 },
+  swatchDot: { width: 24, height: 24, borderRadius: 12, borderWidth: 1 },
+  themeInfo: { flex: 1, gap: 2 },
+  themeName: { fontSize: 15, fontWeight: '700' },
+  themeDesc: { fontSize: 12, lineHeight: 16 },
   toggleRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   toggleTextWrap: { flex: 1, gap: 4 },
   toggleTitle: { fontSize: 15, fontWeight: '600' },

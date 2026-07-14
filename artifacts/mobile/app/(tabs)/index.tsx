@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Switch,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
@@ -35,12 +28,7 @@ export default function DashboardScreen() {
     dayProgress,
     blockAvailability,
     currentRank,
-    currentHour,
-    debugHour,
-    setDebugHour,
     timeLockEnabled,
-    setTimeLockEnabled,
-    resetProgress,
     masterMode,
   } = useApp();
 
@@ -181,65 +169,6 @@ export default function DashboardScreen() {
             />
           </View>
         </View>
-
-        {/* Debug Panel */}
-        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
-          <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>
-            🛠 Painel de Depuração
-          </Text>
-
-          {/* Time-lock toggle */}
-          <View style={styles.debugToggleRow}>
-            <Text style={[styles.debugToggleLabel, { color: colors.foreground }]}>
-              Bloqueio por Horário
-            </Text>
-            <Switch
-              value={timeLockEnabled}
-              onValueChange={setTimeLockEnabled}
-              trackColor={{ false: colors.muted, true: colors.primary }}
-              thumbColor={colors.card}
-            />
-          </View>
-
-          <Text style={[styles.debugHour, { color: colors.mutedForeground }]}>
-            {timeLockEnabled
-              ? `Hora atual: ${currentHour}h ${debugHour !== null ? '(simulada)' : '(real)'}`
-              : 'Horas desativadas no Modo Livre'}
-          </Text>
-          <View style={[styles.debugRow, { opacity: timeLockEnabled ? 1 : 0.4 }]}>
-            {[5, 10, 15, 19].map((h) => (
-              <TouchableOpacity
-                key={h}
-                disabled={!timeLockEnabled}
-                style={[
-                  styles.debugBtn,
-                  {
-                    backgroundColor: debugHour === h ? colors.primary : colors.secondary,
-                    borderColor: colors.border,
-                  },
-                ]}
-                onPress={() => setDebugHour(debugHour === h ? null : h)}
-              >
-                <Text
-                  style={[
-                    styles.debugBtnText,
-                    { color: debugHour === h ? colors.primaryForeground : colors.foreground },
-                  ]}
-                >
-                  {h}h
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-          <TouchableOpacity
-            style={[styles.resetBtn, { backgroundColor: colors.destructive }]}
-            onPress={resetProgress}
-          >
-            <Text style={[styles.resetBtnText, { color: colors.destructiveForeground }]}>
-              ↺ Reiniciar Progresso (perfil atual)
-            </Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -296,23 +225,4 @@ const styles = StyleSheet.create({
   },
   pillText: { fontSize: 12, fontWeight: '600' },
   timeline: { gap: 0 },
-  debugToggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  debugToggleLabel: { fontSize: 14, fontWeight: '600' },
-  debugHour: { fontSize: 13 },
-  debugRow: { flexDirection: 'row', gap: 10 },
-  debugBtn: {
-    flex: 1,
-    borderRadius: 8,
-    borderWidth: 1,
-    paddingVertical: 8,
-    alignItems: 'center',
-  },
-  debugBtnText: { fontSize: 14, fontWeight: '700' },
-  resetBtn: {
-    borderRadius: 10,
-    paddingVertical: 12,
-    alignItems: 'center',
-    marginTop: 4,
-  },
-  resetBtnText: { fontSize: 14, fontWeight: '700' },
 });

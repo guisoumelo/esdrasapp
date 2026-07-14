@@ -20,18 +20,21 @@ function nameFor(id: number): string {
   return DOCTRINES.find((d) => d.id === id)?.nome ?? `Doutrina ${id}`;
 }
 
+type MacroKey = 'beliefs' | 'daniel';
+
 export default function LeituraScreen() {
   const colors = useColors();
-  const {
-    currentDoctrineId,
-    completedDoctrines,
-    dayProgress,
-    blockAvailability,
-    completeReading,
-    timeLockEnabled,
-  } = useApp();
+  const { currentDoctrineId, completedDoctrines, dayProgress } = useApp();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [expanded, setExpanded] = useState<Record<MacroKey, boolean>>({
+    beliefs: true,
+    daniel: false,
+  });
+
+  function toggleMacro(key: MacroKey) {
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  }
 
   if (selectedId !== null) {
     return (
@@ -42,13 +45,13 @@ export default function LeituraScreen() {
     );
   }
 
-  // ── Grouped list ──
+  // ── Macro-grouped list ──
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
       <View style={[styles.header, { borderBottomColor: colors.border }]}>
         <Text style={[styles.headerTitle, { color: colors.primary }]}>Trilha de Leitura</Text>
         <Text style={[styles.headerSub, { color: colors.mutedForeground }]}>
-          As 28 Crenças Fundamentais, agrupadas por tema
+          Escolha um módulo de estudo para explorar
         </Text>
       </View>
 
@@ -57,77 +60,148 @@ export default function LeituraScreen() {
         contentContainerStyle={[styles.listContent, { paddingBottom: 100 }]}
         showsVerticalScrollIndicator={false}
       >
-        {THEME_GROUPS.map((group) => (
-          <View key={group.titulo} style={styles.group}>
-            <Text style={[styles.groupTitle, { color: colors.accent }]}>
-              {group.titulo.toUpperCase()}
-            </Text>
+        {/* ── Macro 1: 28 Crenças Fundamentais ── */}
+        <MacroAccordion
+          title="28 Crenças Fundamentais"
+          subtitle="Estrutura teológica oficial da IASD"
+          icon="📜"
+          expanded={expanded.beliefs}
+          onToggle={() => toggleMacro('beliefs')}
+        >
+          {THEME_GROUPS.map((group) => (
+            <View key={group.titulo} style={styles.group}>
+              <Text style={[styles.groupTitle, { color: colors.accent }]}>
+                {group.titulo.toUpperCase()}
+              </Text>
 
-            {group.doctrineIds.map((id) => {
-              const unlocked = id <= MAX_UNLOCKED_DOCTRINE;
-              const completed = completedDoctrines.includes(id);
-              const isCurrent = id === currentDoctrineId;
-              const readPending = isCurrent && !dayProgress.readingCompleted;
+              {group.doctrineIds.map((id) => {
+                const unlocked = id <= MAX_UNLOCKED_DOCTRINE;
+                const completed = completedDoctrines.includes(id);
+                const isCurrent = id === currentDoctrineId;
+                const readPending = isCurrent && !dayProgress.readingCompleted;
 
-              const border = completed
-                ? colors.success
-                : isCurrent
-                ? colors.primary
-                : colors.border;
+                const border = completed
+                  ? colors.success
+                  : isCurrent
+                  ? colors.primary
+                  : colors.border;
 
-              return (
-                <TouchableOpacity
-                  key={id}
-                  disabled={!unlocked}
-                  activeOpacity={0.8}
-                  onPress={() => setSelectedId(id)}
-                  style={[
-                    styles.item,
-                    {
-                      backgroundColor: colors.card,
-                      borderColor: border,
-                      opacity: unlocked ? 1 : 0.45,
-                    },
-                  ]}
-                >
-                  <View style={[styles.itemNum, { backgroundColor: unlocked ? colors.secondary : colors.muted }]}>
-                    <Text style={[styles.itemNumText, { color: unlocked ? colors.primary : colors.mutedForeground }]}>
-                      {id}
-                    </Text>
-                  </View>
+                return (
+                  <TouchableOpacity
+                    key={id}
+                    disabled={!unlocked}
+                    activeOpacity={0.8}
+                    onPress={() => setSelectedId(id)}
+                    style={[
+                      styles.item,
+                      {
+                        backgroundColor: colors.card,
+                        borderColor: border,
+                        opacity: unlocked ? 1 : 0.45,
+                      },
+                    ]}
+                  >
+                    <View style={[styles.itemNum, { backgroundColor: unlocked ? colors.secondary : colors.muted }]}>
+                      <Text style={[styles.itemNumText, { color: unlocked ? colors.primary : colors.mutedForeground }]}>
+                        {id}
+                      </Text>
+                    </View>
 
-                  <View style={styles.itemBody}>
-                    <Text
-                      style={[styles.itemName, { color: unlocked ? colors.foreground : colors.mutedForeground }]}
-                      numberOfLines={2}
-                    >
-                      {nameFor(id)}
-                    </Text>
-                    {unlocked ? (
-                      readPending ? (
-                        <Text style={[styles.itemStatus, { color: colors.primary }]}>Leitura pendente</Text>
-                      ) : completed ? (
-                        <Text style={[styles.itemStatus, { color: colors.success }]}>Concluída ✓</Text>
-                      ) : isCurrent ? (
-                        <Text style={[styles.itemStatus, { color: colors.success }]}>Leitura feita ✓</Text>
+                    <View style={styles.itemBody}>
+                      <Text
+                        style={[styles.itemName, { color: unlocked ? colors.foreground : colors.mutedForeground }]}
+                        numberOfLines={2}
+                      >
+                        {nameFor(id)}
+                      </Text>
+                      {unlocked ? (
+                        readPending ? (
+                          <Text style={[styles.itemStatus, { color: colors.primary }]}>Leitura pendente</Text>
+                        ) : completed ? (
+                          <Text style={[styles.itemStatus, { color: colors.success }]}>Concluída ✓</Text>
+                        ) : isCurrent ? (
+                          <Text style={[styles.itemStatus, { color: colors.success }]}>Leitura feita ✓</Text>
+                        ) : (
+                          <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Disponível</Text>
+                        )
                       ) : (
-                        <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Disponível</Text>
-                      )
-                    ) : (
-                      <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Em breve</Text>
-                    )}
-                  </View>
+                        <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Em breve</Text>
+                      )}
+                    </View>
 
-                  <Text style={[styles.itemChevron, { color: colors.mutedForeground }]}>
-                    {unlocked ? '›' : '🔒'}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
+                    <Text style={[styles.itemChevron, { color: colors.mutedForeground }]}>
+                      {unlocked ? '›' : '🔒'}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          ))}
+        </MacroAccordion>
+
+        {/* ── Macro 2: Profecias de Daniel (em breve) ── */}
+        <MacroAccordion
+          title="Profecias de Daniel"
+          subtitle="Novo módulo de estudo"
+          icon="🦁"
+          expanded={expanded.daniel}
+          onToggle={() => toggleMacro('daniel')}
+        >
+          <View style={[styles.comingSoon, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <Text style={styles.comingSoonEmoji}>🕰️</Text>
+            <Text style={[styles.comingSoonTitle, { color: colors.foreground }]}>Conteúdo em breve</Text>
+            <Text style={[styles.comingSoonText, { color: colors.mutedForeground }]}>
+              Um estudo completo das profecias do livro de Daniel está sendo preparado.
+            </Text>
           </View>
-        ))}
+        </MacroAccordion>
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+// ── Collapsible macro group (Accordion) ──
+function MacroAccordion({
+  title,
+  subtitle,
+  icon,
+  expanded,
+  onToggle,
+  children,
+}: {
+  title: string;
+  subtitle: string;
+  icon: string;
+  expanded: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  const colors = useColors();
+  return (
+    <View style={styles.macro}>
+      <TouchableOpacity
+        activeOpacity={0.85}
+        onPress={onToggle}
+        style={[
+          styles.macroHeader,
+          {
+            backgroundColor: colors.card,
+            borderColor: expanded ? colors.primary : colors.border,
+          },
+        ]}
+      >
+        <Text style={styles.macroIcon}>{icon}</Text>
+        <View style={styles.macroHeaderBody}>
+          <Text style={[styles.macroTitle, { color: colors.foreground }]}>{title}</Text>
+          <Text style={[styles.macroSub, { color: colors.mutedForeground }]}>{subtitle}</Text>
+        </View>
+        <Text style={[styles.macroChevron, { color: colors.primary }]}>
+          {expanded ? '⌄' : '›'}
+        </Text>
+      </TouchableOpacity>
+
+      {expanded && <View style={styles.macroContent}>{children}</View>}
+    </View>
   );
 }
 
@@ -238,14 +312,14 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
 
       {/* Success animation overlay */}
       {showCheck && (
-        <Animated.View style={[styles.overlay, { opacity: checkOpacity }]}>
+        <Animated.View style={[styles.overlay, { backgroundColor: colors.scrim, opacity: checkOpacity }]}>
           <Animated.View
             style={[
               styles.checkCircle,
               { backgroundColor: colors.success, transform: [{ scale: checkScale }] },
             ]}
           >
-            <Text style={styles.checkMark}>✓</Text>
+            <Text style={[styles.checkMark, { color: colors.successForeground }]}>✓</Text>
           </Animated.View>
           <Text style={[styles.checkText, { color: colors.foreground }]}>Leitura concluída!</Text>
         </Animated.View>
@@ -266,7 +340,34 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: 22, fontWeight: '800', letterSpacing: 0.5 },
   headerSub: { fontSize: 13 },
   scroll: { flex: 1 },
-  listContent: { padding: 16, gap: 22 },
+  listContent: { padding: 16, gap: 16 },
+  // macro accordion
+  macro: { gap: 12 },
+  macroHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    borderRadius: 14,
+    borderWidth: 1.5,
+    padding: 16,
+  },
+  macroIcon: { fontSize: 26 },
+  macroHeaderBody: { flex: 1, gap: 2 },
+  macroTitle: { fontSize: 17, fontWeight: '800', letterSpacing: 0.3 },
+  macroSub: { fontSize: 12 },
+  macroChevron: { fontSize: 22, fontWeight: '800', width: 20, textAlign: 'center' },
+  macroContent: { gap: 22, paddingTop: 2 },
+  comingSoon: {
+    borderRadius: 14,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    padding: 24,
+    alignItems: 'center',
+    gap: 8,
+  },
+  comingSoonEmoji: { fontSize: 34 },
+  comingSoonTitle: { fontSize: 16, fontWeight: '700' },
+  comingSoonText: { fontSize: 13, lineHeight: 19, textAlign: 'center' },
   group: { gap: 10 },
   groupTitle: { fontSize: 12, fontWeight: '800', letterSpacing: 1 },
   item: {
@@ -320,7 +421,6 @@ const styles = StyleSheet.create({
   doneText: { fontSize: 15, fontWeight: '700' },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(13,27,42,0.92)',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 20,
