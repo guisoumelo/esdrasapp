@@ -47,6 +47,8 @@ export interface Profile {
 export interface ProfileData {
   currentDoctrineId: number;
   completedDoctrines: number[];
+  /** IDs of all doctrines whose reading the user has confirmed (superset of completedDoctrines). */
+  readDoctrines: number[];
   dayProgress: DayProgress;
   errorScroll: WrongAnswer[];
 }

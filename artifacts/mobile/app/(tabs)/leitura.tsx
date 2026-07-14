@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
 import {
   Animated,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -25,7 +26,7 @@ type MacroKey = 'beliefs' | 'daniel';
 
 export default function LeituraScreen() {
   const colors = useColors();
-  const { currentDoctrineId, completedDoctrines, dayProgress } = useApp();
+  const { currentDoctrineId, completedDoctrines, readDoctrines, dayProgress } = useApp();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [expanded, setExpanded] = useState<Record<MacroKey, boolean>>({
@@ -79,9 +80,16 @@ export default function LeituraScreen() {
                 const unlocked = id <= MAX_UNLOCKED_DOCTRINE;
                 const completed = completedDoctrines.includes(id);
                 const isCurrent = id === currentDoctrineId;
-                const readPending = isCurrent && !dayProgress.readingCompleted;
+                // A doctrine is "read" if explicitly confirmed OR already fully completed.
+                const hasBeenRead =
+                  readDoctrines.includes(id) ||
+                  completed ||
+                  (isCurrent && dayProgress.readingCompleted);
+                const readPending = unlocked && !hasBeenRead;
 
                 const border = completed
+                  ? colors.success
+                  : hasBeenRead
                   ? colors.success
                   : isCurrent
                   ? colors.primary
@@ -116,12 +124,12 @@ export default function LeituraScreen() {
                         {nameFor(id)}
                       </Text>
                       {unlocked ? (
-                        readPending ? (
-                          <Text style={[styles.itemStatus, { color: colors.primary }]}>Leitura pendente</Text>
-                        ) : completed ? (
+                        completed ? (
                           <Text style={[styles.itemStatus, { color: colors.success }]}>Concluída ✓</Text>
-                        ) : isCurrent ? (
+                        ) : hasBeenRead ? (
                           <Text style={[styles.itemStatus, { color: colors.success }]}>Leitura feita ✓</Text>
+                        ) : readPending ? (
+                          <Text style={[styles.itemStatus, { color: colors.primary }]}>Leitura pendente</Text>
                         ) : (
                           <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Disponível</Text>
                         )
@@ -209,10 +217,14 @@ function MacroAccordion({
 // ── Reading detail with "Leitura concluída" + check animation ──
 function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () => void }) {
   const colors = useColors();
-  // Height of the (absolute-positioned) tab bar, so the action footer sits
-  // above it instead of being covered. 0 on native-tabs layouts.
-  const tabBarHeight = useContext(BottomTabBarHeightContext) ?? 0;
-  const { currentDoctrineId, dayProgress, blockAvailability, completeReading } = useApp();
+
+  // Reliable tab-bar height:
+  // - Web: ClassicTabLayout hardcodes 84px but BottomTabBarHeightContext may return 0 there.
+  // - Native ClassicTabLayout / NativeTabs: context is accurate.
+  const tabCtxHeight = useContext(BottomTabBarHeightContext) ?? 0;
+  const tabBarHeight = Platform.OS === 'web' ? 84 : tabCtxHeight;
+
+  const { currentDoctrineId, completedDoctrines, readDoctrines, dayProgress, blockAvailability, markDoctrineRead } = useApp();
   const doctrine = getDoctrine(doctrineId);
 
   const [scrolledToBottom, setScrolledToBottom] = useState(false);
@@ -220,10 +232,18 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
   const checkScale = useRef(new Animated.Value(0)).current;
   const checkOpacity = useRef(new Animated.Value(0)).current;
 
+  const unlocked = doctrineId <= MAX_UNLOCKED_DOCTRINE;
   const isCurrent = doctrineId === currentDoctrineId;
-  const alreadyRead = isCurrent && dayProgress.readingCompleted;
+
+  // A doctrine is considered read if explicitly confirmed OR already fully completed.
+  const alreadyRead =
+    readDoctrines.includes(doctrineId) ||
+    completedDoctrines.includes(doctrineId) ||
+    (isCurrent && dayProgress.readingCompleted);
+
+  // Time-gate only applies to the current doctrine in time-lock mode.
   const readingAvailable = blockAvailability.reading.available;
-  const canMark = isCurrent && !alreadyRead && readingAvailable;
+  const canMark = unlocked && !alreadyRead && (isCurrent ? readingAvailable : true);
 
   function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
     const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
@@ -240,13 +260,18 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
     ]).start();
 
     setTimeout(async () => {
-      await completeReading();
+      await markDoctrineRead(doctrineId);
       Animated.timing(checkOpacity, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
         setShowCheck(false);
         onBack();
       });
     }, 1100);
   }
+
+  // Extra bottom padding so the footer (which sits in normal flow) clears the
+  // absolute-positioned tab bar. Button area ≈ 56px + 16px top pad = 72px; we
+  // give it tabBarHeight + 16px of breathing room below the button.
+  const footerPaddingBottom = tabBarHeight + 16;
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
@@ -264,10 +289,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
 
       <ScrollView
         style={styles.scroll}
-        contentContainerStyle={[
-          styles.detailContent,
-          { paddingBottom: (canMark || alreadyRead ? 140 : 100) + tabBarHeight },
-        ]}
+        contentContainerStyle={[styles.detailContent, { paddingBottom: 24 }]}
         showsVerticalScrollIndicator={false}
         onScroll={handleScroll}
         scrollEventThrottle={100}
@@ -281,9 +303,19 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
         </View>
       </ScrollView>
 
-      {/* Footer action (only for current doctrine that still needs reading) */}
+      {/* Footer: normal-flow (NOT absolute) so it is always above the tab bar.
+          paddingBottom = tabBarHeight + gap pushes the button into the safe zone. */}
       {canMark && (
-        <View style={[styles.footer, { bottom: tabBarHeight, backgroundColor: colors.background, borderTopColor: colors.border }]}>
+        <View
+          style={[
+            styles.footer,
+            {
+              paddingBottom: footerPaddingBottom,
+              backgroundColor: colors.background,
+              borderTopColor: colors.border,
+            },
+          ]}
+        >
           <TouchableOpacity
             style={[
               styles.readBtn,
@@ -301,17 +333,26 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
                 { color: scrolledToBottom ? colors.primaryForeground : colors.mutedForeground },
               ]}
             >
-              {scrolledToBottom ? '✓ Leitura concluída' : 'Role até o fim para concluir'}
+              {scrolledToBottom ? '✓ Confirmar leitura' : 'Role até o fim para confirmar'}
             </Text>
           </TouchableOpacity>
         </View>
       )}
 
       {alreadyRead && (
-        <View style={[styles.footer, { bottom: tabBarHeight, backgroundColor: colors.background, borderTopColor: colors.border }]}>
+        <View
+          style={[
+            styles.footer,
+            {
+              paddingBottom: footerPaddingBottom,
+              backgroundColor: colors.background,
+              borderTopColor: colors.border,
+            },
+          ]}
+        >
           <View style={[styles.doneCard, { backgroundColor: colors.success }]}>
             <Text style={[styles.doneText, { color: colors.successForeground }]}>
-              ✓ Leitura concluída — vá para o Quiz
+              ✓ Leitura confirmada — vá para o Quiz
             </Text>
           </View>
         </View>
@@ -328,7 +369,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
           >
             <Text style={[styles.checkMark, { color: colors.successForeground }]}>✓</Text>
           </Animated.View>
-          <Text style={[styles.checkText, { color: colors.foreground }]}>Leitura concluída!</Text>
+          <Text style={[styles.checkText, { color: colors.foreground }]}>Leitura confirmada!</Text>
         </Animated.View>
       )}
     </SafeAreaView>
@@ -414,12 +455,9 @@ const styles = StyleSheet.create({
   ornament: { fontSize: 14, letterSpacing: 2 },
   bodyText: { fontSize: 16, lineHeight: 28, letterSpacing: 0.2 },
   footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    // NOT absolute — sits in normal flow so the tab bar cannot cover it.
+    // paddingBottom is set dynamically to tabBarHeight + gap.
     padding: 16,
-    paddingBottom: 30,
     borderTopWidth: 1,
   },
   readBtn: { borderRadius: 12, paddingVertical: 16, alignItems: 'center' },

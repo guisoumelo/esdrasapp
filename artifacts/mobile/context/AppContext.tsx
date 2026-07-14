@@ -52,9 +52,22 @@ function buildFreshProfileData(): ProfileData {
   return {
     currentDoctrineId: 1,
     completedDoctrines: [],
+    readDoctrines: [],
     dayProgress: buildFreshDayProgress(1, false),
     errorScroll: [],
   };
+}
+
+/** Migrate old ProfileData that may lack readDoctrines. */
+function normalizeProfileData(raw: Partial<ProfileData> & Omit<ProfileData, 'readDoctrines'>): ProfileData {
+  const base = raw as ProfileData;
+  if (base.readDoctrines) return base;
+  // Back-fill: every completed doctrine was read, plus current if readingCompleted.
+  const readDoctrines = [...base.completedDoctrines];
+  if (base.dayProgress.readingCompleted && !readDoctrines.includes(base.currentDoctrineId)) {
+    readDoctrines.push(base.currentDoctrineId);
+  }
+  return { ...base, readDoctrines };
 }
 
 /**
@@ -129,6 +142,8 @@ interface AppContextType {
   deleteProfile: (id: string) => Promise<void>;
 
   // Progress actions
+  readDoctrines: number[];
+  markDoctrineRead: (id: number) => Promise<void>;
   completeReading: () => Promise<void>;
   completeBlock: (
     block: 'block1' | 'block2' | 'provao',
@@ -174,7 +189,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   async function loadProfileData(id: string): Promise<ProfileData> {
     const raw = await AsyncStorage.getItem(STORAGE_KEYS.PROFILE_DATA(id));
-    const parsed: ProfileData = raw ? JSON.parse(raw) : buildFreshProfileData();
+    const parsed: ProfileData = raw ? normalizeProfileData(JSON.parse(raw)) : buildFreshProfileData();
     // Day-change only applies in time-lock mode.
     return timeLockEnabled ? applyDayChange(parsed) : parsed;
   }
@@ -206,7 +221,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         if (activeId) {
           setActiveProfileId(activeId);
           const raw = await AsyncStorage.getItem(STORAGE_KEYS.PROFILE_DATA(activeId));
-          const parsed: ProfileData = raw ? JSON.parse(raw) : buildFreshProfileData();
+          const parsed: ProfileData = raw ? normalizeProfileData(JSON.parse(raw)) : buildFreshProfileData();
           const normalized = timeLock ? applyDayChange(parsed) : parsed;
           setData(normalized);
           await persistData(activeId, normalized);
@@ -298,9 +313,31 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (activeProfileId) await persistData(activeProfileId, next);
   };
 
+  /**
+   * Mark a specific doctrine as read.
+   * - If it is the current doctrine, also sets dayProgress.readingCompleted = true
+   *   so the quiz gate opens.
+   * - Safe to call for any unlocked doctrine regardless of the daily time gate.
+   */
+  const markDoctrineRead = async (id: number) => {
+    const existing = data.readDoctrines ?? [];
+    if (existing.includes(id)) return;
+    const readDoctrines = [...existing, id];
+    const dayProgress =
+      id === data.currentDoctrineId
+        ? { ...data.dayProgress, readingCompleted: true }
+        : data.dayProgress;
+    await commit({ ...data, readDoctrines, dayProgress });
+  };
+
   const completeReading = async () => {
+    const readDoctrines = data.readDoctrines ?? [];
+    const nextRead = readDoctrines.includes(data.currentDoctrineId)
+      ? readDoctrines
+      : [...readDoctrines, data.currentDoctrineId];
     await commit({
       ...data,
+      readDoctrines: nextRead,
       dayProgress: { ...data.dayProgress, readingCompleted: true },
     });
   };
@@ -342,7 +379,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    await commit({ currentDoctrineId, completedDoctrines, dayProgress, errorScroll });
+    await commit({ currentDoctrineId, completedDoctrines, readDoctrines: data.readDoctrines ?? [], dayProgress, errorScroll });
   };
 
   // ── Settings actions ─────────────────────────────────────────────────────────
@@ -398,6 +435,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         createProfile,
         switchProfile,
         deleteProfile,
+        readDoctrines: data.readDoctrines ?? [],
+        markDoctrineRead,
         completeReading,
         completeBlock,
         setDebugHour,
