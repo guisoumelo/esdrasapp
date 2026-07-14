@@ -42,6 +42,7 @@ export interface Profile {
   gender: Gender;
   avatar?: string; // emoji avatar chosen at creation; falls back to gender emoji
   themeId?: ThemeId;
+  timeLockEnabled?: boolean; // per-profile; defaults to true if not set
 }
 
 export interface ProfileData {

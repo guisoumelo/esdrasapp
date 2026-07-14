@@ -41,6 +41,7 @@ export function EditProfileScreen({
   const [gender, setGender] = useState<Gender>(profile.gender);
   const [avatar, setAvatar] = useState<string>(profile.avatar ?? profileAvatar(profile));
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showFinalConfirm, setShowFinalConfirm] = useState(false);
 
   function handleGenderSelect(g: Gender) {
     if (g !== gender) {
@@ -197,7 +198,7 @@ export function EditProfileScreen({
             <SlideToDelete
               onConfirm={() => {
                 setShowDeleteConfirm(false);
-                onDelete();
+                setShowFinalConfirm(true);
               }}
               colors={colors}
             />
@@ -208,6 +209,38 @@ export function EditProfileScreen({
             >
               <Text style={[styles.cancelDeleteText, { color: colors.foreground }]}>Cancelar</Text>
             </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Final delete confirmation */}
+      <Modal visible={showFinalConfirm} transparent animationType="fade" onRequestClose={() => setShowFinalConfirm(false)}>
+        <View style={styles.overlay}>
+          <View style={[styles.deleteCard, { backgroundColor: colors.background }]}>
+            <Text style={{ fontSize: 40, textAlign: 'center' }}>⚠️</Text>
+            <Text style={[styles.deleteCardTitle, { color: colors.destructive }]}>
+              Excluir definitivamente?
+            </Text>
+            <Text style={[styles.deleteCardSub, { color: colors.mutedForeground }]}>
+              Todo o progresso de "{profile.nome}" será apagado para sempre. Esta ação não pode ser desfeita.
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <TouchableOpacity
+                style={[styles.finalBtn, { backgroundColor: colors.secondary, flex: 1 }]}
+                onPress={() => setShowFinalConfirm(false)}
+              >
+                <Text style={[styles.finalBtnText, { color: colors.foreground }]}>Cancelar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.finalBtn, { backgroundColor: colors.destructive, flex: 1 }]}
+                onPress={() => {
+                  setShowFinalConfirm(false);
+                  onDelete();
+                }}
+              >
+                <Text style={[styles.finalBtnText, { color: colors.destructiveForeground }]}>Excluir</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
@@ -336,8 +369,15 @@ const styles = StyleSheet.create({
   avatarCard: {
     width: '30%', aspectRatio: 1, borderRadius: 14, borderWidth: 2,
     alignItems: 'center', justifyContent: 'center', position: 'relative',
+    overflow: 'hidden',
   },
-  avatarEmoji: { fontSize: 34 },
+  avatarEmoji: {
+    fontSize: 34,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    lineHeight: 42,
+    includeFontPadding: false,
+  },
   avatarCheck: { position: 'absolute', top: 5, right: 7, fontSize: 12, fontWeight: '800' },
 
   dangerSection: {
@@ -402,4 +442,7 @@ const styles = StyleSheet.create({
     borderRadius: 12, paddingVertical: 14, alignItems: 'center',
   },
   cancelDeleteText: { fontSize: 15, fontWeight: '600' },
+
+  finalBtn: { borderRadius: 12, paddingVertical: 14, alignItems: 'center' },
+  finalBtnText: { fontSize: 15, fontWeight: '700' },
 });

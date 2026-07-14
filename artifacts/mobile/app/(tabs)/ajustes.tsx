@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
+  Animated,
+  LayoutChangeEvent,
   Modal,
+  PanResponder,
   ScrollView,
   StyleSheet,
   Switch,
@@ -32,21 +35,14 @@ export default function AjustesScreen() {
     setThemeId,
   } = useApp();
 
-  // Create profile wizard
   const [showForm, setShowForm] = useState(false);
-
-  // Switch profile confirmation
   const [switchTarget, setSwitchTarget] = useState<Profile | null>(null);
-
-  // Edit profiles screen
   const [showEditProfiles, setShowEditProfiles] = useState(false);
   const [editingProfile, setEditingProfile] = useState<Profile | null>(null);
-
-  // Collapsible appearance
   const [showThemes, setShowThemes] = useState(false);
 
   function handleProfileTap(p: Profile) {
-    if (activeProfile?.id === p.id) return; // already active, do nothing
+    if (activeProfile?.id === p.id) return;
     setSwitchTarget(p);
   }
 
@@ -191,13 +187,8 @@ export default function AjustesScreen() {
         </Text>
       </ScrollView>
 
-      {/* ── Add profile modal — full-screen wizard ── */}
-      <Modal
-        visible={showForm}
-        animationType="slide"
-        presentationStyle="fullScreen"
-        onRequestClose={() => setShowForm(false)}
-      >
+      {/* ── Add profile modal ── */}
+      <Modal visible={showForm} animationType="slide" presentationStyle="fullScreen" onRequestClose={() => setShowForm(false)}>
         <ProfileForm
           onCancel={() => setShowForm(false)}
           onSubmit={(nome, gender, avatar) => {
@@ -208,15 +199,10 @@ export default function AjustesScreen() {
       </Modal>
 
       {/* ── Switch profile confirmation ── */}
-      <Modal
-        visible={switchTarget !== null}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setSwitchTarget(null)}
-      >
+      <Modal visible={switchTarget !== null} transparent animationType="fade" onRequestClose={() => setSwitchTarget(null)}>
         <View style={styles.overlayCenter}>
           <View style={[styles.confirmCard, { backgroundColor: colors.background }]}>
-            <Text style={[styles.confirmEmoji]}>{switchTarget ? profileAvatar(switchTarget) : ''}</Text>
+            <Text style={styles.confirmEmoji}>{switchTarget ? profileAvatar(switchTarget) : ''}</Text>
             <Text style={[styles.confirmTitle, { color: colors.foreground }]}>
               Mudar para "{switchTarget?.nome}"?
             </Text>
@@ -249,10 +235,7 @@ export default function AjustesScreen() {
         visible={showEditProfiles}
         animationType="slide"
         presentationStyle="fullScreen"
-        onRequestClose={() => {
-          setEditingProfile(null);
-          setShowEditProfiles(false);
-        }}
+        onRequestClose={() => { setEditingProfile(null); setShowEditProfiles(false); }}
       >
         {editingProfile ? (
           <EditProfileScreen
@@ -282,7 +265,7 @@ export default function AjustesScreen() {
   );
 }
 
-// ── Edit profiles list (pick which profile to edit) ───────────────────────────
+// ── Edit profiles list ────────────────────────────────────────────────────────
 
 function EditProfilesList({
   profiles,
@@ -297,6 +280,9 @@ function EditProfilesList({
   onClose: () => void;
   colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
 }) {
+  const { resetAll } = useApp();
+  const [showReset, setShowReset] = useState(false);
+
   return (
     <SafeAreaView style={[listStyles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
       <View style={[listStyles.header, { borderBottomColor: colors.border }]}>
@@ -311,6 +297,7 @@ function EditProfilesList({
         <Text style={[listStyles.hint, { color: colors.mutedForeground }]}>
           Toque em um perfil para editar ou excluir.
         </Text>
+
         {profiles.map((p) => {
           const isActive = p.id === activeProfileId;
           return (
@@ -337,10 +324,258 @@ function EditProfilesList({
             </TouchableOpacity>
           );
         })}
+
+        {/* ── Zona de perigo: Reset ── */}
+        <View style={[listStyles.dangerSection, { borderColor: colors.destructive + '44' }]}>
+          <Text style={[listStyles.dangerTitle, { color: colors.destructive }]}>Zona de perigo</Text>
+          <Text style={[listStyles.dangerSub, { color: colors.mutedForeground }]}>
+            Resetar o aplicativo apaga todos os perfis e todo o progresso de forma permanente. O app volta ao estado inicial, como se tivesse acabado de ser instalado.
+          </Text>
+          <TouchableOpacity
+            style={[listStyles.resetBtn, { borderColor: colors.destructive }]}
+            onPress={() => setShowReset(true)}
+            activeOpacity={0.8}
+          >
+            <Text style={[listStyles.resetBtnText, { color: colors.destructive }]}>
+              Resetar o aplicativo…
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
+
+      {/* Reset modal */}
+      <ResetModal
+        visible={showReset}
+        colors={colors}
+        onCancel={() => setShowReset(false)}
+        onConfirm={async () => {
+          setShowReset(false);
+          onClose();
+          await resetAll();
+        }}
+      />
     </SafeAreaView>
   );
 }
+
+// ── Reset Modal (double-slide + final confirmation) ───────────────────────────
+
+function ResetModal({
+  visible,
+  colors,
+  onCancel,
+  onConfirm,
+}: {
+  visible: boolean;
+  colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  const [bar1Done, setBar1Done] = useState(false);
+  const [bar2Done, setBar2Done] = useState(false);
+  const [showFinal, setShowFinal] = useState(false);
+
+  function handleClose() {
+    setBar1Done(false);
+    setBar2Done(false);
+    setShowFinal(false);
+    onCancel();
+  }
+
+  function handleBar2Done() {
+    setBar2Done(true);
+    // Small delay then show final confirmation
+    setTimeout(() => setShowFinal(true), 300);
+  }
+
+  return (
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
+      <View style={resetStyles.overlay}>
+        {!showFinal ? (
+          <View style={[resetStyles.card, { backgroundColor: colors.background }]}>
+            <Text style={{ fontSize: 36, textAlign: 'center' }}>⚠️</Text>
+            <Text style={[resetStyles.title, { color: colors.destructive }]}>
+              Resetar o Aplicativo
+            </Text>
+            <Text style={[resetStyles.sub, { color: colors.mutedForeground }]}>
+              Esta ação apagará todos os perfis e progresso permanentemente. Arraste as duas barras abaixo para continuar.
+            </Text>
+
+            {/* Bar 1 */}
+            <View style={resetStyles.barWrap}>
+              <Text style={[resetStyles.barLabel, { color: colors.mutedForeground }]}>
+                {bar1Done ? '✓  Barra 1 confirmada' : 'Barra 1 de 2'}
+              </Text>
+              {bar1Done ? (
+                <View style={[resetStyles.barDone, { backgroundColor: colors.destructive + '33', borderColor: colors.destructive }]}>
+                  <Text style={[resetStyles.barDoneText, { color: colors.destructive }]}>✓ Arrastada</Text>
+                </View>
+              ) : (
+                <SlideBar
+                  label="Arraste para confirmar →"
+                  onConfirm={() => setBar1Done(true)}
+                  colors={colors}
+                />
+              )}
+            </View>
+
+            {/* Bar 2 (enabled only after bar 1) */}
+            <View style={[resetStyles.barWrap, { opacity: bar1Done ? 1 : 0.35 }]}>
+              <Text style={[resetStyles.barLabel, { color: colors.mutedForeground }]}>
+                {bar2Done ? '✓  Barra 2 confirmada' : 'Barra 2 de 2'}
+              </Text>
+              {bar2Done ? (
+                <View style={[resetStyles.barDone, { backgroundColor: colors.destructive + '33', borderColor: colors.destructive }]}>
+                  <Text style={[resetStyles.barDoneText, { color: colors.destructive }]}>✓ Arrastada</Text>
+                </View>
+              ) : (
+                <SlideBar
+                  label="Arraste para confirmar →"
+                  onConfirm={bar1Done ? handleBar2Done : undefined}
+                  colors={colors}
+                  disabled={!bar1Done}
+                />
+              )}
+            </View>
+
+            <TouchableOpacity
+              style={[resetStyles.cancelBtn, { backgroundColor: colors.secondary }]}
+              onPress={handleClose}
+            >
+              <Text style={[resetStyles.cancelText, { color: colors.foreground }]}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={[resetStyles.card, { backgroundColor: colors.background }]}>
+            <Text style={{ fontSize: 36, textAlign: 'center' }}>💀</Text>
+            <Text style={[resetStyles.title, { color: colors.destructive }]}>
+              Última confirmação
+            </Text>
+            <Text style={[resetStyles.sub, { color: colors.mutedForeground }]}>
+              Tem absoluta certeza? Todos os perfis, progresso e configurações serão apagados. Não há como desfazer.
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 12 }}>
+              <TouchableOpacity
+                style={[resetStyles.finalBtn, { backgroundColor: colors.secondary, flex: 1 }]}
+                onPress={handleClose}
+              >
+                <Text style={[resetStyles.finalBtnText, { color: colors.foreground }]}>Cancelar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[resetStyles.finalBtn, { backgroundColor: colors.destructive, flex: 1 }]}
+                onPress={onConfirm}
+              >
+                <Text style={[resetStyles.finalBtnText, { color: colors.destructiveForeground }]}>
+                  Resetar tudo
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
+      </View>
+    </Modal>
+  );
+}
+
+// ── Reusable slide bar ────────────────────────────────────────────────────────
+
+function SlideBar({
+  label,
+  onConfirm,
+  colors,
+  disabled = false,
+}: {
+  label: string;
+  onConfirm?: () => void;
+  colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
+  disabled?: boolean;
+}) {
+  const HANDLE_SIZE = 50;
+  const trackWidth = useRef(0);
+  const dragX = useRef(new Animated.Value(0)).current;
+  const confirmed = useRef(false);
+
+  function onTrackLayout(e: LayoutChangeEvent) {
+    trackWidth.current = e.nativeEvent.layout.width;
+  }
+
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => !disabled,
+    onMoveShouldSetPanResponder: () => !disabled,
+    onPanResponderMove: (_, gs) => {
+      if (disabled) return;
+      const maxX = trackWidth.current - HANDLE_SIZE - 6;
+      const clamped = Math.max(0, Math.min(gs.dx, maxX));
+      dragX.setValue(clamped);
+      if (!confirmed.current && clamped >= maxX * 0.9) {
+        confirmed.current = true;
+        onConfirm?.();
+      }
+    },
+    onPanResponderRelease: () => {
+      if (!confirmed.current) {
+        Animated.spring(dragX, { toValue: 0, useNativeDriver: true }).start();
+      }
+    },
+  });
+
+  return (
+    <View
+      style={[slideStyles.track, { backgroundColor: colors.destructive + '22', borderColor: colors.destructive + '55' }]}
+      onLayout={onTrackLayout}
+    >
+      <Animated.View
+        style={[slideStyles.fill, {
+          backgroundColor: colors.destructive + '44',
+          width: dragX.interpolate({
+            inputRange: [0, Math.max(1, (trackWidth.current || 300) - HANDLE_SIZE - 6)],
+            outputRange: ['0%', '100%'],
+            extrapolate: 'clamp',
+          }),
+        }]}
+      />
+      <View style={slideStyles.labelWrap} pointerEvents="none">
+        <Text style={[slideStyles.label, { color: colors.destructive }]}>{label}</Text>
+      </View>
+      <Animated.View
+        style={[slideStyles.handle, { width: HANDLE_SIZE, height: HANDLE_SIZE, backgroundColor: colors.destructive, transform: [{ translateX: dragX }] }]}
+        {...panResponder.panHandlers}
+      >
+        <Text style={slideStyles.handleIcon}>›</Text>
+      </Animated.View>
+    </View>
+  );
+}
+
+const slideStyles = StyleSheet.create({
+  track: {
+    height: 56, borderRadius: 28, borderWidth: 1.5,
+    overflow: 'hidden', justifyContent: 'center', paddingHorizontal: 3,
+  },
+  fill: { ...StyleSheet.absoluteFillObject, left: 0 },
+  labelWrap: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
+  label: { fontSize: 13, fontWeight: '700' },
+  handle: {
+    borderRadius: 25, alignItems: 'center', justifyContent: 'center',
+    elevation: 4, shadowColor: '#000', shadowOpacity: 0.3, shadowRadius: 4, shadowOffset: { width: 0, height: 2 },
+  },
+  handleIcon: { fontSize: 26, fontWeight: '900', color: '#fff' },
+});
+
+const resetStyles = StyleSheet.create({
+  overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', alignItems: 'center', justifyContent: 'center' },
+  card: { width: '90%', borderRadius: 20, padding: 24, gap: 16 },
+  title: { fontSize: 18, fontWeight: '800', textAlign: 'center' },
+  sub: { fontSize: 13, lineHeight: 20, textAlign: 'center' },
+  barWrap: { gap: 6 },
+  barLabel: { fontSize: 11, fontWeight: '700', letterSpacing: 0.5 },
+  barDone: { height: 56, borderRadius: 28, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center' },
+  barDoneText: { fontSize: 13, fontWeight: '700' },
+  cancelBtn: { borderRadius: 12, paddingVertical: 14, alignItems: 'center' },
+  cancelText: { fontSize: 15, fontWeight: '600' },
+  finalBtn: { borderRadius: 12, paddingVertical: 14, alignItems: 'center' },
+  finalBtnText: { fontSize: 15, fontWeight: '700' },
+});
 
 const listStyles = StyleSheet.create({
   safe: { flex: 1 },
@@ -352,7 +587,7 @@ const listStyles = StyleSheet.create({
   back: { fontSize: 15, fontWeight: '500', minWidth: 70 },
   title: { fontSize: 17, fontWeight: '800' },
   spacer: { minWidth: 70 },
-  content: { padding: 16, gap: 12 },
+  content: { padding: 16, gap: 12, paddingBottom: 40 },
   hint: { fontSize: 13, marginBottom: 4 },
   row: {
     flexDirection: 'row', alignItems: 'center', gap: 14,
@@ -363,9 +598,19 @@ const listStyles = StyleSheet.create({
   name: { fontSize: 16, fontWeight: '700' },
   meta: { fontSize: 12 },
   chevron: { fontSize: 22, fontWeight: '700' },
-});
 
-// ── Main styles ───────────────────────────────────────────────────────────────
+  dangerSection: {
+    marginTop: 8, borderRadius: 14, borderWidth: 1,
+    padding: 16, gap: 10,
+  },
+  dangerTitle: { fontSize: 14, fontWeight: '800' },
+  dangerSub: { fontSize: 13, lineHeight: 18 },
+  resetBtn: {
+    borderRadius: 10, borderWidth: 1.5,
+    paddingVertical: 13, alignItems: 'center',
+  },
+  resetBtnText: { fontSize: 14, fontWeight: '700' },
+});
 
 const styles = StyleSheet.create({
   safe: { flex: 1 },
@@ -409,15 +654,8 @@ const styles = StyleSheet.create({
 
   footerNote: { fontSize: 12, textAlign: 'center', marginTop: 8 },
 
-  // Switch profile confirmation
-  overlayCenter: {
-    flex: 1, backgroundColor: 'rgba(0,0,0,0.65)',
-    alignItems: 'center', justifyContent: 'center',
-  },
-  confirmCard: {
-    width: '84%', borderRadius: 20,
-    padding: 24, gap: 10, alignItems: 'center',
-  },
+  overlayCenter: { flex: 1, backgroundColor: 'rgba(0,0,0,0.65)', alignItems: 'center', justifyContent: 'center' },
+  confirmCard: { width: '84%', borderRadius: 20, padding: 24, gap: 10, alignItems: 'center' },
   confirmEmoji: { fontSize: 48, textAlign: 'center' },
   confirmTitle: { fontSize: 18, fontWeight: '800', textAlign: 'center' },
   confirmSub: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginBottom: 6 },

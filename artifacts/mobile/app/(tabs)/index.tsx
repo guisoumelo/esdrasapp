@@ -1,9 +1,11 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { TimelineBlock } from '@/components/TimelineBlock';
+import { ProgressPathModal } from '@/components/ProgressPathModal';
 import { getDoctrine } from '@/constants/doctrines';
 import { RANKS, profileAvatar } from '@/types';
 
@@ -21,6 +23,7 @@ function blockState(
 
 export default function DashboardScreen() {
   const colors = useColors();
+  const router = useRouter();
   const {
     activeProfile,
     currentDoctrineId,
@@ -31,6 +34,8 @@ export default function DashboardScreen() {
     timeLockEnabled,
     masterMode,
   } = useApp();
+
+  const [showProgressPath, setShowProgressPath] = useState(false);
 
   const doctrine = getDoctrine(currentDoctrineId);
   const totalCompleted = completedDoctrines.length;
@@ -48,6 +53,10 @@ export default function DashboardScreen() {
     : 'locked';
 
   const profileEmoji = activeProfile ? profileAvatar(activeProfile) : '👨';
+
+  function navigateTo(tab: 'leitura' | 'quiz') {
+    router.navigate(`/(tabs)/${tab}` as never);
+  }
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
@@ -89,13 +98,20 @@ export default function DashboardScreen() {
           )}
         </View>
 
-        {/* Progress */}
-        <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
+        {/* Progress — tappable → opens path modal */}
+        <TouchableOpacity
+          style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}
+          onPress={() => setShowProgressPath(true)}
+          activeOpacity={0.8}
+        >
           <View style={styles.sectionHeader}>
             <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Progresso Geral</Text>
-            <Text style={[styles.sectionCount, { color: colors.primary }]}>
-              {totalCompleted}/28
-            </Text>
+            <View style={styles.sectionRight}>
+              <Text style={[styles.sectionCount, { color: colors.primary }]}>
+                {totalCompleted}/28
+              </Text>
+              <Text style={[styles.chevron, { color: colors.mutedForeground }]}>›</Text>
+            </View>
           </View>
           <View style={[styles.progressBar, { backgroundColor: colors.secondary }]}>
             <View
@@ -108,7 +124,7 @@ export default function DashboardScreen() {
           <Text style={[styles.progressLabel, { color: colors.mutedForeground }]}>
             Nível seguinte: {RANKS.find(r => r.minDoctrines > totalCompleted)?.title ?? 'Mestre de Esdras'}
           </Text>
-        </View>
+        </TouchableOpacity>
 
         {/* Current Doctrine */}
         <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
@@ -128,7 +144,7 @@ export default function DashboardScreen() {
           )}
         </View>
 
-        {/* Timeline */}
+        {/* Timeline — each block is tappable */}
         <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
             {timeLockEnabled ? 'Cronograma Diário' : 'Trilha de Hoje'}
@@ -138,6 +154,7 @@ export default function DashboardScreen() {
               label="Leitura"
               timeLabel="5h"
               state={readState}
+              onPress={() => navigateTo('leitura')}
             />
             <TimelineBlock
               label="Bloco 1"
@@ -147,6 +164,7 @@ export default function DashboardScreen() {
                 blockAvailability.block1.completed,
                 blockAvailability.block1.passed,
               )}
+              onPress={() => navigateTo('quiz')}
             />
             <TimelineBlock
               label="Bloco 2"
@@ -156,6 +174,7 @@ export default function DashboardScreen() {
                 blockAvailability.block2.completed,
                 blockAvailability.block2.passed,
               )}
+              onPress={() => navigateTo('quiz')}
             />
             <TimelineBlock
               label="Provão Final"
@@ -165,11 +184,19 @@ export default function DashboardScreen() {
                 blockAvailability.provao.completed,
                 blockAvailability.provao.passed,
               )}
+              onPress={() => navigateTo('quiz')}
               isLast
             />
           </View>
         </View>
       </ScrollView>
+
+      {/* Progress path modal */}
+      <ProgressPathModal
+        visible={showProgressPath}
+        completedDoctrines={totalCompleted}
+        onClose={() => setShowProgressPath(false)}
+      />
     </SafeAreaView>
   );
 }
@@ -182,12 +209,8 @@ const styles = StyleSheet.create({
   appTitle: { fontSize: 28, fontWeight: '800', letterSpacing: 4 },
   appSubtitle: { fontSize: 13, letterSpacing: 1, marginTop: 4 },
   greetCard: {
-    borderRadius: 14,
-    borderWidth: 1,
-    padding: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
+    borderRadius: 14, borderWidth: 1, padding: 14,
+    flexDirection: 'row', alignItems: 'center', gap: 12,
   },
   greetEmoji: { fontSize: 34 },
   greetHello: { fontSize: 12 },
@@ -195,34 +218,23 @@ const styles = StyleSheet.create({
   modePill: { borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 },
   modePillText: { fontSize: 11, fontWeight: '700' },
   rankCard: {
-    borderRadius: 14,
-    borderWidth: 2,
-    padding: 18,
-    alignItems: 'center',
+    borderRadius: 14, borderWidth: 2, padding: 18, alignItems: 'center',
   },
   rankLabel: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
   rankTitle: { fontSize: 20, fontWeight: '700', marginTop: 4, textAlign: 'center' },
   masterBadge: { fontSize: 13, marginTop: 6, letterSpacing: 1 },
-  section: {
-    borderRadius: 14,
-    borderWidth: 1,
-    padding: 16,
-    gap: 10,
-  },
+  section: { borderRadius: 14, borderWidth: 1, padding: 16, gap: 10 },
   sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  sectionRight: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   sectionTitle: { fontSize: 15, fontWeight: '700', letterSpacing: 0.5 },
   sectionCount: { fontSize: 16, fontWeight: '800' },
+  chevron: { fontSize: 22, fontWeight: '700' },
   progressBar: { height: 8, borderRadius: 4, overflow: 'hidden' },
   progressFill: { height: '100%', borderRadius: 4 },
   progressLabel: { fontSize: 12, marginTop: 2 },
   doctrineNumber: { fontSize: 12, letterSpacing: 0.5 },
   doctrineName: { fontSize: 17, fontWeight: '700', lineHeight: 24 },
-  pill: {
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    alignSelf: 'flex-start',
-  },
+  pill: { borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, alignSelf: 'flex-start' },
   pillText: { fontSize: 12, fontWeight: '600' },
   timeline: { gap: 0 },
 });

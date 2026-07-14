@@ -356,8 +356,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+    overflow: 'hidden',
   },
-  avatarEmoji: { fontSize: 36 },
+  avatarEmoji: {
+    fontSize: 36,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    lineHeight: 44,
+    includeFontPadding: false,
+  },
   avatarCheck: {
     position: 'absolute',
     top: 5,

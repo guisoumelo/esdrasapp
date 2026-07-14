@@ -18,7 +18,8 @@ import {
 const STORAGE_KEYS = {
   PROFILES: '@esdras_profiles',
   ACTIVE_PROFILE: '@esdras_active_profile',
-  TIME_LOCK: '@esdras_time_lock',
+  /** @deprecated global key kept only for one-time migration */
+  TIME_LOCK_GLOBAL: '@esdras_time_lock',
   DEBUG_HOUR: '@esdras_debug_hour',
   PROFILE_DATA: (id: string) => `@esdras_data_${id}`,
 };
@@ -62,7 +63,6 @@ function buildFreshProfileData(): ProfileData {
 function normalizeProfileData(raw: Partial<ProfileData> & Omit<ProfileData, 'readDoctrines'>): ProfileData {
   const base = raw as ProfileData;
   if (base.readDoctrines) return base;
-  // Back-fill: every completed doctrine was read, plus current if readingCompleted.
   const readDoctrines = [...base.completedDoctrines];
   if (base.dayProgress.readingCompleted && !readDoctrines.includes(base.currentDoctrineId)) {
     readDoctrines.push(base.currentDoctrineId);
@@ -70,10 +70,6 @@ function normalizeProfileData(raw: Partial<ProfileData> & Omit<ProfileData, 'rea
   return { ...base, readDoctrines };
 }
 
-/**
- * Applies the daily "day change" progression logic. Only meaningful when the
- * time-lock (Trilha) mode is enabled — in free mode advancement is immediate.
- */
 function applyDayChange(data: ProfileData): ProfileData {
   const today = getTodayString();
   if (data.dayProgress.date === today) return data;
@@ -95,7 +91,6 @@ function applyDayChange(data: ProfileData): ProfileData {
     };
   }
 
-  // Repeat the doctrine — second attempt if anything was tried.
   const anyAttempted =
     progress.block1Passed !== null ||
     progress.block2Passed !== null ||
@@ -108,6 +103,11 @@ function applyDayChange(data: ProfileData): ProfileData {
       anyAttempted || progress.isSecondAttempt,
     ),
   };
+}
+
+/** Returns the effective timeLock for a profile (defaults to true). */
+function profileTimeLock(p: Profile): boolean {
+  return p.timeLockEnabled ?? true;
 }
 
 interface AppContextType {
@@ -141,6 +141,7 @@ interface AppContextType {
   updateProfile: (id: string, nome: string, gender: Gender, avatar: string) => Promise<void>;
   switchProfile: (id: string) => Promise<void>;
   deleteProfile: (id: string) => Promise<void>;
+  resetAll: () => Promise<void>;
 
   // Progress actions
   readDoctrines: number[];
@@ -166,17 +167,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [activeProfileId, setActiveProfileId] = useState<string | null>(null);
   const [data, setData] = useState<ProfileData>(buildFreshProfileData());
-  const [timeLockEnabled, setTimeLockState] = useState(true);
   const [debugHour, setDebugHourState] = useState<number | null>(null);
   const [tick, setTick] = useState(0);
 
-  // Re-compute currentHour (and re-check the day boundary) every minute.
   useEffect(() => {
     const interval = setInterval(() => setTick((t) => t + 1), 60000);
     return () => clearInterval(interval);
   }, []);
 
   const activeProfile = profiles.find((p) => p.id === activeProfileId) ?? null;
+  const timeLockEnabled: boolean = activeProfile ? profileTimeLock(activeProfile) : true;
   const themeId: ThemeId = activeProfile?.themeId ?? DEFAULT_THEME_ID;
   const currentHour = debugHour !== null ? debugHour : getRealHour();
   const blockAvailability = getBlockAvailability(currentHour, data.dayProgress, timeLockEnabled);
@@ -188,30 +188,45 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     await AsyncStorage.setItem(STORAGE_KEYS.PROFILE_DATA(id), JSON.stringify(next));
   }
 
-  async function loadProfileData(id: string): Promise<ProfileData> {
+  async function loadProfileData(id: string, lock: boolean): Promise<ProfileData> {
     const raw = await AsyncStorage.getItem(STORAGE_KEYS.PROFILE_DATA(id));
     const parsed: ProfileData = raw ? normalizeProfileData(JSON.parse(raw)) : buildFreshProfileData();
-    // Day-change only applies in time-lock mode.
-    return timeLockEnabled ? applyDayChange(parsed) : parsed;
+    return lock ? applyDayChange(parsed) : parsed;
   }
 
   // ── Initial load ────────────────────────────────────────────────────────────
   useEffect(() => {
     (async () => {
       try {
-        const [storedProfiles, storedActive, storedTimeLock, storedDebug] = await Promise.all([
+        const [storedProfiles, storedActive, storedTimeLockGlobal, storedDebug] = await Promise.all([
           AsyncStorage.getItem(STORAGE_KEYS.PROFILES),
           AsyncStorage.getItem(STORAGE_KEYS.ACTIVE_PROFILE),
-          AsyncStorage.getItem(STORAGE_KEYS.TIME_LOCK),
+          AsyncStorage.getItem(STORAGE_KEYS.TIME_LOCK_GLOBAL),
           AsyncStorage.getItem(STORAGE_KEYS.DEBUG_HOUR),
         ]);
 
-        const parsedProfiles: Profile[] = storedProfiles ? JSON.parse(storedProfiles) : [];
-        const timeLock = storedTimeLock !== null ? JSON.parse(storedTimeLock) : true;
-        const dbgHour = storedDebug !== null ? JSON.parse(storedDebug) : null;
+        let parsedProfiles: Profile[] = storedProfiles ? JSON.parse(storedProfiles) : [];
 
+        // One-time migration: if global key exists, apply to profiles that don't have own setting.
+        if (storedTimeLockGlobal !== null) {
+          const globalLock: boolean = JSON.parse(storedTimeLockGlobal);
+          let migrated = false;
+          parsedProfiles = parsedProfiles.map((p) => {
+            if (p.timeLockEnabled === undefined) {
+              migrated = true;
+              return { ...p, timeLockEnabled: globalLock };
+            }
+            return p;
+          });
+          if (migrated) {
+            await AsyncStorage.setItem(STORAGE_KEYS.PROFILES, JSON.stringify(parsedProfiles));
+          }
+          // Remove global key after migration.
+          await AsyncStorage.removeItem(STORAGE_KEYS.TIME_LOCK_GLOBAL);
+        }
+
+        const dbgHour = storedDebug !== null ? JSON.parse(storedDebug) : null;
         setProfiles(parsedProfiles);
-        setTimeLockState(timeLock);
         setDebugHourState(dbgHour);
 
         const activeId =
@@ -221,9 +236,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
         if (activeId) {
           setActiveProfileId(activeId);
-          const raw = await AsyncStorage.getItem(STORAGE_KEYS.PROFILE_DATA(activeId));
-          const parsed: ProfileData = raw ? normalizeProfileData(JSON.parse(raw)) : buildFreshProfileData();
-          const normalized = timeLock ? applyDayChange(parsed) : parsed;
+          const targetProfile = parsedProfiles.find((p) => p.id === activeId)!;
+          const lock = profileTimeLock(targetProfile);
+          const normalized = await loadProfileData(activeId, lock);
           setData(normalized);
           await persistData(activeId, normalized);
         }
@@ -237,8 +252,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   // ── Day-boundary watcher ─────────────────────────────────────────────────────
-  // Applies the daily progression exactly once per date change while the app
-  // stays open (time-lock mode only). Driven by the per-minute `tick`.
   useEffect(() => {
     if (!loaded || !activeProfileId || !timeLockEnabled) return;
     if (data.dayProgress.date === getTodayString()) return;
@@ -256,6 +269,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       gender,
       avatar,
       themeId: DEFAULT_THEME_ID,
+      timeLockEnabled: true,
     };
     const nextProfiles = [...profiles, profile];
     const freshData = buildFreshProfileData();
@@ -281,9 +295,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const switchProfile = async (id: string) => {
     if (!profiles.some((p) => p.id === id)) return;
-    // Load the target profile's data BEFORE flipping the active id so that
-    // `data` and `activeProfileId` update together (no mixed-state window).
-    const normalized = await loadProfileData(id);
+    const targetProfile = profiles.find((p) => p.id === id)!;
+    const lock = profileTimeLock(targetProfile);
+    const normalized = await loadProfileData(id, lock);
     setActiveProfileId(id);
     setData(normalized);
     await AsyncStorage.setItem(STORAGE_KEYS.ACTIVE_PROFILE, id);
@@ -301,8 +315,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (activeProfileId === id) {
       const nextActive = nextProfiles[0]?.id ?? null;
       if (nextActive) {
-        // Load next profile data first, then swap id + data atomically.
-        const normalized = await loadProfileData(nextActive);
+        const targetProfile = nextProfiles.find((p) => p.id === nextActive)!;
+        const lock = profileTimeLock(targetProfile);
+        const normalized = await loadProfileData(nextActive, lock);
         setActiveProfileId(nextActive);
         setData(normalized);
         await AsyncStorage.setItem(STORAGE_KEYS.ACTIVE_PROFILE, nextActive);
@@ -315,18 +330,29 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const resetAll = async () => {
+    // Wipe all profile data
+    for (const p of profiles) {
+      await AsyncStorage.removeItem(STORAGE_KEYS.PROFILE_DATA(p.id));
+    }
+    await Promise.all([
+      AsyncStorage.removeItem(STORAGE_KEYS.PROFILES),
+      AsyncStorage.removeItem(STORAGE_KEYS.ACTIVE_PROFILE),
+      AsyncStorage.removeItem(STORAGE_KEYS.TIME_LOCK_GLOBAL),
+      AsyncStorage.removeItem(STORAGE_KEYS.DEBUG_HOUR),
+    ]);
+    setProfiles([]);
+    setActiveProfileId(null);
+    setData(buildFreshProfileData());
+    setDebugHourState(null);
+  };
+
   // ── Progress actions ─────────────────────────────────────────────────────────
   const commit = async (next: ProfileData) => {
     setData(next);
     if (activeProfileId) await persistData(activeProfileId, next);
   };
 
-  /**
-   * Mark a specific doctrine as read.
-   * - If it is the current doctrine, also sets dayProgress.readingCompleted = true
-   *   so the quiz gate opens.
-   * - Safe to call for any unlocked doctrine regardless of the daily time gate.
-   */
   const markDoctrineRead = async (id: number) => {
     const existing = data.readDoctrines ?? [];
     if (existing.includes(id)) return;
@@ -361,12 +387,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     let errorScroll = data.errorScroll;
 
     if (block === 'block1') {
-      // Free mode: a failed block resets to null so the user retries immediately.
       dayProgress.block1Passed = passed ? true : timeLockEnabled ? false : null;
     } else if (block === 'block2') {
       dayProgress.block2Passed = passed ? true : timeLockEnabled ? false : null;
     } else {
-      // Provão
       if (!passed && errors && errors.length > 0) {
         errorScroll = [...errorScroll, ...errors];
       }
@@ -376,13 +400,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         if (!completedDoctrines.includes(currentDoctrineId)) {
           completedDoctrines = [...completedDoctrines, currentDoctrineId];
         }
-        // Free mode: advance to the next unlocked doctrine immediately.
         if (!timeLockEnabled && currentDoctrineId < MAX_UNLOCKED_DOCTRINE) {
           currentDoctrineId = currentDoctrineId + 1;
           dayProgress = buildFreshDayProgress(currentDoctrineId, false);
         }
       } else {
-        // Free mode: allow immediate retake of the provão.
         dayProgress.provaoPassed = timeLockEnabled ? false : null;
       }
     }
@@ -397,9 +419,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const setTimeLockEnabled = async (enabled: boolean) => {
-    setTimeLockState(enabled);
-    await AsyncStorage.setItem(STORAGE_KEYS.TIME_LOCK, JSON.stringify(enabled));
-    // Re-enabling lock mode must normalize any stale day state immediately.
+    if (!activeProfileId) return;
+    const nextProfiles = profiles.map((p) =>
+      p.id === activeProfileId ? { ...p, timeLockEnabled: enabled } : p,
+    );
+    setProfiles(nextProfiles);
+    await AsyncStorage.setItem(STORAGE_KEYS.PROFILES, JSON.stringify(nextProfiles));
+    // Re-enabling lock mode must normalize stale day state.
     if (enabled && activeProfileId) {
       const normalized = applyDayChange(data);
       if (normalized !== data) {
@@ -444,6 +470,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         updateProfile,
         switchProfile,
         deleteProfile,
+        resetAll,
         readDoctrines: data.readDoctrines ?? [],
         markDoctrineRead,
         completeReading,
