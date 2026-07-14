@@ -138,6 +138,7 @@ interface AppContextType {
 
   // Profile actions
   createProfile: (nome: string, gender: Gender, avatar?: string) => Promise<void>;
+  updateProfile: (id: string, nome: string, gender: Gender, avatar: string) => Promise<void>;
   switchProfile: (id: string) => Promise<void>;
   deleteProfile: (id: string) => Promise<void>;
 
@@ -268,6 +269,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       AsyncStorage.setItem(STORAGE_KEYS.ACTIVE_PROFILE, profile.id),
       persistData(profile.id, freshData),
     ]);
+  };
+
+  const updateProfile = async (id: string, nome: string, gender: Gender, avatar: string) => {
+    const nextProfiles = profiles.map((p) =>
+      p.id === id ? { ...p, nome: nome.trim(), gender, avatar } : p,
+    );
+    setProfiles(nextProfiles);
+    await AsyncStorage.setItem(STORAGE_KEYS.PROFILES, JSON.stringify(nextProfiles));
   };
 
   const switchProfile = async (id: string) => {
@@ -432,6 +441,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         currentRank,
         masterMode,
         createProfile,
+        updateProfile,
         switchProfile,
         deleteProfile,
         readDoctrines: data.readDoctrines ?? [],

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import {
   Modal,
   ScrollView,
@@ -13,7 +12,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
+import { EditProfileScreen } from '@/components/EditProfileScreen';
 import { profileAvatar } from '@/types';
+import { Profile } from '@/types';
 import { THEMES } from '@/constants/colors';
 
 export default function AjustesScreen() {
@@ -23,6 +24,7 @@ export default function AjustesScreen() {
     activeProfile,
     switchProfile,
     createProfile,
+    updateProfile,
     deleteProfile,
     timeLockEnabled,
     setTimeLockEnabled,
@@ -30,16 +32,27 @@ export default function AjustesScreen() {
     setThemeId,
   } = useApp();
 
+  // Create profile wizard
   const [showForm, setShowForm] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+
+  // Switch profile confirmation
+  const [switchTarget, setSwitchTarget] = useState<Profile | null>(null);
+
+  // Edit profiles screen
+  const [showEditProfiles, setShowEditProfiles] = useState(false);
+  const [editingProfile, setEditingProfile] = useState<Profile | null>(null);
+
+  // Collapsible appearance
   const [showThemes, setShowThemes] = useState(false);
+
+  function handleProfileTap(p: Profile) {
+    if (activeProfile?.id === p.id) return; // already active, do nothing
+    setSwitchTarget(p);
+  }
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
-      <ScrollView
-        contentContainerStyle={styles.content}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <Text style={[styles.screenTitle, { color: colors.primary }]}>Configurações</Text>
 
         {/* ── Perfis ── */}
@@ -52,7 +65,7 @@ export default function AjustesScreen() {
           {profiles.map((p) => {
             const isActive = activeProfile?.id === p.id;
             return (
-              <View
+              <TouchableOpacity
                 key={p.id}
                 style={[
                   styles.profileRow,
@@ -61,31 +74,18 @@ export default function AjustesScreen() {
                     borderColor: isActive ? colors.primary : colors.border,
                   },
                 ]}
+                onPress={() => handleProfileTap(p)}
+                activeOpacity={isActive ? 1 : 0.8}
               >
-                <TouchableOpacity
-                  style={styles.profileMain}
-                  onPress={() => switchProfile(p.id)}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.profileEmoji}>{profileAvatar(p)}</Text>
-                  <View style={styles.profileInfo}>
-                    <Text style={[styles.profileName, { color: colors.foreground }]}>{p.nome}</Text>
-                    {isActive && (
-                      <Text style={[styles.profileMeta, { color: colors.mutedForeground }]}>Ativo</Text>
-                    )}
-                  </View>
-                  {isActive && <Text style={[styles.activeCheck, { color: colors.primary }]}>✓</Text>}
-                </TouchableOpacity>
-
-                {profiles.length > 1 && (
-                  <TouchableOpacity
-                    style={styles.deleteBtn}
-                    onPress={() => setConfirmDelete(p.id)}
-                  >
-                    <Text style={[styles.deleteText, { color: colors.destructive }]}>Excluir</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
+                <Text style={styles.profileEmoji}>{profileAvatar(p)}</Text>
+                <View style={styles.profileInfo}>
+                  <Text style={[styles.profileName, { color: colors.foreground }]}>{p.nome}</Text>
+                  {isActive && (
+                    <Text style={[styles.profileMeta, { color: colors.mutedForeground }]}>Ativo</Text>
+                  )}
+                </View>
+                {isActive && <Text style={[styles.activeCheck, { color: colors.primary }]}>✓</Text>}
+              </TouchableOpacity>
             );
           })}
 
@@ -101,7 +101,6 @@ export default function AjustesScreen() {
         {/* ── Modo de Jogo ── */}
         <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
           <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Modo de Jogo</Text>
-
           <View style={styles.toggleRow}>
             <View style={styles.toggleTextWrap}>
               <Text style={[styles.toggleTitle, { color: colors.foreground }]}>
@@ -166,20 +165,33 @@ export default function AjustesScreen() {
                   <Text style={[styles.themeDesc, { color: colors.mutedForeground }]}>{t.description}</Text>
                 </View>
                 {selected && <Text style={[styles.activeCheck, { color: colors.primary }]}>✓</Text>}
-                <Text style={[styles.rowChevron, { color: selected ? colors.primary : colors.mutedForeground }]}>
-                  ›
-                </Text>
+                <Text style={[styles.rowChevron, { color: selected ? colors.primary : colors.mutedForeground }]}>›</Text>
               </TouchableOpacity>
             );
           })}
         </View>
+
+        {/* ── Editar Perfis ── */}
+        <TouchableOpacity
+          style={[styles.section, styles.editProfilesRow, { backgroundColor: colors.card, borderColor: colors.border }]}
+          onPress={() => setShowEditProfiles(true)}
+          activeOpacity={0.8}
+        >
+          <View style={styles.editProfilesLeft}>
+            <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Editar Perfis</Text>
+            <Text style={[styles.sectionSub, { color: colors.mutedForeground }]}>
+              Altere nome, ícone ou avatar. Exclua perfis.
+            </Text>
+          </View>
+          <Text style={[styles.rowChevron, { color: colors.mutedForeground }]}>›</Text>
+        </TouchableOpacity>
 
         <Text style={[styles.footerNote, { color: colors.mutedForeground }]}>
           Esdras · 28 Crenças Fundamentais da IASD
         </Text>
       </ScrollView>
 
-      {/* Add profile modal — full screen wizard */}
+      {/* ── Add profile modal — full-screen wizard ── */}
       <Modal
         visible={showForm}
         animationType="slide"
@@ -195,37 +207,165 @@ export default function AjustesScreen() {
         />
       </Modal>
 
-      {/* Confirm delete modal */}
-      <Modal visible={confirmDelete !== null} transparent animationType="fade" onRequestClose={() => setConfirmDelete(null)}>
-        <View style={styles.modalOverlay}>
+      {/* ── Switch profile confirmation ── */}
+      <Modal
+        visible={switchTarget !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setSwitchTarget(null)}
+      >
+        <View style={styles.overlayCenter}>
           <View style={[styles.confirmCard, { backgroundColor: colors.background }]}>
-            <Text style={[styles.confirmTitle, { color: colors.foreground }]}>Excluir perfil?</Text>
-            <Text style={[styles.confirmText, { color: colors.mutedForeground }]}>
-              Todo o progresso deste perfil será perdido. Esta ação não pode ser desfeita.
+            <Text style={[styles.confirmEmoji]}>{switchTarget ? profileAvatar(switchTarget) : ''}</Text>
+            <Text style={[styles.confirmTitle, { color: colors.foreground }]}>
+              Mudar para "{switchTarget?.nome}"?
             </Text>
-            <View style={styles.confirmRow}>
+            <Text style={[styles.confirmSub, { color: colors.mutedForeground }]}>
+              O progresso deste perfil será carregado.
+            </Text>
+            <View style={styles.confirmBtns}>
               <TouchableOpacity
                 style={[styles.confirmBtn, { backgroundColor: colors.secondary }]}
-                onPress={() => setConfirmDelete(null)}
+                onPress={() => setSwitchTarget(null)}
               >
                 <Text style={[styles.confirmBtnText, { color: colors.foreground }]}>Cancelar</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.confirmBtn, { backgroundColor: colors.destructive }]}
+                style={[styles.confirmBtn, { backgroundColor: colors.primary }]}
                 onPress={() => {
-                  if (confirmDelete) deleteProfile(confirmDelete);
-                  setConfirmDelete(null);
+                  if (switchTarget) switchProfile(switchTarget.id);
+                  setSwitchTarget(null);
                 }}
               >
-                <Text style={[styles.confirmBtnText, { color: colors.destructiveForeground }]}>Excluir</Text>
+                <Text style={[styles.confirmBtnText, { color: colors.primaryForeground }]}>Confirmar</Text>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </Modal>
+
+      {/* ── Edit profiles screen ── */}
+      <Modal
+        visible={showEditProfiles}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={() => {
+          setEditingProfile(null);
+          setShowEditProfiles(false);
+        }}
+      >
+        {editingProfile ? (
+          <EditProfileScreen
+            profile={editingProfile}
+            canDelete={profiles.length > 1}
+            onSave={(nome, gender, avatar) => {
+              updateProfile(editingProfile.id, nome, gender, avatar);
+              setEditingProfile(null);
+            }}
+            onDelete={() => {
+              deleteProfile(editingProfile.id);
+              setEditingProfile(null);
+            }}
+            onClose={() => setEditingProfile(null)}
+          />
+        ) : (
+          <EditProfilesList
+            profiles={profiles}
+            activeProfileId={activeProfile?.id ?? null}
+            onSelect={(p) => setEditingProfile(p)}
+            onClose={() => setShowEditProfiles(false)}
+            colors={colors}
+          />
+        )}
+      </Modal>
     </SafeAreaView>
   );
 }
+
+// ── Edit profiles list (pick which profile to edit) ───────────────────────────
+
+function EditProfilesList({
+  profiles,
+  activeProfileId,
+  onSelect,
+  onClose,
+  colors,
+}: {
+  profiles: Profile[];
+  activeProfileId: string | null;
+  onSelect: (p: Profile) => void;
+  onClose: () => void;
+  colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
+}) {
+  return (
+    <SafeAreaView style={[listStyles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
+      <View style={[listStyles.header, { borderBottomColor: colors.border }]}>
+        <TouchableOpacity onPress={onClose}>
+          <Text style={[listStyles.back, { color: colors.mutedForeground }]}>‹ Voltar</Text>
+        </TouchableOpacity>
+        <Text style={[listStyles.title, { color: colors.primary }]}>Editar Perfis</Text>
+        <View style={listStyles.spacer} />
+      </View>
+
+      <ScrollView contentContainerStyle={listStyles.content} showsVerticalScrollIndicator={false}>
+        <Text style={[listStyles.hint, { color: colors.mutedForeground }]}>
+          Toque em um perfil para editar ou excluir.
+        </Text>
+        {profiles.map((p) => {
+          const isActive = p.id === activeProfileId;
+          return (
+            <TouchableOpacity
+              key={p.id}
+              style={[
+                listStyles.row,
+                {
+                  backgroundColor: isActive ? colors.secondary : colors.card,
+                  borderColor: isActive ? colors.primary : colors.border,
+                },
+              ]}
+              onPress={() => onSelect(p)}
+              activeOpacity={0.8}
+            >
+              <Text style={listStyles.emoji}>{profileAvatar(p)}</Text>
+              <View style={listStyles.info}>
+                <Text style={[listStyles.name, { color: colors.foreground }]}>{p.nome}</Text>
+                {isActive && (
+                  <Text style={[listStyles.meta, { color: colors.mutedForeground }]}>Ativo</Text>
+                )}
+              </View>
+              <Text style={[listStyles.chevron, { color: colors.mutedForeground }]}>›</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const listStyles = StyleSheet.create({
+  safe: { flex: 1 },
+  header: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    paddingHorizontal: 20, paddingVertical: 14,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  back: { fontSize: 15, fontWeight: '500', minWidth: 70 },
+  title: { fontSize: 17, fontWeight: '800' },
+  spacer: { minWidth: 70 },
+  content: { padding: 16, gap: 12 },
+  hint: { fontSize: 13, marginBottom: 4 },
+  row: {
+    flexDirection: 'row', alignItems: 'center', gap: 14,
+    borderRadius: 14, borderWidth: 1.5, padding: 14,
+  },
+  emoji: { fontSize: 30 },
+  info: { flex: 1, gap: 2 },
+  name: { fontSize: 16, fontWeight: '700' },
+  meta: { fontSize: 12 },
+  chevron: { fontSize: 22, fontWeight: '700' },
+});
+
+// ── Main styles ───────────────────────────────────────────────────────────────
 
 const styles = StyleSheet.create({
   safe: { flex: 1 },
@@ -235,32 +375,22 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: 16, fontWeight: '700' },
   sectionSub: { fontSize: 13, lineHeight: 18, marginTop: -6 },
   sectionToggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+
   profileRow: {
-    borderRadius: 12,
-    borderWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingRight: 12,
-    overflow: 'hidden',
+    flexDirection: 'row', alignItems: 'center', gap: 12,
+    borderRadius: 12, borderWidth: 1, padding: 12,
   },
-  profileMain: { flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1, padding: 12 },
   profileEmoji: { fontSize: 30 },
   profileInfo: { flex: 1 },
   profileName: { fontSize: 15, fontWeight: '700' },
   profileMeta: { fontSize: 12, marginTop: 2 },
   activeCheck: { fontSize: 18, fontWeight: '800' },
-  deleteBtn: { paddingVertical: 6, paddingHorizontal: 6 },
-  deleteText: { fontSize: 12, fontWeight: '600' },
   addBtn: { borderRadius: 12, borderWidth: 1.5, borderStyle: 'dashed', paddingVertical: 14, alignItems: 'center' },
   addText: { fontSize: 14, fontWeight: '700' },
+
   themeRow: {
-    borderRadius: 12,
-    borderWidth: 1.5,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 14,
-    padding: 12,
+    borderRadius: 12, borderWidth: 1.5,
+    flexDirection: 'row', alignItems: 'center', gap: 14, padding: 12,
   },
   themeSwatch: { flexDirection: 'row', alignItems: 'center', paddingLeft: 4 },
   swatchDot: { width: 24, height: 24, borderRadius: 12, borderWidth: 1 },
@@ -268,20 +398,30 @@ const styles = StyleSheet.create({
   themeName: { fontSize: 15, fontWeight: '700' },
   themeDesc: { fontSize: 12, lineHeight: 16 },
   rowChevron: { fontSize: 22, fontWeight: '700', marginLeft: 2 },
+
   toggleRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   toggleTextWrap: { flex: 1, gap: 4 },
   toggleTitle: { fontSize: 15, fontWeight: '600' },
   toggleSub: { fontSize: 12, lineHeight: 18 },
+
+  editProfilesRow: { flexDirection: 'row', alignItems: 'center' },
+  editProfilesLeft: { flex: 1, gap: 4 },
+
   footerNote: { fontSize: 12, textAlign: 'center', marginTop: 8 },
-  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'flex-end' },
-  modalCard: { borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 24, paddingBottom: 40, gap: 8 },
-  modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 },
-  modalTitle: { fontSize: 20, fontWeight: '800' },
-  modalClose: { fontSize: 20, padding: 4 },
-  confirmCard: { margin: 24, marginTop: 'auto', marginBottom: 'auto', borderRadius: 16, padding: 24, gap: 12, alignSelf: 'center', width: '86%' },
-  confirmTitle: { fontSize: 18, fontWeight: '700' },
-  confirmText: { fontSize: 14, lineHeight: 20 },
-  confirmRow: { flexDirection: 'row', gap: 12, marginTop: 8 },
-  confirmBtn: { flex: 1, borderRadius: 10, paddingVertical: 12, alignItems: 'center' },
-  confirmBtnText: { fontSize: 14, fontWeight: '700' },
+
+  // Switch profile confirmation
+  overlayCenter: {
+    flex: 1, backgroundColor: 'rgba(0,0,0,0.65)',
+    alignItems: 'center', justifyContent: 'center',
+  },
+  confirmCard: {
+    width: '84%', borderRadius: 20,
+    padding: 24, gap: 10, alignItems: 'center',
+  },
+  confirmEmoji: { fontSize: 48, textAlign: 'center' },
+  confirmTitle: { fontSize: 18, fontWeight: '800', textAlign: 'center' },
+  confirmSub: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginBottom: 6 },
+  confirmBtns: { flexDirection: 'row', gap: 12, width: '100%' },
+  confirmBtn: { flex: 1, borderRadius: 12, paddingVertical: 13, alignItems: 'center' },
+  confirmBtnText: { fontSize: 15, fontWeight: '700' },
 });

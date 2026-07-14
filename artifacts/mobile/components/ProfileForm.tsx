@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -15,22 +16,21 @@ import { Gender, getAvatarsForGender } from '@/types';
 interface ProfileFormProps {
   onSubmit: (nome: string, gender: Gender, avatar: string) => void;
   onCancel: () => void;
+  /** Pre-fill values for edit mode */
+  initial?: { nome: string; gender: Gender; avatar: string };
+  submitLabel?: string;
 }
 
-type Step = 'name' | 'gender' | 'avatar';
+type Step = 'name' | 'identity';
 
-export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
+export function ProfileForm({ onSubmit, onCancel, initial, submitLabel = 'Criar Perfil ✓' }: ProfileFormProps) {
   const colors = useColors();
   const inputRef = useRef<TextInput>(null);
 
-  const [step, setStep] = useState<Step>('name');
-  const [nome, setNome] = useState('');
-  const [gender, setGender] = useState<Gender | null>(null);
-  const [avatar, setAvatar] = useState<string | null>(null);
-
-  const STEPS: Step[] = ['name', 'gender', 'avatar'];
-  const stepIndex = STEPS.indexOf(step);
-  const progress = (stepIndex + 1) / STEPS.length;
+  const [step, setStep] = useState<Step>(initial ? 'identity' : 'name');
+  const [nome, setNome] = useState(initial?.nome ?? '');
+  const [gender, setGender] = useState<Gender | null>(initial?.gender ?? null);
+  const [avatar, setAvatar] = useState<string | null>(initial?.avatar ?? null);
 
   function handleGenderSelect(g: Gender) {
     if (g !== gender) {
@@ -39,25 +39,23 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
     }
   }
 
-  // ── Step: Name ─────────────────────────────────────────────────────────────
+  const totalSteps = 2;
+  const currentStep = step === 'name' ? 0 : 1;
+
+  // ── Step 1: Name ─────────────────────────────────────────────────────────────
   if (step === 'name') {
     const valid = nome.trim().length >= 2;
     return (
       <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
-        <KeyboardAvoidingView
-          style={styles.kav}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        >
-          {/* Header */}
-          <View style={styles.topBar}>
-            <TouchableOpacity onPress={onCancel}>
-              <Text style={[styles.cancelText, { color: colors.mutedForeground }]}>Cancelar</Text>
-            </TouchableOpacity>
-            <ProgressDots total={3} current={0} color={colors.primary} />
-            <View style={styles.topBarSpacer} />
-          </View>
+        <KeyboardAvoidingView style={styles.kav} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+          <TopBar
+            onBack={onCancel}
+            backLabel="Cancelar"
+            total={totalSteps}
+            current={currentStep}
+            color={colors.primary}
+          />
 
-          {/* Content */}
           <View style={styles.stepContent}>
             <Text style={[styles.stepTitle, { color: colors.primary }]}>Como você se chama?</Text>
             <Text style={[styles.stepSub, { color: colors.mutedForeground }]}>
@@ -71,7 +69,7 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
               placeholderTextColor={colors.mutedForeground}
               autoFocus
               returnKeyType="done"
-              onSubmitEditing={valid ? () => setStep('gender') : undefined}
+              onSubmitEditing={valid ? () => setStep('identity') : undefined}
               style={[
                 styles.input,
                 { backgroundColor: colors.input, color: colors.foreground, borderColor: colors.border },
@@ -80,194 +78,202 @@ export function ProfileForm({ onSubmit, onCancel }: ProfileFormProps) {
             />
           </View>
 
-          {/* Footer — always above keyboard */}
-          <View style={[styles.footer, { borderTopColor: colors.border }]}>
-            <TouchableOpacity
-              style={[
-                styles.nextBtn,
-                { backgroundColor: valid ? colors.primary : colors.muted, opacity: valid ? 1 : 0.45 },
-              ]}
-              onPress={valid ? () => setStep('gender') : undefined}
-              activeOpacity={valid ? 0.85 : 1}
-            >
-              <Text style={[styles.nextBtnText, { color: valid ? colors.primaryForeground : colors.mutedForeground }]}>
-                Avançar →
-              </Text>
-            </TouchableOpacity>
-          </View>
+          <FooterRow
+            onBack={onCancel}
+            backLabel="Cancelar"
+            onNext={() => setStep('identity')}
+            nextLabel="Avançar →"
+            nextEnabled={valid}
+            colors={colors}
+          />
         </KeyboardAvoidingView>
       </SafeAreaView>
     );
   }
 
-  // ── Step: Gender ────────────────────────────────────────────────────────────
-  if (step === 'gender') {
-    const valid = gender !== null;
-    return (
-      <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
-        {/* Header */}
-        <View style={styles.topBar}>
-          <TouchableOpacity onPress={() => setStep('name')}>
-            <Text style={[styles.cancelText, { color: colors.mutedForeground }]}>‹ Voltar</Text>
-          </TouchableOpacity>
-          <ProgressDots total={3} current={1} color={colors.primary} />
-          <View style={styles.topBarSpacer} />
-        </View>
+  // ── Step 2: Gender + Avatar (merged) ─────────────────────────────────────────
+  const valid = gender !== null && avatar !== null;
+  const avatars = gender ? getAvatarsForGender(gender) : [];
 
-        {/* Content */}
-        <View style={styles.stepContent}>
-          <Text style={[styles.stepTitle, { color: colors.primary }]}>Escolha seu ícone</Text>
-          <Text style={[styles.stepSub, { color: colors.mutedForeground }]}>
-            Selecione como quer ser representado no app.
-          </Text>
-
-          <View style={styles.genderRow}>
-            {([
-              { key: 'male' as Gender, emoji: '👨', label: 'Masculino' },
-              { key: 'female' as Gender, emoji: '👩', label: 'Feminino' },
-            ]).map((g) => {
-              const selected = gender === g.key;
-              return (
-                <TouchableOpacity
-                  key={g.key}
-                  style={[
-                    styles.genderCard,
-                    {
-                      backgroundColor: selected ? colors.secondary : colors.card,
-                      borderColor: selected ? colors.primary : colors.border,
-                    },
-                  ]}
-                  onPress={() => handleGenderSelect(g.key)}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.genderEmoji}>{g.emoji}</Text>
-                  <Text style={[styles.genderLabel, { color: selected ? colors.primary : colors.mutedForeground }]}>
-                    {g.label}
-                  </Text>
-                  {selected && (
-                    <Text style={[styles.selectedCheck, { color: colors.primary }]}>✓</Text>
-                  )}
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </View>
-
-        {/* Footer */}
-        <View style={[styles.footer, { borderTopColor: colors.border }]}>
-          <TouchableOpacity
-            style={[
-              styles.nextBtn,
-              { backgroundColor: valid ? colors.primary : colors.muted, opacity: valid ? 1 : 0.45 },
-            ]}
-            onPress={valid ? () => setStep('avatar') : undefined}
-            activeOpacity={valid ? 0.85 : 1}
-          >
-            <Text style={[styles.nextBtnText, { color: valid ? colors.primaryForeground : colors.mutedForeground }]}>
-              Avançar →
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  }
-
-  // ── Step: Avatar ────────────────────────────────────────────────────────────
-  const valid = avatar !== null;
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
-      {/* Header */}
-      <View style={styles.topBar}>
-        <TouchableOpacity onPress={() => setStep('gender')}>
-          <Text style={[styles.cancelText, { color: colors.mutedForeground }]}>‹ Voltar</Text>
-        </TouchableOpacity>
-        <ProgressDots total={3} current={2} color={colors.primary} />
-        <View style={styles.topBarSpacer} />
-      </View>
+      <TopBar
+        onBack={initial ? onCancel : () => setStep('name')}
+        backLabel={initial ? 'Cancelar' : '‹ Voltar'}
+        total={totalSteps}
+        current={currentStep}
+        color={colors.primary}
+      />
 
-      {/* Content */}
-      <View style={styles.stepContent}>
-        <Text style={[styles.stepTitle, { color: colors.primary }]}>Escolha seu avatar</Text>
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <Text style={[styles.stepTitle, { color: colors.primary }]}>Ícone e avatar</Text>
         <Text style={[styles.stepSub, { color: colors.mutedForeground }]}>
-          Selecione o avatar que vai representar {nome}.
+          Escolha como {nome.trim() || 'você'} será representado no app.
         </Text>
 
-        <View style={styles.avatarGrid}>
-          {getAvatarsForGender(gender!).map((a) => {
-            const selected = avatar === a;
+        {/* Gender selector */}
+        <Text style={[styles.subLabel, { color: colors.mutedForeground }]}>ÍCONE</Text>
+        <View style={styles.genderRow}>
+          {([
+            { key: 'male' as Gender, emoji: '👨', label: 'Masculino' },
+            { key: 'female' as Gender, emoji: '👩', label: 'Feminino' },
+          ]).map((g) => {
+            const selected = gender === g.key;
             return (
               <TouchableOpacity
-                key={a}
+                key={g.key}
                 style={[
-                  styles.avatarCard,
+                  styles.genderCard,
                   {
                     backgroundColor: selected ? colors.secondary : colors.card,
                     borderColor: selected ? colors.primary : colors.border,
                   },
                 ]}
-                onPress={() => setAvatar(a)}
+                onPress={() => handleGenderSelect(g.key)}
                 activeOpacity={0.8}
               >
-                <Text style={styles.avatarEmoji}>{a}</Text>
-                {selected && (
-                  <Text style={[styles.avatarCheck, { color: colors.primary }]}>✓</Text>
-                )}
+                <Text style={styles.genderEmoji}>{g.emoji}</Text>
+                <Text style={[styles.genderLabel, { color: selected ? colors.primary : colors.mutedForeground }]}>
+                  {g.label}
+                </Text>
+                {selected && <Text style={[styles.selectedCheck, { color: colors.primary }]}>✓</Text>}
               </TouchableOpacity>
             );
           })}
         </View>
-      </View>
 
-      {/* Footer */}
-      <View style={[styles.footer, { borderTopColor: colors.border }]}>
-        <TouchableOpacity
-          style={[
-            styles.nextBtn,
-            { backgroundColor: valid ? colors.primary : colors.muted, opacity: valid ? 1 : 0.45 },
-          ]}
-          onPress={valid ? () => onSubmit(nome, gender!, avatar!) : undefined}
-          activeOpacity={valid ? 0.85 : 1}
-        >
-          <Text style={[styles.nextBtnText, { color: valid ? colors.primaryForeground : colors.mutedForeground }]}>
-            Criar Perfil ✓
-          </Text>
-        </TouchableOpacity>
-      </View>
+        {/* Avatar grid — shown only after gender is selected */}
+        {gender !== null && (
+          <>
+            <Text style={[styles.subLabel, { color: colors.mutedForeground, marginTop: 8 }]}>AVATAR</Text>
+            <View style={styles.avatarGrid}>
+              {avatars.map((a) => {
+                const sel = avatar === a;
+                return (
+                  <TouchableOpacity
+                    key={a}
+                    style={[
+                      styles.avatarCard,
+                      {
+                        backgroundColor: sel ? colors.secondary : colors.card,
+                        borderColor: sel ? colors.primary : colors.border,
+                      },
+                    ]}
+                    onPress={() => setAvatar(a)}
+                    activeOpacity={0.8}
+                  >
+                    <Text style={styles.avatarEmoji}>{a}</Text>
+                    {sel && <Text style={[styles.avatarCheck, { color: colors.primary }]}>✓</Text>}
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </>
+        )}
+      </ScrollView>
+
+      <FooterRow
+        onBack={initial ? onCancel : () => setStep('name')}
+        backLabel={initial ? 'Cancelar' : '‹ Voltar'}
+        onNext={() => onSubmit(nome, gender!, avatar!)}
+        nextLabel={submitLabel}
+        nextEnabled={valid}
+        colors={colors}
+      />
     </SafeAreaView>
   );
 }
 
-// ── Progress dots ─────────────────────────────────────────────────────────────
-function ProgressDots({ total, current, color }: { total: number; current: number; color: string }) {
+// ── Sub-components ────────────────────────────────────────────────────────────
+
+function TopBar({
+  onBack,
+  backLabel,
+  total,
+  current,
+  color,
+}: {
+  onBack: () => void;
+  backLabel: string;
+  total: number;
+  current: number;
+  color: string;
+}) {
   return (
-    <View style={dots.row}>
-      {Array.from({ length: total }).map((_, i) => (
-        <View
-          key={i}
-          style={[
-            dots.dot,
-            {
-              backgroundColor: i <= current ? color : color + '33',
-              width: i === current ? 20 : 8,
-            },
-          ]}
-        />
-      ))}
+    <View style={topBarStyles.bar}>
+      <TouchableOpacity onPress={onBack} style={topBarStyles.backBtn}>
+        <Text style={[topBarStyles.backText, { color }]}>{backLabel}</Text>
+      </TouchableOpacity>
+      <View style={topBarStyles.dots}>
+        {Array.from({ length: total }).map((_, i) => (
+          <View
+            key={i}
+            style={[
+              topBarStyles.dot,
+              {
+                backgroundColor: i <= current ? color : color + '33',
+                width: i === current ? 20 : 8,
+              },
+            ]}
+          />
+        ))}
+      </View>
+      {/* Invisible spacer to balance the back button */}
+      <View style={topBarStyles.spacer} />
     </View>
   );
 }
 
-const dots = StyleSheet.create({
-  row: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  dot: { height: 8, borderRadius: 4 },
-});
+function FooterRow({
+  onBack,
+  backLabel,
+  onNext,
+  nextLabel,
+  nextEnabled,
+  colors,
+}: {
+  onBack: () => void;
+  backLabel: string;
+  onNext: () => void;
+  nextLabel: string;
+  nextEnabled: boolean;
+  colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
+}) {
+  return (
+    <View style={[footerStyles.row, { borderTopColor: colors.border }]}>
+      <TouchableOpacity
+        style={[footerStyles.backBtn, { backgroundColor: colors.secondary, borderColor: colors.border }]}
+        onPress={onBack}
+        activeOpacity={0.8}
+      >
+        <Text style={[footerStyles.backText, { color: colors.foreground }]}>{backLabel}</Text>
+      </TouchableOpacity>
 
-const styles = StyleSheet.create({
-  safe: { flex: 1 },
-  kav: { flex: 1 },
+      <TouchableOpacity
+        style={[
+          footerStyles.nextBtn,
+          { backgroundColor: nextEnabled ? colors.primary : colors.muted, opacity: nextEnabled ? 1 : 0.45 },
+        ]}
+        onPress={nextEnabled ? onNext : undefined}
+        activeOpacity={nextEnabled ? 0.85 : 1}
+      >
+        <Text style={[footerStyles.nextText, { color: nextEnabled ? colors.primaryForeground : colors.mutedForeground }]}>
+          {nextLabel}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
 
-  // Top bar
-  topBar: {
+// ── Styles ────────────────────────────────────────────────────────────────────
+
+const topBarStyles = StyleSheet.create({
+  bar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -275,50 +281,73 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 12,
   },
-  topBarSpacer: { width: 60 },
-  cancelText: { fontSize: 15, fontWeight: '500' },
+  backBtn: { minWidth: 70 },
+  backText: { fontSize: 15, fontWeight: '600' },
+  dots: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  dot: { height: 8, borderRadius: 4 },
+  spacer: { minWidth: 70 },
+});
 
-  // Step content
-  stepContent: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    gap: 16,
+const footerStyles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    gap: 12,
+    paddingHorizontal: 20,
+    paddingTop: 14,
+    paddingBottom: 20,
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
-  stepTitle: { fontSize: 26, fontWeight: '800', letterSpacing: 0.3 },
-  stepSub: { fontSize: 15, lineHeight: 22, marginTop: -4 },
+  backBtn: {
+    flex: 1,
+    borderRadius: 14,
+    borderWidth: 1,
+    paddingVertical: 15,
+    alignItems: 'center',
+  },
+  backText: { fontSize: 16, fontWeight: '600' },
+  nextBtn: {
+    flex: 2,
+    borderRadius: 14,
+    paddingVertical: 15,
+    alignItems: 'center',
+  },
+  nextText: { fontSize: 16, fontWeight: '700' },
+});
 
-  // Name step
+const styles = StyleSheet.create({
+  safe: { flex: 1 },
+  kav: { flex: 1 },
+  scroll: { flex: 1 },
+  scrollContent: { paddingHorizontal: 24, paddingTop: 20, paddingBottom: 24, gap: 12 },
+
+  stepTitle: { fontSize: 26, fontWeight: '800', letterSpacing: 0.3 },
+  stepSub: { fontSize: 15, lineHeight: 22 },
+  stepContent: { flex: 1, paddingHorizontal: 24, paddingTop: 24, gap: 16 },
+  subLabel: { fontSize: 11, fontWeight: '700', letterSpacing: 1 },
+
   input: {
     borderRadius: 12,
     borderWidth: 1.5,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 18,
-    marginTop: 8,
+    marginTop: 4,
   },
 
-  // Gender step
-  genderRow: { flexDirection: 'row', gap: 14, marginTop: 8 },
+  genderRow: { flexDirection: 'row', gap: 14 },
   genderCard: {
     flex: 1,
     borderRadius: 16,
     borderWidth: 2,
-    paddingVertical: 28,
+    paddingVertical: 22,
     alignItems: 'center',
-    gap: 10,
+    gap: 8,
   },
-  genderEmoji: { fontSize: 44 },
-  genderLabel: { fontSize: 15, fontWeight: '600' },
-  selectedCheck: { fontSize: 16, fontWeight: '800' },
+  genderEmoji: { fontSize: 40 },
+  genderLabel: { fontSize: 14, fontWeight: '600' },
+  selectedCheck: { fontSize: 14, fontWeight: '800' },
 
-  // Avatar step
-  avatarGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-    marginTop: 8,
-  },
+  avatarGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   avatarCard: {
     width: '30%',
     aspectRatio: 1,
@@ -328,26 +357,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'relative',
   },
-  avatarEmoji: { fontSize: 38 },
+  avatarEmoji: { fontSize: 36 },
   avatarCheck: {
     position: 'absolute',
-    top: 6,
-    right: 8,
-    fontSize: 13,
+    top: 5,
+    right: 7,
+    fontSize: 12,
     fontWeight: '800',
   },
-
-  // Footer (always at bottom, above tab bar / keyboard)
-  footer: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 16,
-    borderTopWidth: StyleSheet.hairlineWidth,
-  },
-  nextBtn: {
-    borderRadius: 14,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  nextBtnText: { fontSize: 17, fontWeight: '700' },
 });
