@@ -54,8 +54,8 @@ export interface ProfileData {
   errorScroll: WrongAnswer[];
 }
 
-// Doctrines 1–11 are unlocked with full content + quiz.
-export const MAX_UNLOCKED_DOCTRINE = 11;
+// All 28 doctrines are unlocked with full reading content.
+export const MAX_UNLOCKED_DOCTRINE = 28;
 
 // Minimum score ratio to pass the regular blocks (Bloco 1 and Bloco 2).
 export const BLOCK_PASS_RATIO = 0.8;
