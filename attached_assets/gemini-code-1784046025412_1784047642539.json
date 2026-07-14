@@ -1,0 +1,842 @@
+{
+  "doutrina_9": {
+    "nome": "Vida, Morte e Ressurreição de Cristo",
+    "perguntas": [
+      {
+        "id": 187,
+        "categoria": "certa",
+        "enunciado": "Segundo o livro 'Nisto Cremos', qual é a natureza jurídica e teológica da morte de Jesus Cristo na cruz?",
+        "opcoes": [
+          "a) Uma derrota política temporária face ao Império Romano.",
+          "b) Um sacrifício vicário, substitutivo e plenamente expiatório.",
+          "c) Um exemplo meramente moral de paciência diante do sofrimento.",
+          "d) Uma encenação espiritual para impressionar as nações pagãs."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 188,
+        "categoria": "certa",
+        "enunciado": "O sacrifício expiatório de Cristo na cruz responde a qual exigência fundamental do governo de Deus?",
+        "opcoes": [
+          "a) À necessidade de apaziguar um Deus Pai intrinsecamente vingativo.",
+          "b) À perfeita harmonia entre a Sua justiça absoluta e a Sua misericórdia infinita.",
+          "c) À abolição definitiva de toda e qualquer lei moral no universo.",
+          "d) Ao capricho punitivo de agências angélicas celestiais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 189,
+        "categoria": "certa",
+        "enunciado": "O que a ressurreição física, corporal e literal de Jesus Cristo garante de forma absoluta aos crentes?",
+        "opcoes": [
+          "a) A cura imediata de todas as enfermidades físicas nesta vida terrenal.",
+          "b) A certeza de sua própria ressurreição futura e a vitória final sobre a sepultura.",
+          "c) A riqueza e prosperidade financeira imediata no ambiente social.",
+          "d) O direito de reencarnar de forma contínua em diferentes eras."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 190,
+        "categoria": "certa",
+        "enunciado": "Durante Seu ministério terrestre, Jesus obedeceu perfeitamente à lei de Deus. Qual é o papel dessa perfeita obediência na nossa justificação?",
+        "opcoes": [
+          "a) Ela não possui utilidade, pois apenas Sua morte tem valor.",
+          "b) A Sua justiça e obediência perfeitas nos são imputadas como um dom gratuito.",
+          "c) Ela serve para nos forçar a agir sem errar por nossas próprias forças.",
+          "d) Ela prova que o primeiro Adão pecou porque Deus assim o planejou."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 191,
+        "categoria": "certa",
+        "enunciado": "Qual é a correta relação entre o sacrifício de Cristo no Calvário e o sistema de sacrifícios do Antigo Testamento?",
+        "opcoes": [
+          "a) O Calvário estendeu a validade dos sacrifícios de animais por tempo indeterminado.",
+          "b) Cristo é o antítipo real e perfeito para o qual apontavam todos os tipos e sombras do santuário terrestre.",
+          "c) Os sacrifícios do templo eram mais eficazes na remoção real do pecado.",
+          "d) A Bíblia rejeita qualquer relação teológica entre a cruz e o santuário."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 192,
+        "categoria": "certa",
+        "enunciado": "No contexto da cruz, quem tomou a iniciativa de prover a reconciliação e o perdão para a raça caída?",
+        "opcoes": [
+          "a) O ser humano arrependido, mediante rituais e ofertas caras.",
+          "b) Deus Pai, que em Cristo reconciliou consigo o mundo.",
+          "c) Os doze discípulos através de petições e orações coletivas.",
+          "d) Os anjos celestiais ao intervirem nas decisões do tribunal divino."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 193,
+        "categoria": "certa",
+        "enunciado": "A ascensão física de Jesus ao Céu após Sua ressurreição assinalou o início de qual fase de Seu ministério?",
+        "opcoes": [
+          "a) Seu exílio e isolamento dos assuntos da Terra.",
+          "b) Seu ministério de mediação e intercessão sacerdotal no santuário celestial.",
+          "c) A Sua transformação em um ser puramente incorpóreo.",
+          "d) O Seu reinado político imediato sobre a Jerusalém terrestre."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 194,
+        "categoria": "certa",
+        "enunciado": "Em 1 Coríntios 15, Paulo afirma que, se Cristo não ressuscitou, qual é a consequência para a nossa fé?",
+        "opcoes": [
+          "a) Ela continua válida através das tradições sociais.",
+          "b) A nossa fé é inteiramente vã, e ainda permanecemos em nossos pecados.",
+          "c) A moralidade humana passa a depender exclusivamente da ciência.",
+          "d) Devemos focar no culto e adoração aos profetas do Antigo Testamento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 195,
+        "categoria": "certa",
+        "enunciado": "O livro enfatiza que na cruz do Calvário Deus manifestou de forma inquestionável que Seu caráter é essencialmente:",
+        "opcoes": [
+          "a) Justo de forma fria e indiferente à dor das criaturas.",
+          "b) Amor auto-sacrificial e incondicional.",
+          "c) Tolerante com o pecado a ponto de anular os preceitos morais.",
+          "d) Focado exclusivamente na condenação legal de todo o cosmos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 196,
+        "categoria": "certa",
+        "enunciado": "Quem é o único e legítimo Mediador entre Deus e os homens no plano divino de salvação?",
+        "opcoes": [
+          "a) O profeta Moisés.",
+          "b) O homem Cristo Jesus.",
+          "c) Os sacerdotes do santuário terrestre.",
+          "d) Os espíritos de santos e mártires falecidos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 197,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a morte de Jesus Cristo, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) Ela representou a punição vicária e a quitação da penalidade exigida pela lei moral violada.",
+          "b) Ela foi um mero acidente imprevisível que forçou Deus a alterar Seus planos de salvação à última hora.",
+          "c) Ela desmascarou e condenou o verdadeiro caráter destrutivo de Satanás diante de todo o universo.",
+          "d) Ela proveu o único fundamento de valor absoluto para a concessão do perdão humano."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 198,
+        "categoria": "incorreta",
+        "enunciado": "A respeito da ressurreição de Jesus Cristo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ela foi literal, corpórea e física, atestada por centenas de testemunhas reais.",
+          "b) Representa apenas um mito simbólico ou poético de renovação moral sem fundamento histórico real.",
+          "c) Demonstra a quebra definitiva do poder da morte e do domínio de Satanás.",
+          "d) Oferece ao crente a esperança viva de receber um corpo glorificado no Advento."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 199,
+        "categoria": "incorreta",
+        "enunciado": "Considerando as realizações de Jesus em Sua vida terrestre, assinale a alternativa teologicamente INCORRETA:",
+        "opcoes": [
+          "a) Ele viveu em perfeita comunhão e obediência voluntária a todos os preceitos divinos.",
+          "b) Ele usou Seus poderes divinos ocultos para contornar as tentações sem esforço real.",
+          "c) Ele revelou aos seres humanos a verdadeira essência amorosa do caráter de Deus Pai.",
+          "d) Ele estabeleceu as bases do reino da graça através de Seus ensinos e ministério de amor."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 200,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a expiação realizada por Cristo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ela é universal em provisão, sendo suficiente para salvar todo e qualquer ser humano.",
+          "b) Ela é aplicada de forma automática a todas as pessoas, independentemente de haver fé ou arrependimento.",
+          "c) Ela exige do crente a aceitação humilde e voluntária por meio do exercício da fé.",
+          "d) Ela foi consumada de uma vez por todas quanto ao sacrifício na colina do Calvário."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 201,
+        "categoria": "incorreta",
+        "enunciado": "A respeito dos efeitos do sacrifício de Jesus perante o universo não caído, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ele restabeleceu a harmonia cósmica e a segurança de que o pecado jamais se erguerá novamente.",
+          "b) Ele confirmou aos anjos leais que a lei moral de Deus é de fato justa e possível de ser obedecida.",
+          "c) Ele foi visto com absoluta indiferença e frieza pelas demais criaturas inteligentes do cosmos.",
+          "d) Ele consolidou a derrota definitiva das acusações mentirosas desferidas pelo adversário."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 202,
+        "categoria": "vf",
+        "enunciado": "O livro ensina que no Calvário ocorreu uma transação comercial onde Deus pagou um resgate material a Satanás para reaver a posse da Terra.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 203,
+        "categoria": "vf",
+        "enunciado": "Jesus ressuscitou ostentando as marcas físicas de Sua crucifixão, as quais permanecerão como eternos memoriais de Seu sacrifício pelo homem.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 204,
+        "categoria": "vf",
+        "enunciado": "A morte vicária de Jesus Cristo anula por completo a necessidade de que os seres humanos arrependidos guardem os mandamentos da lei moral.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 205,
+        "categoria": "vf",
+        "enunciado": "Sem o derramamento de sangue perfeito de Jesus na cruz, seria absolutamente impossível a concessão de perdão real para qualquer pecado humano.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 206,
+        "categoria": "vf",
+        "enunciado": "O livro 'Nisto Cremos' sustenta que Cristo ressuscitou como uma entidade ou fantasma puramente espiritual desprovido de corpo físico ou ossos.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 207,
+        "categoria": "apologetica",
+        "enunciado": "Um cético afirma: 'A cruz de Cristo foi uma injustiça cruel perpetrada por Deus Pai. Se Ele é amor, por que exigiu o assassinato violento do próprio Filho para perdoar os homens?'. Como o livro desfaz essa acusação?",
+        "opcoes": [
+          "a) Concordando que o Pai agiu de forma punitiva e irada contra o Filho inocente.",
+          "b) Esclarecendo que a expiação foi um ato voluntário de amor e solidariedade partilhado por ambos; Deus Pai e Filho sofreram juntos a dor da separação na cruz para nos salvar sem violar a justiça.",
+          "c) Dizendo que Jesus na cruz usou Seus poderes divinos para não sentir nenhuma dor física real.",
+          "d) Afirmando que a crucifixão foi um evento planejado exclusivamente por Satanás sem o aval divino."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 208,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta em um grupo: 'A ressurreição de Jesus foi apenas espiritual; Seus discípulos roubaram o corpo físico de Jesus da sepultura para manter a seita viva'. Como a evidência histórica e bíblica desmente isso?",
+        "opcoes": [
+          "a) Admitindo que os discípulos mentiram, mas que a mentira serviu para um bom propósito teológico.",
+          "b) Mostrando que Jesus apareceu de forma física a centenas de pessoas, convidou Tomé a tocar em Suas feridas, comeu na presença deles e Sua sepultura estava vazia a despeito da severa guarda romana.",
+          "c) Dizendo que a ressurreição física não é importante para o crente, desde que a mensagem espiritual continue viva.",
+          "d) Afirmando que os soldados romanos decidiram ajudar os apóstolos a esconder o corpo físico de Jesus."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 209,
+        "categoria": "apologetica",
+        "enunciado": "Durante um debate, um crítico alega: 'Se Jesus pagou por todos os pecados na cruz de uma vez por todas, todos os seres humanos já estão salvos de forma automática, mesmo aqueles que continuam na maldade deliberada'. Como a graça condicional responde?",
+        "opcoes": [
+          "a) Concordando com o universalismo, pois o amor de Deus anula a necessidade de mudança moral.",
+          "b) Esclarecendo que o sacrifício é universal em provisão, mas condicional em aplicação; a salvação é concedida exclusivamente àqueles que, arrependidos, aceitam o dom gratuito da fé em Cristo.",
+          "c) Ensinando que a salvação depende unicamente de rituais e ofertas caras administradas pela igreja.",
+          "d) Afirmando que as boas obras são a causa original que nos compra o perdão divino."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 210,
+        "categoria": "apologetica",
+        "enunciado": "Um estudante de teologia afirma: 'A Bíblia diz que na cruz Jesus exclamou \"Está consumado!\". Isso prova que a intercessão e o santuário celestial não possuem nenhuma função real no plano da salvação hoje'. Qual distinção esclarece esse equívoco?",
+        "opcoes": [
+          "a) A ideia de que Jesus mentiu naquela afirmação para poupar Seus discípulos do desespero imediato.",
+          "b) A compreensão de que o sacrifício de Cristo foi totalmente consumado na cruz (o sangue foi vertido), mas a aplicação dos benefícios desse sacrifício é realizada de forma contínua no santuário celestial mediante Sua mediação atual.",
+          "c) O ensinamento de que o santuário celestial foi desmantelado após a morte do Salvador na cruz.",
+          "d) A constatação de que a salvação foi finalizada e ninguém mais pode se perder desde o ano 31 d.C."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 211,
+        "categoria": "apologetica",
+        "enunciado": "Alguém questiona: 'A lei de Deus exige a morte do pecador. Como a morte de um único homem, Jesus Cristo, pode ter valor suficiente para cobrir os pecados de bilhões de pessoas ao longo dos milênios?'. Qual é a base infinita de Seu sacrifício?",
+        "opcoes": [
+          "a) O fato de Jesus ter vivido mais tempo na Terra do que os demais seres criados.",
+          "b) A divindade inerente e auto-existente de Jesus; sendo o próprio Criador infinito feito carne, a Sua vida possui valor imensurável e infinitamente superior a toda a matéria criada.",
+          "c) A herança cultural e o prestígio político de Sua linhagem real terrenal.",
+          "d) O acúmulo de riqueza e bens materiais conquistados por meio de Seus milagres públicos."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  "doutrina_10": {
+    "nome": "A Experiência da Salvação",
+    "perguntas": [
+      {
+        "id": 212,
+        "categoria": "certa",
+        "enunciado": "Qual é a definição exata de 'Justificação' no processo de experiência da salvação expressa no livro?",
+        "opcoes": [
+          "a) O poder humano para reparar os erros passados através de penitências físicas.",
+          "b) O ato judicial de Deus de perdoar o pecador e declarar que a justiça perfeita de Cristo lhe é imputada.",
+          "c) A transformação biológica contínua do corpo em direção à imortalidade física.",
+          "d) A anulação de todos os deveres morais e mandamentos da lei divina."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 213,
+        "categoria": "certa",
+        "enunciado": "O arrependimento genuíno que leva o pecador ao novo nascimento espiritual é um fruto de qual agência?",
+        "opcoes": [
+          "a) Do remorso humano motivado exclusivamente pelo medo do castigo.",
+          "b) Da operação suave e convincente do Espírito Santo no coração.",
+          "c) Do acúmulo de estudos filosóficos e acadêmicos seculares.",
+          "d) Da imposição física de regras sociais pela liderança eclesiástica."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 214,
+        "categoria": "certa",
+        "enunciado": "No plano da salvação, qual é o papel exato desempenhado pelas 'obras da lei' ou boas ações humanas?",
+        "opcoes": [
+          "a) Elas são a causa meritória e o meio que compra a nossa salvação.",
+          "b) Elas são o fruto natural e a evidência de um relacionamento de amor com Cristo.",
+          "c) Elas não possuem nenhuma importância para a conduta do cristão justificado.",
+          "d) Elas servem para convencer a Deus de que possuímos justiça própria inerente."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 215,
+        "categoria": "certa",
+        "enunciado": "Qual é a distinção conceitual que o livro faz entre justiça IMPUTADA e justiça IMPARTILHADA?",
+        "opcoes": [
+          "a) A imputada nos dá direito ao Céu (Justificação); a impartilhada nos prepara para o Céu (Santificação).",
+          "b) A imputada é fruto de nossos próprios méritos; a impartilhada provém exclusivamente dos anjos.",
+          "c) Ambas representam conceitos sem aplicação real ou teológica nas Escrituras.",
+          "d) A imputada é reservada para o Antigo Testamento; a impartilhada para o Novo Testamento."
+        ],
+        "resposta_correta": "a"
+      },
+      {
+        "id": 216,
+        "categoria": "certa",
+        "enunciado": "O processo contínuo de amadurecimento espiritual no qual o crente vive sob a influência do Espírito Santo é chamado de:",
+        "opcoes": [
+          "a) Transmigração da alma.",
+          "b) Santificação progressiva.",
+          "c) Justificação inicial.",
+          "d) Glorificação final do corpo."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 217,
+        "categoria": "certa",
+        "enunciado": "Quando o pecador arrependido é justificado pela fé em Jesus, qual é a sua nova condição jurídica perante a lei divina?",
+        "opcoes": [
+          "a) Permanece sob condenação legal e culpa até a sua morte física.",
+          "b) É considerado justo, como se jamais houvesse cometido qualquer pecado.",
+          "c) Fica isento de respeitar qualquer princípio ou preceito moral.",
+          "d) É considerado culpado, mas sob suspensão condicional da punição."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 218,
+        "categoria": "certa",
+        "enunciado": "Qual é a maior promessa de habitação interna vinculada ao novo nascimento sob o Novo Concerto?",
+        "opcoes": [
+          "a) O restabelecimento da monarquia do rei Davi na Terra.",
+          "b) A lei de amor de Deus escrita no coração e na mente pelo Espírito Santo.",
+          "c) O acúmulo de posses materiais e privilégios geopolíticos.",
+          "d) O recebimento contínuo de visões proféticas literais todas as noites."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 219,
+        "categoria": "certa",
+        "enunciado": "Como o livro define a 'Fé' que nos conecta à graça salvadora de Cristo?",
+        "opcoes": [
+          "a) Um mero assentimento intelectual a verdades abstratas e frias.",
+          "b) Uma entrega confiante de todo o ser ao senhorio e salvamento de Jesus.",
+          "c) O cumprimento rigoroso de tradições e regras sociais da igreja.",
+          "d) O esforço mental para acreditar em algo desprovido de qualquer evidência."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 220,
+        "categoria": "certa",
+        "enunciado": "Qual termo teológico descreve a mudança radical de mente e propósitos que acompanha a experiência da conversão?",
+        "opcoes": [
+          "a) Metamorfose mecânica.",
+          "b) Conversão ou regeneração espiritual.",
+          "c) Ascensão mística planetária.",
+          "d) Escribania versada intelectual."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 221,
+        "categoria": "certa",
+        "enunciado": "Quem é o autor, o mantenedor e o consumador de nossa fé ao longo de toda a jornada cristã?",
+        "opcoes": [
+          "a) O próprio indivíduo por meio de sua força mental.",
+          "b) Jesus Cristo, mediante a agência do Espírito Santo.",
+          "c) Os líderes da comunidade local através de suas pregações.",
+          "d) O acúmulo de riqueza e boas obras de justiça própria."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 222,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do arrependimento bíblico genuíno, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Envolve uma profunda tristeza pelo pecado cometido e o desejo de abandoná-lo.",
+          "b) É uma obra meritória desenvolvida pelo esforço humano para convencer a Deus a nos amar.",
+          "c) É ilustrado pela parábola do filho pródigo que reconhece seu erro e retorna ao lar.",
+          "d) Conduz à confissão sincera e ao desejo de reparação voluntária dos danos causados."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 223,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a relação entre a Justificação e os nossos pecados passados, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) A Justificação provê o perdão completo de todos os erros e iniquidades passadas.",
+          "b) Ela nos livra da condenação legal e da penalidade requerida pela lei divina.",
+          "c) Ela exige que carreguemos uma punição física diária para provar nossa sinceridade.",
+          "d) O arrependido é revestido com as vestes puras da justiça perfeita de Jesus."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 224,
+        "categoria": "incorreta",
+        "enunciado": "Considerando o processo de Santificação na vida cristã, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Ela é um trabalho diário e progressivo que dura por toda a existência do crente.",
+          "b) Ela anula a necessidade de vigilância constante, tornando o crente imune ao pecado.",
+          "c) Ela desenvolve o caráter cristão conforme a imagem de nosso Salvador.",
+          "d) Ela ocorre mediante a habitação e o poder transformador do Espírito de Deus."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 225,
+        "categoria": "incorreta",
+        "enunciado": "A respeito da herança e da cidadania concedidas na salvação, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O crente justificado é adotado de forma real na família real de Deus.",
+          "b) Tornamo-nos co-herdeiros com Cristo e cidadãos legítimos do Seu reino.",
+          "c) Essa adoção depende de nossa herança genética ou privilégios culturais terrestres.",
+          "d) Recebemos o Espírito de adoção que nos capacita a clamar de forma íntima: 'Aba, Pai'."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 226,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a natureza do Novo Nascimento, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) É uma transformação espiritual profunda, operada exclusivamente pelo Espírito Santo.",
+          "b) Significa uma mudança de prioridades, onde as coisas espirituais passam a governar a mente.",
+          "c) Representa uma simples melhoria superficial de comportamento social sem mudança interna.",
+          "d) É indispensável para ver e entrar no reino eterno da glória de Deus."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 227,
+        "categoria": "vf",
+        "enunciado": "A Justificação pela fé garante ao crente o direito ao Céu, enquanto a Santificação opera a preparação do caráter para habitá-lo.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 228,
+        "categoria": "vf",
+        "enunciado": "A fé salvadora é uma qualidade inata do coração humano, necessitando apenas de estímulo social para ser exercida.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 229,
+        "categoria": "vf",
+        "enunciado": "No Novo Concerto, a lei moral é completamente abolida, sendo substituída pelo sentimento de amor livre e abstrato.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 230,
+        "categoria": "vf",
+        "enunciado": "A transformação moral operada pela salvação é visível através dos frutos de justiça e santidade que o crente passa a manifestar.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 231,
+        "categoria": "vf",
+        "enunciado": "O crente pode alcançar um estado de perfeição moral absoluta nesta vida terrenal onde a vigilância diária não seja mais necessária.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 232,
+        "categoria": "apologetica",
+        "enunciado": "Um legalista afirma: 'A graça de Deus é boa, mas o que nos salva de verdade são as nossas boas ações, a guarda estrita da lei e o cumprimento das regras'. Como a teologia bíblica responde?",
+        "opcoes": [
+          "a) Validando a afirmação, pois o sacrifício de Jesus na cruz cobriu apenas o pecado original.",
+          "b) Mostrando que a salvação é inteiramente um dom gratuito da graça recebido por meio da fé; nossas boas obras não possuem poder meritório, sendo apenas o fruto e o resultado de um coração já salvo.",
+          "c) Ensinando que a graça foi dada apenas para os israelitas e as obras para os gentios modernos.",
+          "d) Afirmando que os Dez Mandamentos foram anulados para eliminar a necessidade de fazer boas ações."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 233,
+        "categoria": "apologetica",
+        "enunciado": "Alguém adepto da 'Teologia da Hipergraça' diz: 'Uma vez que fui justificado pela fé em Cristo, estou salvo para sempre e posso viver em pecado deliberado, pois a lei não tem autoridade sobre mim'. Qual é o perigo desse raciocínio?",
+        "opcoes": [
+          "a) Nenhum, pois a Justificação garante a impunidade definitiva independentemente de nossa conduta futura.",
+          "b) A salvação exige um relacionamento vivo de fidelidade; transformar a graça em libertinagem e desobedecer à lei de amor voluntariamente afasta o Espírito Santo e destrói o vínculo salvífico.",
+          "c) O perigo é achar que as boas obras são necessárias exclusivamente para as nações pagãs.",
+          "d) A constatação de que a lei moral só possuía validade jurídica durante o cativeiro antigo."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 234,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma conversa, um amigo diz: 'Eu me sinto culpado, indignado e sujo por causa dos meus erros de ontem. Acho que Deus não me ama mais e não vai me aceitar'. Como a Justificação remove esse peso?",
+        "opcoes": [
+          "a) Explicando que a salvação depende de nossa dignidade e perfeição moral humana.",
+          "b) Revelando que a Justificação se baseia na justiça perfeita de Jesus e não na nossa dignidade; quando confessamos o pecado, Deus nos perdoa e nos vê através da pureza de Seu Filho.",
+          "c) Ensinando que a culpa deve ser carregada por longo tempo como punição necessária do indivíduo.",
+          "d) Afirmando que Deus só ama as pessoas que nunca cometeram nenhum erro moral."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 235,
+        "categoria": "apologetica",
+        "enunciado": "Um colega afirma: 'A Bíblia diz que o homem é salvo pela fé sem as obras da lei, mas Tiago diz que a fé sem obras é morta. Isso prova que a Escritura é contraditória'. Como esses conceitos se harmonizam?",
+        "opcoes": [
+          "a) Admitindo que Tiago e Paulo representavam seitas teológicas opostas na igreja primitiva.",
+          "b) Esclarecendo que Paulo fala sobre a causa da salvação (somente a fé na graça de Cristo), enquanto Tiago fala sobre a consequência da salvação (a fé viva gera frutos visíveis de obediência).",
+          "c) Mostrando que Tiago estava defendendo a salvação exclusivamente por meio de rituais materiais.",
+          "d) Afirmando que o Antigo Testamento dependia das obras, mas o Novo Testamento depende apenas da fé cega."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 236,
+        "categoria": "apologetica",
+        "enunciado": "Alguém questiona: 'O que garante que a transformação do novo nascimento seja real e duradoura na mente do crente arrependido?'. Qual é a segurança do Novo Concerto?",
+        "opcoes": [
+          "a) A força de vontade inerente e o compromisso solene do indivíduo de nunca mais errar.",
+          "b) O poder do Espírito Santo, que passa a habitar na mente, escreve os preceitos de amor no íntimo e concede poder dinâmico e diário para a vitória sobre as tentações.",
+          "c) A herança cultural e a tradição moral recebidas exclusivamente da família.",
+          "d) O cumprimento estrito de rituais mecânicos sem necessidade de comunhão pessoal."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  "doutrina_11": {
+    "nome": "Crescimento em Cristo",
+    "perguntas": [
+      {
+        "id": 237,
+        "categoria": "certa",
+        "enunciado": "Segundo o livro 'Nisto Cremos', qual vitória de Jesus na cruz serve como o fundamento real para o nosso 'Crescimento em Cristo'?",
+        "opcoes": [
+          "a) Sua vitória política sobre os governadores romanos.",
+          "b) Sua vitória definitiva e o desmascaramento das potências e principados demoníacos.",
+          "c) A anulação de todas as leis da física e da biologia na Terra.",
+          "d) O Seu isolamento em relação às dores e sofrimentos humanos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 238,
+        "categoria": "certa",
+        "enunciado": "O que a união contínua com Jesus Cristo através do Espírito Santo nos concede de forma imediata e permanente?",
+        "opcoes": [
+          "a) A imunidade contra quaisquer problemas financeiros ou sociais.",
+          "b) Libertação do fardo das ações passadas, do medo, da culpa e do domínio do pecado.",
+          "c) O recebimento de dons artísticos e intelectuais de forma milagrosa.",
+          "d) O direito de julgar e condenar as falhas alheias com severidade."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 239,
+        "categoria": "certa",
+        "enunciado": "Qual é a atitude de vida diária indispensável para que o crente experimente o real amadurecimento espiritual?",
+        "opcoes": [
+          "a) O isolamento completo em comunidades monásticas distantes.",
+          "b) Andar continuamente na luz e manter comunhão ativa por meio da oração e do estudo bíblico.",
+          "c) O cumprimento rigoroso e mecânico de tradições e regras sociais.",
+          "d) A busca persistente por riqueza material como evidência de bênção."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 240,
+        "categoria": "certa",
+        "enunciado": "Ao nos entregarmos em amor ao serviço do próximo, o que acontece com as nossas afeições e prioridades?",
+        "opcoes": [
+          "a) Elas permanecem inalteradas, pois a salvação foca apenas no intelecto.",
+          "b) Elas são continuamente transformadas e elevadas pela presença do Espírito de Deus.",
+          "c) Elas se tornam frias e desprovidas de qualquer emoção real.",
+          "d) Elas passam a depender das aprovações sociais da liderança local."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 241,
+        "categoria": "certa",
+        "enunciado": "De acordo com o livro, de que maneira a adoração comunitária e o testemunho ativo de nossa fé influenciam a nossa vida espiritual?",
+        "opcoes": [
+          "a) Elas servem para acumular méritos extras perante o tribunal celestial.",
+          "b) Elas alimentam e fortalecem o crescimento em Cristo, blindando o crente contra tropeços.",
+          "c) Elas servem apenas para impressionar as pessoas no ambiente eclesiástico.",
+          "d) Elas geram orgulho espiritual e nos isolam das necessidades alheias."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 242,
+        "categoria": "certa",
+        "enunciado": "O que significa 'andar na luz da presença de Cristo' no contexto prático do dia a dia?",
+        "opcoes": [
+          "a) A recusa em realizar quaisquer trabalhos físicos ou atividades comuns.",
+          "b) Viver de forma transparente, submetendo todos os pensamentos e ações à aprovação de Jesus.",
+          "c) Ter visões com luzes brilhantes literais na parede do quarto todos os dias.",
+          "d) Viver em estado de isolamento mental sem contato social com descrentes."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 243,
+        "categoria": "certa",
+        "enunciado": "Qual deve ser o centro e o foco primário de nossa oração e meditação ao buscarmos o crescimento espiritual?",
+        "opcoes": [
+          "a) O acúmulo de glória e interesses materiais egoístas.",
+          "b) A pessoa de Jesus Cristo, Sua graça, amor e sacrifício perfeito.",
+          "c) O estudo focado nas imperfeições e pecados da liderança local.",
+          "d) As filosofias e teorias intelectuais produzidas pelo homem."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 244,
+        "categoria": "certa",
+        "enunciado": "Quem é o verdadeiro mestre interno que nos guia na compreensão da verdade e no crescimento diário?",
+        "opcoes": [
+          "a) A nossa própria inteligência natural.",
+          "b) O Espírito Santo de Deus, em harmonia com as Escrituras.",
+          "c) Os filósofos e cientistas da academia secular.",
+          "d) Os conselheiros de regras sociais da igreja."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 245,
+        "categoria": "certa",
+        "enunciado": "De que forma o envolvimento na missão e no serviço abnegado nos ajuda a vencer o egoísmo inerente?",
+        "opcoes": [
+          "a) Ele prova que somos heróis morais superiores aos demais.",
+          "b) Ele nos conecta com o caráter de Cristo, que não veio para ser servido, mas para servir.",
+          "c) Ele serve para acumular riquezas e privilégios na comunidade.",
+          "d) Ele anula a nossa necessidade de orar ou estudar a Bíblia."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 246,
+        "categoria": "certa",
+        "enunciado": "O livro ensina que a vitória permanente do cristão contra as potências do mal assenta-se em qual realidade?",
+        "opcoes": [
+          "a) No uso de amuletos, rituais e rezas mecânicas repetitivas.",
+          "b) No fato de que Jesus já derrotou Satanás e o Espírito Santo habita no interior do crente.",
+          "c) Na negação completa da existência de forças espirituais malignas.",
+          "d) No acúmulo de erudição secular e títulos acadêmicos."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 247,
+        "categoria": "incorreta",
+        "enunciado": "A respeito das disciplinas espirituais que sustentam o crescimento cristão, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) A oração diária representa o respirar da alma e a conversa íntima com Deus.",
+          "b) O estudo bíblico deve ser um exercício focado em acumular debates para humilhar descrentes.",
+          "c) A meditação nos méritos de Jesus sintoniza a nossa mente com os céus.",
+          "d) O jejum sincero atua como um recurso espiritual para dominar os apetites carnais."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 248,
+        "categoria": "incorreta",
+        "enunciado": "Sobre a herança e o fardo de nossa vida passada sem Deus, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O arrependido é graciosamente liberto do medo, da culpa e da escravidão das trevas.",
+          "b) Cristo apaga e cancela todo o registro judicial de nossas transgressões passadas.",
+          "c) Somos obrigados a viver nos arrastando em vergonha constante para pagar pelos erros antigos.",
+          "d) A cruz de Jesus quebrou a maldição hereditária e o domínio que o inimigo mantinha."
+        ],
+        "resposta_correta": "c"
+      },
+      {
+        "id": 249,
+        "categoria": "incorreta",
+        "enunciado": "Considerando o papel do crente na guerra espiritual cósmica, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) Devemos tomar toda a armadura de Deus para resistir aos ataques insidiosos.",
+          "b) A nossa vitória é conquistada mediante a nossa própria força moral física independente.",
+          "c) O inimigo é persistente, exigindo do crente um estado de constante vigilância.",
+          "d) A nossa proteção reside na união íntima com a pessoa vitoriosa de Jesus."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 250,
+        "categoria": "incorreta",
+        "enunciado": "A respeito do fruto do Espírito manifestado na vida santificada, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O amor, a alegria, a paz e a paciência constituem o caráter transformado.",
+          "b) Esses frutos servem para enaltecer a nossa justiça própria diante da comunidade.",
+          "c) O Espírito Santo escreve a lei de amor no íntimo do indivíduo justificado.",
+          "d) A ausência de frutos revela a falta de comunhão real e viva com o Salvador."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 251,
+        "categoria": "incorreta",
+        "enunciado": "Sobre o dinamismo do crescimento espiritual contínuo, assinale a alternativa INCORRETA:",
+        "opcoes": [
+          "a) O amadurecimento cristão é um processo constante que dura por toda a existência.",
+          "b) O crente cresce de forma automática e sem esforço, mesmo vivendo longe de Jesus.",
+          "c) Cada nova etapa de vitória abre margem para um maior conhecimento de Deus.",
+          "d) A meta final do crescimento é sermos conformados à perfeita imagem de Jesus."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 252,
+        "categoria": "vf",
+        "enunciado": "O Crescimento em Cristo é alimentado por uma atitude diária de total entrega e dependência voluntária da graça do Salvador.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 253,
+        "categoria": "vf",
+        "enunciado": "O livro ensina que as forças espirituais malignas e demoníacas são apenas mitos primitivos, não representando ameaça real ao crente.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 254,
+        "categoria": "vf",
+        "enunciado": "A verdadeira oração cristã consiste em um monólogo focado estritamente em tentar mudar a imutável mente de Deus Pai.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 255,
+        "categoria": "vf",
+        "enunciado": "O envolvimento na missão evangélica e o serviço ao próximo são ferramentas projetadas por Deus para blindar o crente contra o egocentrismo.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Verdadeiro"
+      },
+      {
+        "id": 256,
+        "categoria": "vf",
+        "enunciado": "O crescimento espiritual é opcional, podendo o crente justificado viver em estagnação espiritual prolongada sem perder a salvação.",
+        "opcoes": ["Verdadeiro", "Falso"],
+        "resposta_correta": "Falso"
+      },
+      {
+        "id": 257,
+        "categoria": "apologetica",
+        "enunciado": "Um crente perturbado diz: 'Eu sinto medo constante do escuro, de assombrações e de maldições hereditárias que dizem que minha família carrega. Acho que os demônios são mais fortes'. Como o 'Crescimento em Cristo' desfaz esse pavor?",
+        "opcoes": [
+          "a) Recomendando o uso de amuletos, rituais de quebra e patuás de proteção eclesiástica.",
+          "b) Revelando que Jesus triunfou sobre os principados e potestades na cruz e que, unidos a Ele e habitados pelo Espírito Santo, estamos eternamente protegidos sob Seu sangue vitorioso; o medo é vencido pelo amor perfeito.",
+          "c) Dizendo que os crentes realmente estão vulneráveis à posse demoníaca se não pagarem ofertas de libertação.",
+          "d) Afirmando que a maldição hereditária possui poder superior à graça justificada do Calvário."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 258,
+        "categoria": "apologetica",
+        "enunciado": "Alguém argumenta: 'O estudo da Bíblia deve ser focado estritamente em debates teológicos técnicos e memorização fria de genealogias antigas'. Qual é a correção bíblica expressa no livro?",
+        "opcoes": [
+          "a) Concordando que o objetivo real é humilhar debates doutrinários contra as demais denominações.",
+          "b) Esclarecendo que o estudo da Bíblia visa revelar a pessoa de Jesus e Sua graça salvadora; a verdade deve se transformar em alimento para a alma, gerando santidade prática, amor e obediência fiel.",
+          "c) Ensinando que a memorização fria de genealogias é superior ao desenvolvimento do amor ao próximo.",
+          "d) Afirmando que o estudo bíblico é um exercício focado apenas no acúmulo de títulos acadêmicos seculares."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 259,
+        "categoria": "apologetica",
+        "enunciado": "Durante uma discussão, um conhecido diz: 'Eu oro duas horas por dia e decorei todas as profecias de Daniel, portanto sou superior e tenho o direito de condenar as falhas dos meus irmãos mais fracos'. Como o caráter de Cristo julga essa postura?",
+        "opcoes": [
+          "a) Validando a atitude, pois a erudição concede autoridade legal para a crítica severa.",
+          "b) Mostrando que o verdadeiro crescimento espiritual gera mansidão, humildade e amor abnegado; o orgulho e a falta de compaixão revelam que o indivíduo permanece longe de Jesus, independentemente de sua erudição.",
+          "c) Ensinando que a prepotência moral é um fruto natural da habitação do Espírito Santo.",
+          "d) Afirmando que Jesus escolheu de fato os orgulhosos e arrogantes para serem os líderes exclusivos de Sua igreja."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 260,
+        "categoria": "apologetica",
+        "enunciado": "Um estudante afirma: 'Para crescer espiritualmente eu não preciso de igreja, de cultos ou de adoração coletiva. Posso viver isolado na minha fé sem contato com outros irmãos'. Qual é o perigo desse isolamento espiritual?",
+        "opcoes": [
+          "a) Nenhum, pois a igreja local foi desmantelada pelo Novo Testamento para incentivar a fé individual.",
+          "b) A igreja é o corpo de Cristo; a adoração comunitária, a ceia, a partilha de dons e o mútuo encorajamento e admoestação são essenciais e projetados por Deus para garantir a segurança e o amadurecimento dos membros.",
+          "c) O perigo é tornar o indivíduo excessivamente caridoso e envolvido na missão comunitária.",
+          "d) A constatada verdade de que Deus só responde às petições de oração individuais feitas fora do templo."
+        ],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 261,
+        "categoria": "apologetica",
+        "enunciado": "Alguém questiona: 'Qual deve ser a nossa postura diante das tentações constantes que continuam a assediar o crente justificado no dia a dia?'. Como o livro orienta a nossa defesa?",
+        "opcoes": [
+          "a) Ceder aos desejos com o pensamento de confessar depois, confiando na graça do perdão automático.",
+          "b) Resistir no poder do Espírito Santo, andado continuamente na luz da presença de Jesus, alimentando a mente com coisas nobres e vigiando em constante oração.",
+          "c) Tentar vencer as tentações confiando exclusivamente nas promessas e forças morais físicas próprias.",
+          "d) Desistir de lutar, alegando que a natureza humana é depravada demais para alcançar qualquer vitória real."
+        ],
+        "resposta_correta": "b"
+      }
+    ]
+  }
+}
