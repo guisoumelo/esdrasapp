@@ -1,0 +1,101 @@
+Você é um desenvolvedor sênior full-stack e engenheiro de software especialista em gamificação. Sua tarefa é atualizar e criar o Web App completo chamado "Esdras", focado em ensinar as 28 Crenças Fundamentais da Igreja Adventista do Sétimo Dia com base no livro "Nisto Cremos".
+
+Crie o aplicativo utilizando uma interface moderna, limpa, responsiva (mobile-first) e atraente, utilizando HTML, CSS (Tailwind) e JavaScript. Armazene os dados de progresso e usuários localmente (localStorage).
+
+Siga rigorosamente as novas especificações técnicas, visuais e lógicas abaixo:
+
+---
+
+### 1. FLUXO DE INTRODUÇÃO (ONBOARDING - PRIMEIRA VEZ)
+Se for a primeira vez que o app é aberto no aparelho, exiba um carrossel de introdução com as seguintes telas:
+*   **Tela 1:** Saudação centralizada: "Seja bem-vindo ao Esdras."
+*   **Tela 2:** "Esse app irá lhe ajudar a compreender as 28 crenças fundamentais da IASD."
+*   **Tela 3:** "Hoje você é um aluno do templo, mas ao final de 1 mês você será um verdadeiro Escriba Versado, tal qual Esdras."
+*   **Tela 4 (Formulário de Perfil):** O usuário deve obrigatoriamente preencher: Nome, Idade e escolher um ícone representativo (Masculino ou Feminino). Após salvar, ele é direcionado à Página Principal.
+
+---
+
+### 2. ABA DE CONFIGURAÇÕES (GERENCIAMENTO DE PERFIS E MODOS DE JOGO)
+Crie uma aba de Configurações acessível pelo menu que contenha duas seções principais:
+1.  **Alternar/Adicionar Usuários (Multiusuário local):** Permita criar novos perfis (Nome, Idade, Ícone) e alternar entre eles. Cada perfil deve ter seu próprio progresso individual e histórico salvos no localStorage de forma independente.
+2.  **Controle do Bloqueio por Horário:** Uma chave liga/desliga (Toggle Switch) com o texto: "Viver a Trilha do Aprendizado Diário (Bloqueio por Horário)".
+    *   **Se ATIVADO:** O app segue a regra rígida (Leitura às 05h, Quizzes às 10h, 15h e Provão às 19h).
+    *   **Se DESATIVADO (Modo Livre):** O usuário pode ler e responder os quizzes um atrás do outro imediatamente. Se ele acertar as notas mínimas (80% nos blocos e 100% no provão), a próxima doutrina é liberada na mesma hora, permitindo que ele avance no conteúdo no seu próprio ritmo.
+
+---
+
+### 3. REGRAS DE HORÁRIO (QUANDO O MODO TRILHA ESTIVER ATIVADO)
+*   [05:00] - Libera o texto de leitura. Quizzes bloqueados.
+*   [10:00] - Bloco 1 (5 perguntas: 2 Certa, 2 V/F, 1 Apologética). Exigência: Mínimo 80% (4/5).
+*   [15:00] - Bloco 2 (5 perguntas: 3 Certa, 2 Incorreta). Exigência: Mínimo 80% (4/5).
+*   [19:00] - O Grande Provão (10 perguntas mistas acumulativas). Exigência: 100% (10/10).
+*   *Nota: Em caso de reprovação, no dia seguinte o usuário repete a doutrina, mas com todos os quizzes liberados direto a partir das 05h00.*
+
+---
+
+### 4. ABA DE LEITURA (AGRUPAMENTO TEOLÓGICO OFICIAL)
+Estruture o menu de leitura agrupando as 28 crenças em seus blocos temáticos oficiais. Exiba a lista completa dos títulos das 28 crenças para dar a noção de progressão, mas libere o conteúdo textual e o quiz apenas para as duas primeiras:
+
+*   **A DOUTRINA DE DEUS**
+    *   *1. As Escrituras Sagradas* (Texto de Leitura e Quiz ATIVOS)
+    *   *2. A Trindade* (Texto de Leitura e Quiz ATIVOS)
+    *   *3. Deus Pai* (Apenas título visível)
+    *   *4. Deus Filho* (Apenas título visível)
+    *   *5. Deus Espírito Santo* (Apenas título visível)
+*   **A DOUTRINA DO HOMEM** (6. A Criação / 7. A Natureza do Homem)
+*   **A DOUTRINA DA SALVAÇÃO** (8. O Grande Conflito / 9. Vida, Morte e Ressurreição de Cristo / 10. A Experiência da Salvação / 11. Crescimento em Cristo)
+*   **A DOUTRINA DA IGREJA** (12. A Igreja / 13. O Remanescente e Sua Missão / 14. Unidade no Corpo de Cristo / 15. O Batismo / 16. A Ceia do Senhor / 17. Dons e Ministérios Espirituais / 18. O Dom de Profecia)
+*   **A DOUTRINA DA VIDA CRISTÃ** (19. A Lei de Deus / 20. O Sábado / 21. Mordomia / 22. Conduta Cristã / 23. Matrimônio e Família)
+*   **A DOUTRINA DOS ÚLTIMOS EVENTOS** (24. O Ministério de Cristo no Santuário Celestial / 25. A Segunda Vinda de Cristo / 26. Morte e Ressurreição / 27. O Milênio e o Fim do Pecado / 28. A Nova Terra)
+
+**Mecânica de Leitura:** No final do texto da Doutrina 1 e da Doutrina 2, adicione um botão proeminente chamado **"Leitura concluída"**. Ao clicar, o app deve disparar uma animação suave na tela mostrando um ícone de "Check" (✓) de sucesso antes de liberar o acesso ao quiz.
+
+---
+
+### 5. TEXTO DE LEITURA DAS DUAS PRIMEIRAS DOUTRINAS (BASE DE DADOS)
+
+Insira os seguintes textos oficiais condensados no sistema para as leituras iniciais:
+
+#### DOUTRINA 1: AS ESCRITURAS SAGRADAS
+As Escrituras Sagradas são a Palavra de Deus escrita, dada por inspiração divina por intermédio de santos homens de Deus que falaram e escreveram ao serem movidos pelo Espírito Santo. O ponto focal e o tema central de toda a Bíblia é a pessoa e a obra de Jesus Cristo, tendo a cruz do Calvário como ponto convergente. Deus inspirou os homens (os escritores), e não as palavras isoladas. A palavra grega 'theopneustos' significa literalmente 'proveniente do fôlego de Deus', indicando que a mente e a vontade divinas foram combinadas com a mente e a vontade humanas; as declarações são do homem, mas, sob a influência do Espírito, são a autêntica Palavra de Deus. A única exceção direta são os Dez Mandamentos, escritos pelo próprio dedo de Deus. Toda sabedoria humana e dons espirituais estão sob a autoridade da Escritura; a Bíblia é a norma suprema e absoluta pela qual nossas ideias e experiências devem ser provadas.
+
+#### DOUTRINA 2: A TRINDADE
+Há um só Deus: Pai, Filho e Espírito Santo, uma unidade de três Pessoas coeternas. Embora o Antigo Testamento enfatize o monoteísmo para se contrastar com o panteão pagão ao redor, ele alude à pluralidade interna da Divindade através de pronomes no plural (como 'Façamos o homem à nossa imagem'). Deus é amor por essência, o que significa que desde a eternidade os três membros da Trindade coexistiram oferecendo-se mutuamente em amor perfeito, vivendo de modo completo uns para os outros em total igualdade de autoridade e poder. Existe, contudo, uma distribuição funcional de ofícios na salvação: o Pai atua como a fonte/originador, o Filho como o mediador histórico e o Espírito Santo como o executor/atualizador que torna Jesus universalmente presente e aplica a graça objetiva do Calvário no íntimo do crente.
+
+---
+
+### 6. MODELO DE EXERCÍCIOS PARA SIMULAÇÃO DO FLUXO (JSON)
+Use este array de objetos para alimentar os testes iniciais do fluxo das Doutrinas 1 e 2:
+
+[
+  {
+    "doutrina_id": 1,
+    "perguntas": [
+      {
+        "id": 1, "categoria": "certa",
+        "enunciado": "De acordo com o livro 'Nisto Cremos', de onde emana a autoridade e a singularidade da Bíblia?",
+        "opcoes": ["a) De suas influências políticas.", "b) De sua origem divina e do tema central: Jesus Cristo.", "c) De sua retórica sofisticada."],
+        "resposta_correta": "b"
+      },
+      {
+        "id": 21, "categoria": "apologetica",
+        "enunciado": "Um colega diz que a Bíblia reflete apenas preconceitos humanos da época. Como você responde?",
+        "opcoes": ["a) Os escritores eram robôs sem vontade própria.", "b) A mente divina combinou-se com a humana; as declarações têm o cunho do homem, mas sob o Espírito são a Palavra de Deus.", "c) A Bíblia caiu pronta do céu."],
+        "resposta_correta": "b"
+      }
+    ]
+  },
+  {
+    "doutrina_id": 2,
+    "perguntas": [
+      {
+        "id": 51, "categoria": "certa",
+        "enunciado": "Na economia e organização funcional da Trindade, qual é o papel atribuído ao Espírito Santo?",
+        "opcoes": ["a) Atuar como a fonte original de toda a criação física.", "b) Ser o mediador histórico que morreu na cruz.", "c) Atuar como o executor que torna Cristo presente e aplica a graça no íntimo do crente."],
+        "resposta_correta": "c"
+      }
+    ]
+  }
+]
+
+Crie o sistema de testes/debug no rodapé da página para que o usuário possa alternar os horários manuais e ligar/desligar a trava de tempo para validar se todas as telas e transições multiusuário estão operando sem erros.
