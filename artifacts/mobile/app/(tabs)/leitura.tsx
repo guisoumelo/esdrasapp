@@ -242,9 +242,9 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
     completedDoctrines.includes(doctrineId) ||
     (isCurrent && dayProgress.readingCompleted);
 
-  // Time-gate only applies to the current doctrine in time-lock mode.
-  const readingAvailable = blockAvailability.reading.available;
-  const canMark = unlocked && !alreadyRead && (isCurrent ? readingAvailable : true);
+  // The confirm-reading button is always visible for any unlocked, unread doctrine.
+  // Quiz blocks (block1 / block2 / provão) handle their own time gates separately.
+  const canMark = unlocked && !alreadyRead;
 
   function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
     const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
