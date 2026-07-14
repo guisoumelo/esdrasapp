@@ -15,6 +15,37 @@ import { Question, WrongAnswer, BLOCK_PASS_RATIO } from '@/types';
 type BlockKey = 'block1' | 'block2' | 'provao';
 type Phase = 'overview' | 'quiz' | 'results';
 
+/** Fisher-Yates shuffle — returns a new array */
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const LETTERS = ['a', 'b', 'c', 'd', 'e'];
+
+/**
+ * Shuffle the options of a question and relabel "a) … b) …" accordingly.
+ * V/F questions are returned unchanged (only two fixed options).
+ */
+function shuffleOptions(q: Question): Question {
+  const isVF = q.opcoes[0] === 'Verdadeiro' || q.opcoes[0] === 'Falso';
+  if (isVF) return q;
+
+  // Strip "a) " prefix to get the raw text of each option
+  const texts = q.opcoes.map((o) => o.replace(/^[a-e]\)\s*/, ''));
+  const correctText = texts[LETTERS.indexOf(q.resposta_correta)];
+
+  const shuffledTexts = shuffle(texts);
+  const newOpcoes = shuffledTexts.map((t, i) => `${LETTERS[i]}) ${t}`);
+  const newResposta = LETTERS[shuffledTexts.indexOf(correctText)];
+
+  return { ...q, opcoes: newOpcoes, resposta_correta: newResposta };
+}
+
 function isCorrect(question: Question, selected: string): boolean {
   const rc = question.resposta_correta;
   // V/F questions: direct match
@@ -144,7 +175,9 @@ export default function QuizScreen() {
 
   const startBlock = useCallback(
     (block: BlockKey) => {
-      const questions = selectQuestionsForBlock(block, currentDoctrineId, completedDoctrines);
+      const raw = selectQuestionsForBlock(block, currentDoctrineId, completedDoctrines);
+      // Randomise question order, then randomise each question's answer options
+      const questions = shuffle(raw).map(shuffleOptions);
       setQuiz({
         block,
         questions,

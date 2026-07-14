@@ -30,7 +30,7 @@ export default function LeituraScreen() {
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [expanded, setExpanded] = useState<Record<MacroKey, boolean>>({
-    beliefs: true,
+    beliefs: false,
     daniel: false,
   });
 
@@ -291,14 +291,14 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
               ]}
             >
               <Text style={[styles.confirmTopText, { color: scrolledToBottom ? colors.primaryForeground : colors.foreground }]}>
-                ✓
+                ✓ Confirmar leitura
               </Text>
             </TouchableOpacity>
           )}
 
           {alreadyRead && (
             <View style={[styles.confirmTopBtn, { backgroundColor: colors.success, borderColor: colors.success }]}>
-              <Text style={[styles.confirmTopText, { color: colors.successForeground }]}>✓</Text>
+              <Text style={[styles.confirmTopText, { color: colors.successForeground }]}>✓ Leitura confirmada</Text>
             </View>
           )}
         </View>
@@ -423,14 +423,14 @@ const styles = StyleSheet.create({
   backBtn: { paddingVertical: 6 },
   backText: { fontSize: 15, fontWeight: '600' },
   confirmTopBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    borderRadius: 20,
     borderWidth: 1.5,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  confirmTopText: { fontSize: 16, fontWeight: '800' },
+  confirmTopText: { fontSize: 13, fontWeight: '700' },
   detailLabel: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
   detailTitle: { fontSize: 19, fontWeight: '700', lineHeight: 26 },
   detailContent: { padding: 20, gap: 16 },

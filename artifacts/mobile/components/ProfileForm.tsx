@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -30,6 +33,15 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
   }
 
   return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.avoidingView}
+    >
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
     <View style={styles.container}>
       {/* Nome */}
       <View style={styles.field}>
@@ -131,10 +143,14 @@ export function ProfileForm({ submitLabel = 'Salvar', onSubmit }: ProfileFormPro
         </Text>
       </TouchableOpacity>
     </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
+  avoidingView: { flex: 1 },
+  scrollContent: { flexGrow: 1, paddingBottom: 16 },
   container: { gap: 18 },
   field: { gap: 8 },
   label: { fontSize: 13, fontWeight: '600', letterSpacing: 0.5, textTransform: 'uppercase' },
