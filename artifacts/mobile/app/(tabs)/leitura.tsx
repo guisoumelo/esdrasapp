@@ -285,14 +285,13 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
               style={[
                 styles.confirmTopBtn,
                 {
-                  backgroundColor: scrolledToBottom ? colors.primary : 'transparent',
+                  backgroundColor: scrolledToBottom ? colors.primary : colors.secondary,
                   borderColor: scrolledToBottom ? colors.primary : colors.border,
-                  opacity: scrolledToBottom ? 1 : 0.3,
                 },
               ]}
             >
-              <Text style={[styles.confirmTopText, { color: scrolledToBottom ? colors.primaryForeground : colors.foreground }]}>
-                ✓ Confirmar leitura
+              <Text style={[styles.confirmTopText, { color: scrolledToBottom ? colors.primaryForeground : colors.mutedForeground }]}>
+                {scrolledToBottom ? '✓ Confirmar leitura' : '↓ Role até o fim'}
               </Text>
             </TouchableOpacity>
           )}
