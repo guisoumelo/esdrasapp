@@ -4,13 +4,13 @@ export const DOCTRINES: Doctrine[] = [
   {
     id: 1,
     nome: 'As Escrituras Sagradas',
-    texto: `As Escrituras Sagradas, compostas pelo Antigo e Novo Testamentos, são a Palavra escrita de Deus, dada por inspiração divina. Os homens santos de Deus falaram movidos pelo Espírito Santo, expressando os pensamentos, a vontade e a salvação que Deus desejava comunicar à humanidade.
+    texto: `As Escrituras Sagradas são a Palavra de Deus escrita, dada por inspiração divina por intermédio de santos homens de Deus que falaram e escreveram ao serem movidos pelo Espírito Santo.
 
-A inspiração das Escrituras não deve ser entendida como ditação mecânica, que suprime a personalidade do escritor. Antes, a mente e a vontade divinas foram harmonizadas com a mente e a vontade humanas; as declarações são do homem, mas, sob a influência do Espírito Santo, são a autêntica Palavra de Deus. As Escrituras constituem a revelação infalível da vontade de Deus, o padrão supremo de caráter, o revelador da doutrina e o teste de toda a experiência.
+O ponto focal e o tema central de toda a Bíblia é a pessoa e a obra de Jesus Cristo, tendo a cruz do Calvário como ponto convergente. Deus inspirou os homens (os escritores), e não as palavras isoladas.
 
-A palavra grega "theopneustos" (II Tm 3:16), traduzida como "inspirada por Deus", significa literalmente "proveniente do fôlego de Deus". Tal afirmação estabelece que a Bíblia não é produto da iniciativa humana, mas nasce da ação criadora e reveladora do próprio Deus. A autoridade e a singularidade da Bíblia emanam de sua origem divina e do assunto central de que trata: Jesus Cristo e Seu plano de salvação para a humanidade.
+A palavra grega "theopneustos" significa literalmente "proveniente do fôlego de Deus", indicando que a mente e a vontade divinas foram combinadas com a mente e a vontade humanas; as declarações são do homem, mas, sob a influência do Espírito, são a autêntica Palavra de Deus. A única exceção direta são os Dez Mandamentos, escritos pelo próprio dedo de Deus.
 
-O Espírito Santo, que inspirou os escritores, é o mesmo que ilumina a mente do leitor para que compreenda e aplique a mensagem divina. Portanto, o estudo da Bíblia deve sempre ser acompanhado de oração e submissão ao Espírito, pois as coisas de Deus são discernidas espiritualmente. A Bíblia é o critério máximo pelo qual todo ensinamento, toda experiência e toda prática religiosa devem ser julgados.`,
+Toda sabedoria humana e dons espirituais estão sob a autoridade da Escritura; a Bíblia é a norma suprema e absoluta pela qual nossas ideias e experiências devem ser provadas.`,
     perguntas: [
       {
         id: 101,
@@ -105,11 +105,13 @@ O Espírito Santo, que inspirou os escritores, é o mesmo que ilumina a mente do
   {
     id: 2,
     nome: 'A Trindade',
-    texto: `Existe um só Deus: Pai, Filho e Espírito Santo, uma unidade de três Pessoas coeternas. Deus é imortal, onipotente, onisciente, superior a tudo e onipresente. Ele é infinito e incompreensível pela mente humana em sua plenitude, mas Se revelou de forma compreensível através das Escrituras e de Seu Filho encarnado.
+    texto: `Há um só Deus: Pai, Filho e Espírito Santo, uma unidade de três Pessoas coeternas.
 
-A Trindade não é uma contradição, mas um mistério glorioso que revela a natureza relacional de Deus. O Pai, o Filho e o Espírito Santo são distintos em Pessoa, mas compartilham a mesma essência divina, os mesmos atributos e a mesma glória. Cada Pessoa da Trindade desempenha um papel específico na criação, na redenção e na santificação da humanidade, atuando sempre em perfeita harmonia e unidade de propósito.
+Embora o Antigo Testamento enfatize o monoteísmo para se contrastar com o panteão pagão ao redor, ele alude à pluralidade interna da Divindade através de pronomes no plural (como "Façamos o homem à nossa imagem").
 
-A doutrina da Trindade distingue o monoteísmo cristão tanto do politeísmo pagão quanto do unitarismo, que nega a divindade do Filho e do Espírito. Ela fundamenta a compreensão de que "Deus é amor" (1 Jo 4:8), pois o amor pressupõe relacionamento, e a Trindade é, em Si mesma, uma comunidade eterna de amor perfeito.`,
+Deus é amor por essência, o que significa que desde a eternidade os três membros da Trindade coexistiram oferecendo-se mutuamente em amor perfeito, vivendo de modo completo uns para os outros em total igualdade de autoridade e poder.
+
+Existe, contudo, uma distribuição funcional de ofícios na salvação: o Pai atua como a fonte/originador, o Filho como o mediador histórico e o Espírito Santo como o executor/atualizador que torna Jesus universalmente presente e aplica a graça objetiva do Calvário no íntimo do crente.`,
     perguntas: [
       {
         id: 201,
@@ -178,6 +180,14 @@ A doutrina da Trindade distingue o monoteísmo cristão tanto do politeísmo pag
         opcoes: ['Verdadeiro', 'Falso'],
         resposta_correta: 'Falso',
         justificativa: 'O adventismo afirma um monoteísmo trinitário: existe um só Deus em três Pessoas coeternas. Isso não é politeísmo, pois as três Pessoas compartilham a mesma essência divina e unidade de ser.',
+      },
+      {
+        id: 208,
+        categoria: 'vf',
+        enunciado: 'Segundo a distribuição funcional de ofícios na Trindade, o Espírito Santo atua como o executor que torna Cristo universalmente presente e aplica a graça do Calvário no íntimo do crente.',
+        opcoes: ['Verdadeiro', 'Falso'],
+        resposta_correta: 'Verdadeiro',
+        justificativa: 'Embora as três Pessoas sejam coiguais, há uma distribuição funcional: o Pai é a fonte, o Filho o mediador histórico e o Espírito Santo o executor/atualizador que aplica a graça objetiva da cruz no crente.',
       },
       {
         id: 207,
@@ -2559,6 +2569,21 @@ A esperança da nova terra é o horizonte último que dá sentido a toda a vida 
       },
     ],
   },
+];
+
+export interface ThemeGroup {
+  titulo: string;
+  doctrineIds: number[];
+}
+
+// Official thematic grouping of the 28 Fundamental Beliefs.
+export const THEME_GROUPS: ThemeGroup[] = [
+  { titulo: 'A Doutrina de Deus', doctrineIds: [1, 2, 3, 4, 5] },
+  { titulo: 'A Doutrina do Homem', doctrineIds: [6, 7] },
+  { titulo: 'A Doutrina da Salvação', doctrineIds: [8, 9, 10, 11] },
+  { titulo: 'A Doutrina da Igreja', doctrineIds: [12, 13, 14, 15, 16, 17, 18] },
+  { titulo: 'A Doutrina da Vida Cristã', doctrineIds: [19, 20, 21, 22, 23] },
+  { titulo: 'A Doutrina dos Últimos Eventos', doctrineIds: [24, 25, 26, 27, 28] },
 ];
 
 export function getDoctrine(id: number): Doctrine | undefined {

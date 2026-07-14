@@ -10,7 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { selectQuestionsForBlock, getDoctrine } from '@/constants/doctrines';
-import { Question, WrongAnswer } from '@/types';
+import { Question, WrongAnswer, BLOCK_PASS_RATIO } from '@/types';
 
 type BlockKey = 'block1' | 'block2' | 'provao';
 type Phase = 'overview' | 'quiz' | 'results';
@@ -132,6 +132,7 @@ export default function QuizScreen() {
     blockAvailability,
     dayProgress,
     completeBlock,
+    timeLockEnabled,
   } = useApp();
 
   const [quiz, setQuiz] = useState<QuizState | null>(null);
@@ -203,7 +204,7 @@ export default function QuizScreen() {
 
       const total = quiz.questions.length;
       const passed =
-        quiz.block === 'provao' ? score === total : score / total >= 0.7;
+        quiz.block === 'provao' ? score === total : score / total >= BLOCK_PASS_RATIO;
 
       const finalQuiz = { ...quiz, answers: allAnswers, phase: 'results' as Phase, score, passed, errors };
       setQuiz(finalQuiz);
@@ -241,7 +242,7 @@ export default function QuizScreen() {
 
           <BlockCard
             label="Bloco 1"
-            subtitle={`5 questões · V/F + Apologética${isSecond ? '' : ' · disponível às 10h'}`}
+            subtitle={`5 questões · mínimo 80% (4/5)${timeLockEnabled && !isSecond ? ' · disponível às 10h' : ''}`}
             available={blockAvailability.block1.available}
             completed={blockAvailability.block1.completed}
             passed={blockAvailability.block1.passed}
@@ -249,7 +250,7 @@ export default function QuizScreen() {
           />
           <BlockCard
             label="Bloco 2"
-            subtitle={`5 questões · Interpretação + Incorretas${isSecond ? '' : ' · disponível às 15h'}`}
+            subtitle={`5 questões · mínimo 80% (4/5)${timeLockEnabled && !isSecond ? ' · disponível às 15h' : ''}`}
             available={blockAvailability.block2.available}
             completed={blockAvailability.block2.completed}
             passed={blockAvailability.block2.passed}
@@ -257,7 +258,7 @@ export default function QuizScreen() {
           />
           <BlockCard
             label="Provão Final"
-            subtitle={`10 questões · 100% exigido${isSecond ? '' : ' · disponível às 19h'}`}
+            subtitle={`10 questões · 100% exigido${timeLockEnabled && !isSecond ? ' · disponível às 19h' : ''}`}
             available={blockAvailability.provao.available}
             completed={blockAvailability.provao.completed}
             passed={blockAvailability.provao.passed}
@@ -303,7 +304,9 @@ export default function QuizScreen() {
           {quiz.block === 'provao' && quiz.passed && (
             <View style={[styles.warningCard, { backgroundColor: colors.muted, borderColor: colors.success }]}>
               <Text style={[styles.warningText, { color: colors.foreground }]}>
-                ✦ Doutrina concluída! Você avança amanhã para a próxima.
+                {timeLockEnabled
+                  ? '✦ Doutrina concluída! Você avança amanhã para a próxima.'
+                  : '✦ Doutrina concluída! A próxima já foi liberada.'}
               </Text>
             </View>
           )}

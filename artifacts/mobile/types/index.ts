@@ -16,6 +16,28 @@ export interface Doctrine {
   perguntas: Question[];
 }
 
+export type Gender = 'male' | 'female';
+
+export interface Profile {
+  id: string;
+  nome: string;
+  idade: number;
+  gender: Gender;
+}
+
+export interface ProfileData {
+  currentDoctrineId: number;
+  completedDoctrines: number[];
+  dayProgress: DayProgress;
+  errorScroll: WrongAnswer[];
+}
+
+// Only the first two doctrines are unlocked with full content + quiz.
+export const MAX_UNLOCKED_DOCTRINE = 2;
+
+// Minimum score ratio to pass the regular blocks (Bloco 1 and Bloco 2).
+export const BLOCK_PASS_RATIO = 0.8;
+
 export interface WrongAnswer {
   uid: string;
   doctrineId: number;
@@ -81,14 +103,16 @@ export function getRank(completedCount: number): Rank {
 export function getBlockAvailability(
   currentHour: number,
   progress: DayProgress,
+  timeLockEnabled: boolean = true,
 ): BlockAvailability {
   const h = currentHour;
   const s = progress.isSecondAttempt;
 
-  const readMin = 5;
-  const b1Min = s ? 5 : 10;
-  const b2Min = s ? 5 : 15;
-  const pvMin = s ? 5 : 19;
+  // In free mode (time lock disabled) every gate opens immediately.
+  const readMin = timeLockEnabled ? 5 : 0;
+  const b1Min = timeLockEnabled ? (s ? 5 : 10) : 0;
+  const b2Min = timeLockEnabled ? (s ? 5 : 15) : 0;
+  const pvMin = timeLockEnabled ? (s ? 5 : 19) : 0;
 
   return {
     reading: {

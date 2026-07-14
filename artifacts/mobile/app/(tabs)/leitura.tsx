@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import {
+  Animated,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,114 +12,243 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
-import { getDoctrine } from '@/constants/doctrines';
+import { getDoctrine, THEME_GROUPS } from '@/constants/doctrines';
+import { DOCTRINES } from '@/constants/doctrines';
+import { MAX_UNLOCKED_DOCTRINE } from '@/types';
+
+function nameFor(id: number): string {
+  return DOCTRINES.find((d) => d.id === id)?.nome ?? `Doutrina ${id}`;
+}
 
 export default function LeituraScreen() {
   const colors = useColors();
-  const { currentDoctrineId, dayProgress, blockAvailability, completeReading } = useApp();
-  const doctrine = getDoctrine(currentDoctrineId);
-  const [scrolledToBottom, setScrolledToBottom] = useState(false);
-  const scrollRef = useRef<ScrollView>(null);
+  const {
+    currentDoctrineId,
+    completedDoctrines,
+    dayProgress,
+    blockAvailability,
+    completeReading,
+    timeLockEnabled,
+  } = useApp();
 
-  const alreadyRead = dayProgress.readingCompleted;
-  const available = blockAvailability.reading.available;
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  if (selectedId !== null) {
+    return (
+      <ReadingDetail
+        doctrineId={selectedId}
+        onBack={() => setSelectedId(null)}
+      />
+    );
+  }
+
+  // ── Grouped list ──
+  return (
+    <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
+      <View style={[styles.header, { borderBottomColor: colors.border }]}>
+        <Text style={[styles.headerTitle, { color: colors.primary }]}>Trilha de Leitura</Text>
+        <Text style={[styles.headerSub, { color: colors.mutedForeground }]}>
+          As 28 Crenças Fundamentais, agrupadas por tema
+        </Text>
+      </View>
+
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={[styles.listContent, { paddingBottom: 100 }]}
+        showsVerticalScrollIndicator={false}
+      >
+        {THEME_GROUPS.map((group) => (
+          <View key={group.titulo} style={styles.group}>
+            <Text style={[styles.groupTitle, { color: colors.accent }]}>
+              {group.titulo.toUpperCase()}
+            </Text>
+
+            {group.doctrineIds.map((id) => {
+              const unlocked = id <= MAX_UNLOCKED_DOCTRINE;
+              const completed = completedDoctrines.includes(id);
+              const isCurrent = id === currentDoctrineId;
+              const readPending = isCurrent && !dayProgress.readingCompleted;
+
+              const border = completed
+                ? colors.success
+                : isCurrent
+                ? colors.primary
+                : colors.border;
+
+              return (
+                <TouchableOpacity
+                  key={id}
+                  disabled={!unlocked}
+                  activeOpacity={0.8}
+                  onPress={() => setSelectedId(id)}
+                  style={[
+                    styles.item,
+                    {
+                      backgroundColor: colors.card,
+                      borderColor: border,
+                      opacity: unlocked ? 1 : 0.45,
+                    },
+                  ]}
+                >
+                  <View style={[styles.itemNum, { backgroundColor: unlocked ? colors.secondary : colors.muted }]}>
+                    <Text style={[styles.itemNumText, { color: unlocked ? colors.primary : colors.mutedForeground }]}>
+                      {id}
+                    </Text>
+                  </View>
+
+                  <View style={styles.itemBody}>
+                    <Text
+                      style={[styles.itemName, { color: unlocked ? colors.foreground : colors.mutedForeground }]}
+                      numberOfLines={2}
+                    >
+                      {nameFor(id)}
+                    </Text>
+                    {unlocked ? (
+                      readPending ? (
+                        <Text style={[styles.itemStatus, { color: colors.primary }]}>Leitura pendente</Text>
+                      ) : completed ? (
+                        <Text style={[styles.itemStatus, { color: colors.success }]}>Concluída ✓</Text>
+                      ) : isCurrent ? (
+                        <Text style={[styles.itemStatus, { color: colors.success }]}>Leitura feita ✓</Text>
+                      ) : (
+                        <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Disponível</Text>
+                      )
+                    ) : (
+                      <Text style={[styles.itemStatus, { color: colors.mutedForeground }]}>Em breve</Text>
+                    )}
+                  </View>
+
+                  <Text style={[styles.itemChevron, { color: colors.mutedForeground }]}>
+                    {unlocked ? '›' : '🔒'}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+// ── Reading detail with "Leitura concluída" + check animation ──
+function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () => void }) {
+  const colors = useColors();
+  const { currentDoctrineId, dayProgress, blockAvailability, completeReading } = useApp();
+  const doctrine = getDoctrine(doctrineId);
+
+  const [scrolledToBottom, setScrolledToBottom] = useState(false);
+  const [showCheck, setShowCheck] = useState(false);
+  const checkScale = useRef(new Animated.Value(0)).current;
+  const checkOpacity = useRef(new Animated.Value(0)).current;
+
+  const isCurrent = doctrineId === currentDoctrineId;
+  const alreadyRead = isCurrent && dayProgress.readingCompleted;
+  const readingAvailable = blockAvailability.reading.available;
+  const canMark = isCurrent && !alreadyRead && readingAvailable;
 
   function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
     const { contentOffset, layoutMeasurement, contentSize } = e.nativeEvent;
-    const isNearBottom =
-      contentOffset.y + layoutMeasurement.height >= contentSize.height - 60;
-    if (isNearBottom) setScrolledToBottom(true);
+    if (contentOffset.y + layoutMeasurement.height >= contentSize.height - 60) {
+      setScrolledToBottom(true);
+    }
+  }
+
+  function markRead() {
+    setShowCheck(true);
+    Animated.parallel([
+      Animated.spring(checkScale, { toValue: 1, useNativeDriver: true, friction: 5 }),
+      Animated.timing(checkOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
+    ]).start();
+
+    setTimeout(async () => {
+      await completeReading();
+      Animated.timing(checkOpacity, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
+        setShowCheck(false);
+        onBack();
+      });
+    }, 1100);
   }
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
-      {/* Header */}
-      <View style={[styles.header, { borderBottomColor: colors.border }]}>
-        <Text style={[styles.headerLabel, { color: colors.mutedForeground }]}>
-          Doutrina {currentDoctrineId} de 28
+      <View style={[styles.detailHeader, { borderBottomColor: colors.border }]}>
+        <TouchableOpacity onPress={onBack} style={styles.backBtn}>
+          <Text style={[styles.backText, { color: colors.primary }]}>‹ Voltar</Text>
+        </TouchableOpacity>
+        <Text style={[styles.detailLabel, { color: colors.mutedForeground }]}>
+          Doutrina {doctrineId}
         </Text>
-        <Text style={[styles.headerTitle, { color: colors.primary }]} numberOfLines={2}>
+        <Text style={[styles.detailTitle, { color: colors.primary }]} numberOfLines={2}>
           {doctrine?.nome ?? '—'}
         </Text>
       </View>
 
-      {!available ? (
-        <View style={styles.centered}>
-          <Text style={[styles.lockedIcon, { color: colors.mutedForeground }]}>🔒</Text>
-          <Text style={[styles.lockedTitle, { color: colors.foreground }]}>
-            Leitura disponível a partir das 5h
-          </Text>
-          <Text style={[styles.lockedSub, { color: colors.mutedForeground }]}>
-            Volte ao amanhecer para iniciar o estudo de hoje.
-          </Text>
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={[styles.detailContent, { paddingBottom: canMark ? 120 : 40 }]}
+        showsVerticalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={100}
+      >
+        <View style={styles.ornamentRow}>
+          <Text style={[styles.ornament, { color: colors.primary }]}>✦ ─────── ✦ ─────── ✦</Text>
         </View>
-      ) : (
-        <>
-          <ScrollView
-            ref={scrollRef}
-            style={styles.scroll}
-            contentContainerStyle={[styles.content, { paddingBottom: 120 }]}
-            showsVerticalScrollIndicator={false}
-            onScroll={handleScroll}
-            scrollEventThrottle={100}
-          >
-            {/* Decorative rule */}
-            <View style={styles.ornamentRow}>
-              <Text style={[styles.ornament, { color: colors.primary }]}>✦ ─────── ✦ ─────── ✦</Text>
-            </View>
+        <Text style={[styles.bodyText, { color: colors.foreground }]}>{doctrine?.texto ?? ''}</Text>
+        <View style={styles.ornamentRow}>
+          <Text style={[styles.ornament, { color: colors.primary }]}>✦ ─────── ✦ ─────── ✦</Text>
+        </View>
+      </ScrollView>
 
-            <Text style={[styles.bodyText, { color: colors.foreground }]}>
-              {doctrine?.texto ?? ''}
-            </Text>
-
-            <View style={styles.ornamentRow}>
-              <Text style={[styles.ornament, { color: colors.primary }]}>✦ ─────── ✦ ─────── ✦</Text>
-            </View>
-          </ScrollView>
-
-          {/* Bottom action */}
-          <View
+      {/* Footer action (only for current doctrine that still needs reading) */}
+      {canMark && (
+        <View style={[styles.footer, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
+          <TouchableOpacity
             style={[
-              styles.footer,
-              { backgroundColor: colors.background, borderTopColor: colors.border },
+              styles.readBtn,
+              {
+                backgroundColor: scrolledToBottom ? colors.primary : colors.muted,
+                opacity: scrolledToBottom ? 1 : 0.6,
+              },
+            ]}
+            onPress={scrolledToBottom ? markRead : undefined}
+            activeOpacity={scrolledToBottom ? 0.85 : 1}
+          >
+            <Text
+              style={[
+                styles.readBtnText,
+                { color: scrolledToBottom ? colors.primaryForeground : colors.mutedForeground },
+              ]}
+            >
+              {scrolledToBottom ? '✓ Leitura concluída' : 'Role até o fim para concluir'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
+      {alreadyRead && (
+        <View style={[styles.footer, { backgroundColor: colors.background, borderTopColor: colors.border }]}>
+          <View style={[styles.doneCard, { backgroundColor: colors.success }]}>
+            <Text style={[styles.doneText, { color: colors.successForeground }]}>
+              ✓ Leitura concluída — vá para o Quiz
+            </Text>
+          </View>
+        </View>
+      )}
+
+      {/* Success animation overlay */}
+      {showCheck && (
+        <Animated.View style={[styles.overlay, { opacity: checkOpacity }]}>
+          <Animated.View
+            style={[
+              styles.checkCircle,
+              { backgroundColor: colors.success, transform: [{ scale: checkScale }] },
             ]}
           >
-            {alreadyRead ? (
-              <View style={[styles.doneCard, { backgroundColor: colors.success }]}>
-                <Text style={[styles.doneText, { color: colors.successForeground }]}>
-                  ✓ Leitura concluída — vá para o Quiz
-                </Text>
-              </View>
-            ) : (
-              <TouchableOpacity
-                style={[
-                  styles.readBtn,
-                  {
-                    backgroundColor: scrolledToBottom ? colors.primary : colors.muted,
-                    opacity: scrolledToBottom ? 1 : 0.6,
-                  },
-                ]}
-                onPress={scrolledToBottom ? completeReading : undefined}
-                activeOpacity={scrolledToBottom ? 0.8 : 1}
-              >
-                <Text
-                  style={[
-                    styles.readBtnText,
-                    {
-                      color: scrolledToBottom
-                        ? colors.primaryForeground
-                        : colors.mutedForeground,
-                    },
-                  ]}
-                >
-                  {scrolledToBottom
-                    ? '✓ Marcar como Lido'
-                    : 'Role até o fim para marcar como lido'}
-                </Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        </>
+            <Text style={styles.checkMark}>✓</Text>
+          </Animated.View>
+          <Text style={[styles.checkText, { color: colors.foreground }]}>Leitura concluída!</Text>
+        </Animated.View>
       )}
     </SafeAreaView>
   );
@@ -133,10 +263,45 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     gap: 4,
   },
-  headerLabel: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
-  headerTitle: { fontSize: 19, fontWeight: '700', lineHeight: 26 },
+  headerTitle: { fontSize: 22, fontWeight: '800', letterSpacing: 0.5 },
+  headerSub: { fontSize: 13 },
   scroll: { flex: 1 },
-  content: { padding: 20, gap: 16 },
+  listContent: { padding: 16, gap: 22 },
+  group: { gap: 10 },
+  groupTitle: { fontSize: 12, fontWeight: '800', letterSpacing: 1 },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    padding: 12,
+  },
+  itemNum: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  itemNumText: { fontSize: 14, fontWeight: '800' },
+  itemBody: { flex: 1, gap: 2 },
+  itemName: { fontSize: 14, fontWeight: '600', lineHeight: 20 },
+  itemStatus: { fontSize: 12, fontWeight: '500' },
+  itemChevron: { fontSize: 20 },
+  // detail
+  detailHeader: {
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    paddingBottom: 14,
+    borderBottomWidth: 1,
+    gap: 4,
+  },
+  backBtn: { paddingVertical: 6, alignSelf: 'flex-start' },
+  backText: { fontSize: 15, fontWeight: '600' },
+  detailLabel: { fontSize: 12, letterSpacing: 1, textTransform: 'uppercase' },
+  detailTitle: { fontSize: 19, fontWeight: '700', lineHeight: 26 },
+  detailContent: { padding: 20, gap: 16 },
   ornamentRow: { alignItems: 'center', marginVertical: 4 },
   ornament: { fontSize: 14, letterSpacing: 2 },
   bodyText: { fontSize: 16, lineHeight: 28, letterSpacing: 0.2 },
@@ -149,20 +314,24 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     borderTopWidth: 1,
   },
-  readBtn: {
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
+  readBtn: { borderRadius: 12, paddingVertical: 16, alignItems: 'center' },
   readBtnText: { fontSize: 15, fontWeight: '700' },
-  doneCard: {
-    borderRadius: 12,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
+  doneCard: { borderRadius: 12, paddingVertical: 16, alignItems: 'center' },
   doneText: { fontSize: 15, fontWeight: '700' },
-  centered: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32, gap: 12 },
-  lockedIcon: { fontSize: 40 },
-  lockedTitle: { fontSize: 18, fontWeight: '700', textAlign: 'center' },
-  lockedSub: { fontSize: 14, textAlign: 'center', lineHeight: 22 },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(13,27,42,0.92)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 20,
+  },
+  checkCircle: {
+    width: 110,
+    height: 110,
+    borderRadius: 55,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  checkMark: { fontSize: 60, color: '#0D1B2A', fontWeight: '800' },
+  checkText: { fontSize: 20, fontWeight: '700' },
 });

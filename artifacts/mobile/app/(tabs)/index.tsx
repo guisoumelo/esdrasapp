@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   TouchableOpacity,
   View,
@@ -28,6 +29,7 @@ function blockState(
 export default function DashboardScreen() {
   const colors = useColors();
   const {
+    activeProfile,
     currentDoctrineId,
     completedDoctrines,
     dayProgress,
@@ -36,6 +38,8 @@ export default function DashboardScreen() {
     currentHour,
     debugHour,
     setDebugHour,
+    timeLockEnabled,
+    setTimeLockEnabled,
     resetProgress,
     masterMode,
   } = useApp();
@@ -55,6 +59,8 @@ export default function DashboardScreen() {
     ? 'available'
     : 'locked';
 
+  const profileEmoji = activeProfile?.gender === 'female' ? '👩' : '👨';
+
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top']}>
       <ScrollView
@@ -69,6 +75,22 @@ export default function DashboardScreen() {
             28 Crenças Fundamentais
           </Text>
         </View>
+
+        {/* Greeting */}
+        {activeProfile && (
+          <View style={[styles.greetCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
+            <Text style={styles.greetEmoji}>{profileEmoji}</Text>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.greetHello, { color: colors.mutedForeground }]}>Bem-vindo(a),</Text>
+              <Text style={[styles.greetName, { color: colors.foreground }]}>{activeProfile.nome}</Text>
+            </View>
+            {!timeLockEnabled && (
+              <View style={[styles.modePill, { backgroundColor: colors.accent }]}>
+                <Text style={[styles.modePillText, { color: colors.accentForeground }]}>Modo Livre</Text>
+              </View>
+            )}
+          </View>
+        )}
 
         {/* Rank Card */}
         <View style={[styles.rankCard, { backgroundColor: colors.card, borderColor: colors.primary }]}>
@@ -109,7 +131,7 @@ export default function DashboardScreen() {
           <Text style={[styles.doctrineName, { color: colors.primary }]}>
             {doctrine?.nome ?? '—'}
           </Text>
-          {isSecond && (
+          {timeLockEnabled && isSecond && (
             <View style={[styles.pill, { backgroundColor: colors.destructive }]}>
               <Text style={[styles.pillText, { color: colors.destructiveForeground }]}>
                 Segunda Tentativa — blocos disponíveis a partir das 5h
@@ -120,7 +142,9 @@ export default function DashboardScreen() {
 
         {/* Timeline */}
         <View style={[styles.section, { backgroundColor: colors.card, borderColor: colors.border }]}>
-          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>Cronograma Diário</Text>
+          <Text style={[styles.sectionTitle, { color: colors.foreground }]}>
+            {timeLockEnabled ? 'Cronograma Diário' : 'Trilha de Hoje'}
+          </Text>
           <View style={styles.timeline}>
             <TimelineBlock
               label="Leitura"
@@ -163,13 +187,30 @@ export default function DashboardScreen() {
           <Text style={[styles.sectionTitle, { color: colors.mutedForeground }]}>
             🛠 Painel de Depuração
           </Text>
+
+          {/* Time-lock toggle */}
+          <View style={styles.debugToggleRow}>
+            <Text style={[styles.debugToggleLabel, { color: colors.foreground }]}>
+              Bloqueio por Horário
+            </Text>
+            <Switch
+              value={timeLockEnabled}
+              onValueChange={setTimeLockEnabled}
+              trackColor={{ false: colors.muted, true: colors.primary }}
+              thumbColor={colors.card}
+            />
+          </View>
+
           <Text style={[styles.debugHour, { color: colors.mutedForeground }]}>
-            Hora atual: {currentHour}h {debugHour !== null ? '(simulada)' : '(real)'}
+            {timeLockEnabled
+              ? `Hora atual: ${currentHour}h ${debugHour !== null ? '(simulada)' : '(real)'}`
+              : 'Horas desativadas no Modo Livre'}
           </Text>
-          <View style={styles.debugRow}>
+          <View style={[styles.debugRow, { opacity: timeLockEnabled ? 1 : 0.4 }]}>
             {[5, 10, 15, 19].map((h) => (
               <TouchableOpacity
                 key={h}
+                disabled={!timeLockEnabled}
                 style={[
                   styles.debugBtn,
                   {
@@ -195,7 +236,7 @@ export default function DashboardScreen() {
             onPress={resetProgress}
           >
             <Text style={[styles.resetBtnText, { color: colors.destructiveForeground }]}>
-              ↺ Reiniciar Progresso
+              ↺ Reiniciar Progresso (perfil atual)
             </Text>
           </TouchableOpacity>
         </View>
@@ -211,6 +252,19 @@ const styles = StyleSheet.create({
   header: { alignItems: 'center', paddingVertical: 12 },
   appTitle: { fontSize: 28, fontWeight: '800', letterSpacing: 4 },
   appSubtitle: { fontSize: 13, letterSpacing: 1, marginTop: 4 },
+  greetCard: {
+    borderRadius: 14,
+    borderWidth: 1,
+    padding: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  greetEmoji: { fontSize: 34 },
+  greetHello: { fontSize: 12 },
+  greetName: { fontSize: 18, fontWeight: '700' },
+  modePill: { borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 },
+  modePillText: { fontSize: 11, fontWeight: '700' },
   rankCard: {
     borderRadius: 14,
     borderWidth: 2,
@@ -242,6 +296,8 @@ const styles = StyleSheet.create({
   },
   pillText: { fontSize: 12, fontWeight: '600' },
   timeline: { gap: 0 },
+  debugToggleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  debugToggleLabel: { fontSize: 14, fontWeight: '600' },
   debugHour: { fontSize: 13 },
   debugRow: { flexDirection: 'row', gap: 10 },
   debugBtn: {

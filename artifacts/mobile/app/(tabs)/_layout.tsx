@@ -17,7 +17,7 @@ function NativeTabLayout() {
     <NativeTabs>
       <NativeTabs.Trigger name="index">
         <Icon sf={{ default: 'house', selected: 'house.fill' }} />
-        <Label>Painel</Label>
+        <Label>Início</Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="leitura">
         <Icon sf={{ default: 'book', selected: 'book.fill' }} />
@@ -29,7 +29,11 @@ function NativeTabLayout() {
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="erros">
         <Icon sf={{ default: 'scroll', selected: 'scroll.fill' }} />
-        <Label>Pergaminho</Label>
+        <Label>Erros</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="ajustes">
+        <Icon sf={{ default: 'gearshape', selected: 'gearshape.fill' }} />
+        <Label>Ajustes</Label>
       </NativeTabs.Trigger>
     </NativeTabs>
   );
@@ -56,6 +60,7 @@ function ClassicTabLayout() {
           elevation: 0,
           ...(isWeb ? { height: 84 } : {}),
         },
+        tabBarLabelStyle: { fontSize: 10 },
         tabBarBackground: () =>
           isIOS ? (
             <BlurView
@@ -76,7 +81,7 @@ function ClassicTabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Painel',
+          title: 'Início',
           tabBarIcon: ({ color }) =>
             isIOS ? (
               <SymbolView name="house" tintColor={color} size={24} />
@@ -112,12 +117,24 @@ function ClassicTabLayout() {
       <Tabs.Screen
         name="erros"
         options={{
-          title: 'Pergaminho',
+          title: 'Erros',
           tabBarIcon: ({ color }) =>
             isIOS ? (
               <SymbolView name="scroll" tintColor={color} size={24} />
             ) : (
               <Feather name="alert-triangle" size={22} color={color} />
+            ),
+        }}
+      />
+      <Tabs.Screen
+        name="ajustes"
+        options={{
+          title: 'Ajustes',
+          tabBarIcon: ({ color }) =>
+            isIOS ? (
+              <SymbolView name="gearshape" tintColor={color} size={24} />
+            ) : (
+              <Feather name="settings" size={22} color={color} />
             ),
         }}
       />
