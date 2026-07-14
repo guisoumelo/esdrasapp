@@ -291,7 +291,7 @@ function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () 
               ]}
             >
               <Text style={[styles.confirmTopText, { color: scrolledToBottom ? colors.primaryForeground : colors.mutedForeground }]}>
-                {scrolledToBottom ? '✓ Confirmar leitura' : '↓ Role até o fim'}
+                ✓ Confirmar leitura
               </Text>
             </TouchableOpacity>
           )}
