@@ -23,21 +23,12 @@ function nameFor(id: number): string {
   return DOCTRINES.find((d) => d.id === id)?.nome ?? `Doutrina ${id}`;
 }
 
-type MacroKey = 'beliefs' | 'daniel';
-
 export default function LeituraScreen() {
   const colors = useColors();
   const { currentDoctrineId, completedDoctrines, readDoctrines, dayProgress } = useApp();
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [expanded, setExpanded] = useState<Record<MacroKey, boolean>>({
-    beliefs: false,
-    daniel: false,
-  });
-
-  function toggleMacro(key: MacroKey) {
-    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
-  }
+  const [beliefsExpanded, setBeliefsExpanded] = useState(false);
 
   if (selectedId !== null) {
     return (
@@ -63,13 +54,13 @@ export default function LeituraScreen() {
         contentContainerStyle={[styles.listContent, { paddingBottom: 100 }]}
         showsVerticalScrollIndicator={false}
       >
-        {/* ── Macro 1: 28 Crenças Fundamentais ── */}
+        {/* ── 28 Crenças Fundamentais ── */}
         <MacroAccordion
           title="28 Crenças Fundamentais"
           subtitle="Estrutura teológica oficial da IASD"
           icon="📜"
-          expanded={expanded.beliefs}
-          onToggle={() => toggleMacro('beliefs')}
+          expanded={beliefsExpanded}
+          onToggle={() => setBeliefsExpanded((v) => !v)}
         >
           {THEME_GROUPS.map((group) => (
             <View key={group.titulo} style={styles.group}>
@@ -149,22 +140,7 @@ export default function LeituraScreen() {
           ))}
         </MacroAccordion>
 
-        {/* ── Macro 2: Profecias de Daniel (em breve) ── */}
-        <MacroAccordion
-          title="Profecias de Daniel"
-          subtitle="Novo módulo de estudo"
-          icon="🦁"
-          expanded={expanded.daniel}
-          onToggle={() => toggleMacro('daniel')}
-        >
-          <View style={[styles.comingSoon, { backgroundColor: colors.card, borderColor: colors.border }]}>
-            <Text style={styles.comingSoonEmoji}>🕰️</Text>
-            <Text style={[styles.comingSoonTitle, { color: colors.foreground }]}>Conteúdo em breve</Text>
-            <Text style={[styles.comingSoonText, { color: colors.mutedForeground }]}>
-              Um estudo completo das profecias do livro de Daniel está sendo preparado.
-            </Text>
-          </View>
-        </MacroAccordion>
+
       </ScrollView>
     </SafeAreaView>
   );
@@ -384,17 +360,6 @@ const styles = StyleSheet.create({
   macroSub: { fontSize: 12 },
   macroChevron: { fontSize: 22, fontWeight: '800', width: 20, textAlign: 'center' },
   macroContent: { gap: 22, paddingTop: 2 },
-  comingSoon: {
-    borderRadius: 14,
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    padding: 24,
-    alignItems: 'center',
-    gap: 8,
-  },
-  comingSoonEmoji: { fontSize: 34 },
-  comingSoonTitle: { fontSize: 16, fontWeight: '700' },
-  comingSoonText: { fontSize: 13, lineHeight: 19, textAlign: 'center' },
   group: { gap: 10 },
   groupTitle: { fontSize: 12, fontWeight: '800', letterSpacing: 1 },
   item: {
