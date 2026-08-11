@@ -12,7 +12,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
@@ -75,6 +75,7 @@ function FloatingIcon({ icon, color, delay = 0 }: { icon: string; color: string;
 export default function OnboardingScreen() {
   const colors = useColors();
   const { createProfile } = useApp();
+  const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
   const [page, setPage] = useState(0);
   const [showForm, setShowForm] = useState(false);
@@ -118,7 +119,7 @@ export default function OnboardingScreen() {
       </ScrollView>
 
       {/* Footer: dots + action button */}
-      <View style={styles.footer}>
+      <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, 24) }]}>
         <View style={styles.dots}>
           {SLIDES.map((_, i) => (
             <View

@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useColors } from '@/hooks/useColors';
 import { Gender, getAvatarsForGender } from '@/types';
 
@@ -42,11 +42,13 @@ export function ProfileForm({ onSubmit, onCancel, initial, submitLabel = 'Criar 
   const totalSteps = 2;
   const currentStep = step === 'name' ? 0 : 1;
 
+  const insets = useSafeAreaInsets();
+
   // ── Step 1: Name ─────────────────────────────────────────────────────────────
   if (step === 'name') {
     const valid = nome.trim().length >= 2;
     return (
-      <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
+      <View style={[styles.safe, { backgroundColor: colors.background }]}>
         <KeyboardAvoidingView style={styles.kav} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <TopBar
             onBack={onCancel}
@@ -54,6 +56,7 @@ export function ProfileForm({ onSubmit, onCancel, initial, submitLabel = 'Criar 
             total={totalSteps}
             current={currentStep}
             color={colors.primary}
+            topInset={insets.top}
           />
 
           <View style={styles.stepContent}>
@@ -85,9 +88,10 @@ export function ProfileForm({ onSubmit, onCancel, initial, submitLabel = 'Criar 
             nextLabel="Avançar →"
             nextEnabled={valid}
             colors={colors}
+            bottomInset={insets.bottom}
           />
         </KeyboardAvoidingView>
-      </SafeAreaView>
+      </View>
     );
   }
 
@@ -96,13 +100,14 @@ export function ProfileForm({ onSubmit, onCancel, initial, submitLabel = 'Criar 
   const avatars = gender ? getAvatarsForGender(gender) : [];
 
   return (
-    <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
+    <View style={[styles.safe, { backgroundColor: colors.background }]}>
       <TopBar
         onBack={initial ? onCancel : () => setStep('name')}
         backLabel={initial ? 'Cancelar' : '‹ Voltar'}
         total={totalSteps}
         current={currentStep}
         color={colors.primary}
+        topInset={insets.top}
       />
 
       <ScrollView
@@ -184,8 +189,9 @@ export function ProfileForm({ onSubmit, onCancel, initial, submitLabel = 'Criar 
         nextLabel={submitLabel}
         nextEnabled={valid}
         colors={colors}
+        bottomInset={insets.bottom}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -197,15 +203,17 @@ function TopBar({
   total,
   current,
   color,
+  topInset = 0,
 }: {
   onBack: () => void;
   backLabel: string;
   total: number;
   current: number;
   color: string;
+  topInset?: number;
 }) {
   return (
-    <View style={topBarStyles.bar}>
+    <View style={[topBarStyles.bar, { paddingTop: topInset + 12 }]}>
       <TouchableOpacity onPress={onBack} style={topBarStyles.backBtn}>
         <Text style={[topBarStyles.backText, { color }]}>{backLabel}</Text>
       </TouchableOpacity>
@@ -236,6 +244,7 @@ function FooterRow({
   nextLabel,
   nextEnabled,
   colors,
+  bottomInset = 0,
 }: {
   onBack: () => void;
   backLabel: string;
@@ -243,9 +252,10 @@ function FooterRow({
   nextLabel: string;
   nextEnabled: boolean;
   colors: ReturnType<typeof import('@/hooks/useColors').useColors>;
+  bottomInset?: number;
 }) {
   return (
-    <View style={[footerStyles.row, { borderTopColor: colors.border }]}>
+    <View style={[footerStyles.row, { borderTopColor: colors.border, paddingBottom: Math.max(bottomInset, 20) }]}>
       <TouchableOpacity
         style={[footerStyles.backBtn, { backgroundColor: colors.secondary, borderColor: colors.border }]}
         onPress={onBack}
@@ -278,7 +288,6 @@ const topBarStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingTop: 8,
     paddingBottom: 12,
   },
   backBtn: { minWidth: 70 },

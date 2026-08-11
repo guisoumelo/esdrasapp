@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useApp } from '@/context/AppContext';
 import { useColors } from '@/hooks/useColors';
 import { ProfileForm } from '@/components/ProfileForm';
@@ -282,10 +282,11 @@ function EditProfilesList({
 }) {
   const { resetAll } = useApp();
   const [showReset, setShowReset] = useState(false);
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={[listStyles.safe, { backgroundColor: colors.background }]} edges={['top', 'bottom']}>
-      <View style={[listStyles.header, { borderBottomColor: colors.border }]}>
+    <View style={[listStyles.safe, { backgroundColor: colors.background }]}>
+      <View style={[listStyles.header, { borderBottomColor: colors.border, paddingTop: insets.top + 12 }]}>
         <TouchableOpacity onPress={onClose}>
           <Text style={[listStyles.back, { color: colors.mutedForeground }]}>‹ Voltar</Text>
         </TouchableOpacity>
@@ -293,7 +294,10 @@ function EditProfilesList({
         <View style={listStyles.spacer} />
       </View>
 
-      <ScrollView contentContainerStyle={listStyles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={[listStyles.content, { paddingBottom: Math.max(insets.bottom, 24) }]}
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={[listStyles.hint, { color: colors.mutedForeground }]}>
           Toque em um perfil para editar ou excluir.
         </Text>
@@ -356,7 +360,7 @@ function EditProfilesList({
           await resetAll();
         }}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
