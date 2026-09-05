@@ -6,6 +6,8 @@
   "build": {
     "production": {
       "distribution": "store",
+      "corepack": true,
+      "pnpm": "10.26.1",
       "env": {
         "EAS_NO_FROZEN_LOCKFILE": "1"
       }
