@@ -6,6 +6,7 @@
   "build": {
     "production": {
       "distribution": "store",
+      "node": "20.19.4",
       "corepack": true,
       "pnpm": "10.26.1",
       "env": {
