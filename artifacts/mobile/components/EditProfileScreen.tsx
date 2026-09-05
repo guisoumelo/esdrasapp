@@ -423,9 +423,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden', justifyContent: 'center',
     paddingHorizontal: 3,
   },
-  slideFill: { ...StyleSheet.absoluteFillObject, left: 0 },
+  slideFill: { ...StyleSheet.absoluteFill, left: 0 },
   slideLabelWrap: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     alignItems: 'center', justifyContent: 'center',
   },
   slideLabel: { fontSize: 14, fontWeight: '700' },

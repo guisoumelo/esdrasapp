@@ -214,9 +214,6 @@ function TopBar({
 }) {
   return (
     <View style={[topBarStyles.bar, { paddingTop: topInset + 12 }]}>
-      <TouchableOpacity onPress={onBack} style={topBarStyles.backBtn}>
-        <Text style={[topBarStyles.backText, { color }]}>{backLabel}</Text>
-      </TouchableOpacity>
       <View style={topBarStyles.dots}>
         {Array.from({ length: total }).map((_, i) => (
           <View
@@ -231,8 +228,6 @@ function TopBar({
           />
         ))}
       </View>
-      {/* Invisible spacer to balance the back button */}
-      <View style={topBarStyles.spacer} />
     </View>
   );
 }

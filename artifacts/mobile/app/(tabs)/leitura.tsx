@@ -1,5 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
-import { BottomTabBarHeightContext } from '@react-navigation/bottom-tabs';
+import React, { useRef, useState } from 'react';
 import {
   Animated,
   Platform,
@@ -195,11 +194,9 @@ function MacroAccordion({
 function ReadingDetail({ doctrineId, onBack }: { doctrineId: number; onBack: () => void }) {
   const colors = useColors();
 
-  // Reliable tab-bar height:
-  // - Web: ClassicTabLayout hardcodes 84px but BottomTabBarHeightContext may return 0 there.
-  // - Native ClassicTabLayout / NativeTabs: context is accurate.
-  const tabCtxHeight = useContext(BottomTabBarHeightContext) ?? 0;
-  const tabBarHeight = Platform.OS === 'web' ? 84 : tabCtxHeight;
+  // Both the classic and native tab bars overlay this detail screen.
+  // Reserve enough room so the final paragraph never sits behind the tabs.
+  const tabBarHeight = 84;
 
   const { currentDoctrineId, completedDoctrines, readDoctrines, dayProgress, blockAvailability, markDoctrineRead } = useApp();
   const doctrine = getDoctrine(doctrineId);
@@ -413,7 +410,7 @@ const styles = StyleSheet.create({
   ornament: { fontSize: 14, letterSpacing: 2 },
   bodyText: { fontSize: 16, lineHeight: 28, letterSpacing: 0.2 },
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     alignItems: 'center',
     justifyContent: 'center',
     gap: 20,

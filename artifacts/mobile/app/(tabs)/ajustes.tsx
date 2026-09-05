@@ -558,8 +558,8 @@ const slideStyles = StyleSheet.create({
     height: 56, borderRadius: 28, borderWidth: 1.5,
     overflow: 'hidden', justifyContent: 'center', paddingHorizontal: 3,
   },
-  fill: { ...StyleSheet.absoluteFillObject, left: 0 },
-  labelWrap: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'center' },
+  fill: { ...StyleSheet.absoluteFill, left: 0 },
+  labelWrap: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' },
   label: { fontSize: 13, fontWeight: '700' },
   handle: {
     borderRadius: 25, alignItems: 'center', justifyContent: 'center',

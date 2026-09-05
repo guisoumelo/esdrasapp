@@ -6,9 +6,18 @@ description: Architecture decisions, patterns, and non-obvious constraints for t
 ## App overview
 Gamified SDA 28-beliefs quiz app. Expo / React Native, frontend-only, AsyncStorage persistence. 4-tab layout: Início, Leitura, Quiz, Ajustes. Dark manuscript theme with per-profile color themes.
 
-## Tab layout
-- Erros tab was removed; wrong-answer data is kept in context but has no dedicated tab.
-- Tab bar height: `BottomTabBarHeightContext` returns 0 on Expo web → use `Platform.OS === 'web' ? 84 : tabCtxHeight`.
+## Release compatibility
+Use stock Expo Go with the same SDK generation as the project. The SDK 57 migration was physically verified on Android.
+
+**Why:** The user confirmed the complete app worked on Android in stock Expo Go 57 after the direct SDK 54→57 migration.
+
+**How to apply:** Keep future Expo packages aligned with Expo CLI checks, and repeat physical-device validation after SDK or native-module changes.
+
+For SDK 57 production builds, keep Babel and Metro on Expo defaults unless the app gains a documented customization.
+
+**Why:** Legacy default-only config caused the iOS archive bundler to lose its Metro transformer even though local exports passed.
+
+**How to apply:** After SDK upgrades, remove obsolete default-only config and let Expo resolve its own Metro toolchain; validate with a production-mode iOS export.
 
 ## Dashboard
 - Subtitle is "O Escriba Versado".
