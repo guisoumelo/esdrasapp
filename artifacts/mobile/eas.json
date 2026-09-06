@@ -9,6 +9,9 @@
       "node": "20.19.4",
       "corepack": true,
       "pnpm": "10.26.1",
+      "android": {
+        "image": "ubuntu-26.04-jdk-17-ndk-r27b-sdk-57"
+      },
       "env": {
         "EAS_NO_FROZEN_LOCKFILE": "1"
       }
